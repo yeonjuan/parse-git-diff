@@ -1,0 +1,32 @@
+diff --git a/rename.md b/rename.md
+index 0e05564..aa39060 100644
+--- a/rename.md
++++ b/rename.md
+@@ -1,2 +1 @@
+ newfile
+-newline
+diff --git a/newfile.md b/newfile.md
+deleted file mode 100644
+index aa39060..0000000
+--- a/newfile.md
++++ /dev/null
+@@ -1 +0,0 @@
+-newfile
+diff --git a/newfile.md b/newfile.md
+new file mode 100644
+index 0000000..aa39060
+--- /dev/null
++++ b/newfile.md
+@@ -0,0 +1 @@
++newfile
+diff --git a/rename.md b/rename.md
+index aa39060..0e05564 100644
+--- a/rename.md
++++ b/rename.md
+@@ -1 +1,2 @@
+ newfile
++newline
+diff --git a/newfile.md b/rename.md
+similarity index 100%
+rename from newfile.md
+rename to rename.md

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deleted-file parse \`deleted-file\` 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineBefore": 1,
+              "type": "DeletedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 0,
+            "start": 0,
+          },
+          "rangeBefore": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "newfile.md",
+      "type": "DeletedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

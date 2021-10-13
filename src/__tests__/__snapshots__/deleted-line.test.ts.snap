@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deleted-line parse \`deleted-line\` 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": "newline",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "rangeBefore": Object {
+            "lines": 2,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "rename.md",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

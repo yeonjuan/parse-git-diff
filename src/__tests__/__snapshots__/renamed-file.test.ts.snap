@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renamed-file parse \`renamed-file\` 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [],
+      "pathAfter": "rename.md",
+      "pathBefore": "newfile.md",
+      "type": "RenamedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

@@ -1,13 +1,14 @@
 {
   "name": "parse-git-diff",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.4",
+  "description": "Parse git diff",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
+    "prepublish": "yarn build",
     "build": "rimraf build && tsc",
     "format": "prettier . --write",
     "test": "jest",
-    "postinstall": "yarn husky install",
     "check:all": "prettier --check . && tsc --noEmit && yarn test"
   },
   "repository": {
@@ -28,5 +29,16 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.3"
-  }
+  },
+  "files": [
+    "build",
+    "tsconfig.json",
+    "README.md",
+    "yarn.lock",
+    "package.json"
+  ],
+  "keywords": [
+    "git",
+    "git diff"
+  ]
 }

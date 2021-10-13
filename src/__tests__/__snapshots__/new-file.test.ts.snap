@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new-file parse \`new-file\` 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineAfter": 1,
+              "type": "AddedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "rangeBefore": Object {
+            "lines": 0,
+            "start": 0,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "newfile.md",
+      "type": "AddedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

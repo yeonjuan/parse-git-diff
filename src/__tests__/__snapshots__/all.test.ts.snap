@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`aa parse \`all\` 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": "newline",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "rangeBefore": Object {
+            "lines": 2,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "rename.md",
+      "type": "ChangedFile",
+    },
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineBefore": 1,
+              "type": "DeletedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 0,
+            "start": 0,
+          },
+          "rangeBefore": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "newfile.md",
+      "type": "DeletedFile",
+    },
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineAfter": 1,
+              "type": "AddedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "rangeBefore": Object {
+            "lines": 0,
+            "start": 0,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "newfile.md",
+      "type": "AddedFile",
+    },
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "newfile",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": "newline",
+              "lineAfter": 2,
+              "type": "AddedLine",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 2,
+            "start": 1,
+          },
+          "rangeBefore": Object {
+            "lines": 1,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "rename.md",
+      "type": "ChangedFile",
+    },
+    Object {
+      "chunks": Array [],
+      "pathAfter": "rename.md",
+      "pathBefore": "newfile.md",
+      "type": "RenamedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
