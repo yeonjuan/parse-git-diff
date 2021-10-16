@@ -1,19 +1,24 @@
-import {
-  isChangeMarkersLines,
-  isStartOfDiffChunks,
-  isMetaDataLine,
-  isComparisonInputLine,
-} from './utils';
+import Context from './context';
+import * as t from './types';
+import { isMetaDataLine, isComparisonInputLine } from './utils';
 
-function parseFileDiff(lines: string[]) {}
+export function parseGitDiff(diff: string): t.GitDiff {
+  const result: t.GitDiff = {
+    type: 'GitDiff',
+    changedFiles: [],
+  };
 
-export default function parseGitDiff(diff: string): string {
-  const lines = diff.split('\n');
-  lines.forEach((line, index) => {
-    if (index === 0) {
-      if (isComparisonInputLine(line)) {
-      }
+  const ctx = new Context(diff);
+  while (!ctx.isEof()) {
+    const line = ctx.getCurLine();
+
+    if (line && (!isComparisonInputLine(line) || isMetaDataLine(line))) {
+      ctx.nextLine();
+      continue;
     }
-  });
-  return 'a';
+  }
+
+  return result;
 }
+
+export function parseDeletedFile(context: Context) {}

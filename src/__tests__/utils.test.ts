@@ -1,5 +1,5 @@
 import * as utils from '../utils';
-import * as testUtils from '../testUtils';
+import * as testUtils from '../test-utils';
 
 describe('utils', () => {
   test('isComparisonInputLine (valid)', () => {
@@ -22,18 +22,11 @@ describe('utils', () => {
     testUtils.createInvalidTester(utils.isMetaDataLine)(cases);
   });
 
-  test('isChangeMarkersLines (valid)', () => {
-    const cases: [[string, string]][] = [
-      [['--- a/diff_test.txt', '+++ b/diff_test.txt']],
-    ];
-    testUtils.createValidTester(utils.isChangeMarkersLines)(cases);
-  });
-
-  test('isChangeMarkersLines (valid)', () => {
+  test('isChunkHeader (valid)', () => {
     const cases: [string][] = [
       ["@@ -1 +1 @@ describe('utils', () => {"],
       ["@@ -23,15 +23,15 @@ describe('utils', () => {"],
     ];
-    testUtils.createValidTester(utils.isStartOfDiffChunks)(cases);
+    testUtils.createValidTester(utils.isChunkHeader)(cases);
   });
 });

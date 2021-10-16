@@ -31,31 +31,25 @@ export function isMetaDataLine(line: string): boolean {
   return /^index/.test(line);
 }
 
-/**
- * Checks whether the two lines are change markers or not.
- * @param first The first line.
- * @param second The second line.
- * @returns {boolean} Return `true` if the given two lines are change markers, otherwise `false`.
- * @example
- * // change markers
- * "--- a/file.txt"
- * "+++ b/file.txt"
- */
-export function isChangeMarkersLines(twoLines: [string, string]): boolean {
-  return /^\-\-\-\s/.test(twoLines[0]) && /^\+\+\+\s/.test(twoLines[1]);
+export function isAdditionMarkerLine(line: string): boolean {
+  return /^\+\+\+\s/.test(line);
+}
+
+export function isDeletionMarkerLine(line: string): boolean {
+  return /^\-\-\-\s/.test(line);
 }
 
 /**
- * Checks whether the line is a start line of the diff chunks
+ * Checks whether the line is a chunk header or not
  * @param line The line to check.
- * @returns return `true` if the given line is the start of diff chunks, otherwise `false`.
+ * @returns return `true` if the given line is a chunk header, otherwise `false`.
  * @example
  * // start line of diff chunks
  * "@@ -1 +1 @@ describe('utils', () => {...
  * "@@ -23,15 +23,15 @@ describe('utils', () => { ..."
  */
-export function isStartOfDiffChunks(line: string): boolean {
-  return /^@@\s\-\d+(,\d+)?\s\+\d+(,\d+)?\s@@\s/.test(line);
+export function isChunkHeader(line: string): boolean {
+  return /^@@\s\-\d+(,\d+)?\s\+\d+(,\d+)?\s@@\s?/.test(line);
 }
 
 /**

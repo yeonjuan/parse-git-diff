@@ -40,14 +40,13 @@ export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;
 
 /** hunk */
 
+export interface HunkPos {
+  start: number;
+  lines: number;
+}
+
 export interface Hunk extends Base<'Hunk'> {
-  old: {
-    start: number;
-    lines: number;
-  };
-  new: {
-    start: number;
-    lines: number;
-  };
+  addedPos: HunkPos;
+  deletedPos: HunkPos;
   changes: AnyChange[];
 }
