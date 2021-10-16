@@ -3,17 +3,17 @@ import type { Base } from './common';
 /** changed content types */
 
 interface BaseChange<Type extends string> extends Base<Type> {
-  line: string;
+  line: number;
   content: string;
 }
 
-export interface Inserted extends BaseChange<'Inserted'> {}
+export interface Added extends BaseChange<'Added'> {}
 
 export interface Deleted extends BaseChange<'Deleted'> {}
 
 export interface Unchanged extends BaseChange<'Unchanged'> {}
 
-export type AnyChange = Inserted | Deleted | Unchanged;
+export type AnyChange = Added | Deleted | Unchanged;
 
 /** changed file types */
 

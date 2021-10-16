@@ -1,12 +1,16 @@
 export default class Context {
-  private line: number = 0;
+  private line: number = 1;
   private lines: string[] = [];
   public constructor(diff: string) {
     this.lines = diff.split('\n');
   }
 
   public getCurLine(): string | undefined {
-    return this.lines[this.line];
+    return this.lines[this.line - 1];
+  }
+
+  public getCurLineIndex(): number {
+    return this.line;
   }
 
   public nextLine(): string | undefined {
@@ -15,6 +19,6 @@ export default class Context {
   }
 
   public isEof(): boolean {
-    return this.line >= this.lines.length;
+    return this.line > this.lines.length;
   }
 }

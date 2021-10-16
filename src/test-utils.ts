@@ -1,4 +1,4 @@
-import Context from './context';
+import Context from './parser/context';
 
 type Validator<Args extends any[] = any[]> = (...args: Args) => boolean;
 

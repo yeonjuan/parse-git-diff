@@ -1,4 +1,4 @@
-import * as utils from '../utils';
+import * as utils from '../parser/utils';
 import * as testUtils from '../test-utils';
 
 describe('utils', () => {

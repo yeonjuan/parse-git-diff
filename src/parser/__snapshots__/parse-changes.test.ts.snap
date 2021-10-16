@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseChanges should parse changes. 1`] = `
+Array [
+  Object {
+    "content": "unchanged",
+    "line": 1,
+    "type": "Unchanged",
+  },
+  Object {
+    "content": "-deleted line",
+    "line": 2,
+    "type": "Unchanged",
+  },
+  Object {
+    "content": "+added line",
+    "line": 3,
+    "type": "Unchanged",
+  },
+  Object {
+    "content": "unchanged",
+    "line": 4,
+    "type": "Unchanged",
+  },
+]
+`;

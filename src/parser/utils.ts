@@ -1,4 +1,4 @@
-import type * as t from './types';
+import type * as t from '../types';
 
 /**
  * Checks whether a line is a comparison input line or not.
@@ -31,11 +31,11 @@ export function isMetaDataLine(line: string): boolean {
   return /^index/.test(line);
 }
 
-export function isAdditionMarkerLine(line: string): boolean {
+export function isAddMarkerLine(line: string): boolean {
   return /^\+\+\+\s/.test(line);
 }
 
-export function isDeletionMarkerLine(line: string): boolean {
+export function isDeleteMarkerLine(line: string): boolean {
   return /^\-\-\-\s/.test(line);
 }
 
@@ -50,7 +50,7 @@ export function isDeletionMarkerLine(line: string): boolean {
  */
 export function isChunkHeader(line: string): boolean {
   return /^@@\s\-\d+(,\d+)?\s\+\d+(,\d+)?\s@@\s?/.test(line);
-}
+} // test
 
 /**
  * Checks whether the line is an addition line.
@@ -58,7 +58,7 @@ export function isChunkHeader(line: string): boolean {
  * @returns {boolean} Return `true` if the given line is an addition line, otherwise `false`.
  */
 export function isAdditionLine(line: string): boolean {
-  return /^\+/.test(line);
+  return line[0] === '+';
 }
 
 /**
@@ -67,5 +67,9 @@ export function isAdditionLine(line: string): boolean {
  * @returns {boolean} Return `true` if the given line is an deletion line, otherwise `false`.
  */
 export function isDeletionLine(line: string): boolean {
-  return /^\-/.test(line);
+  return line[0] === '-';
+}
+
+export function isUnchangedLine(line: string): boolean {
+  return line[0] === ' ';
 }
