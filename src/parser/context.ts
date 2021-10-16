@@ -5,8 +5,8 @@ export default class Context {
     this.lines = diff.split('\n');
   }
 
-  public getCurLine(): string | undefined {
-    return this.lines[this.line - 1];
+  public getCurLine(): string {
+    return this.lines[this.getInternalIndex()];
   }
 
   public getCurLineIndex(): number {
@@ -18,7 +18,16 @@ export default class Context {
     return this.getCurLine();
   }
 
+  public eatChars(to: number) {
+    const line = this.getCurLine().slice(to);
+    this.lines[this.getInternalIndex()] = line;
+  }
+
   public isEof(): boolean {
     return this.line > this.lines.length;
+  }
+
+  private getInternalIndex() {
+    return this.line - 1;
   }
 }

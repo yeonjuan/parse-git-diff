@@ -1,16 +1,16 @@
 import { isChunkHeader } from './utils';
-import type { Hunk } from '../types';
+import type { Chunk } from '../types';
 import type Context from './context';
 
 export default function parseChunkHeader(
   context: Context
-): Pick<Hunk, 'addedPos' | 'deletedPos'> | null {
+): Pick<Chunk, 'addedPos' | 'deletedPos'> | null {
   const line = context.getCurLine();
   if (!line || !isChunkHeader(line)) {
     return null;
   }
 
-  const exec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@\s?/.exec(line);
+  const exec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@/.exec(line);
 
   if (!exec) {
     return null;
@@ -29,6 +29,8 @@ export default function parseChunkHeader(
     start: deletedStart,
     lines: delLines === undefined ? deletedStart : parseInt(delLines, 10),
   };
+
+  context.eatChars(all.length);
 
   return {
     addedPos,

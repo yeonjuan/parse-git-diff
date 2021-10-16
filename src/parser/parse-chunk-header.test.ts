@@ -10,6 +10,16 @@ describe('parseChunkHeader', () => {
     expect(result).toMatchSnapshot();
   });
 
+  it('should parse chunk header.', () => {
+    const src = `@@ -3,71 +3,4 @@ unchanged line`;
+    const context = createContext(src);
+    const result = parseChunkHeader(context);
+
+    expect(result).not.toBe(null);
+    expect(context.getCurLine()).toBe(' unchanged line');
+    expect(result).toMatchSnapshot();
+  });
+
   it('should parse concise chunk header', () => {
     const src = `@@ -1 +1 @@`;
     const result = parseChunkHeader(createContext(src));

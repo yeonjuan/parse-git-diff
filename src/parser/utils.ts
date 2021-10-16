@@ -45,7 +45,7 @@ export function isDeleteMarkerLine(line: string): boolean {
  * @returns return `true` if the given line is a chunk header, otherwise `false`.
  * @example
  * // start line of diff chunks
- * "@@ -1 +1 @@ describe('utils', () => {...
+ * "@@ -1 +1 @@ describe('utils', () => {..."
  * "@@ -23,15 +23,15 @@ describe('utils', () => { ..."
  */
 export function isChunkHeader(line: string): boolean {

@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`parseChunkHeader should parse chunk header. 1`] = `
+Object {
+  "addedPos": Object {
+    "lines": 4,
+    "start": 3,
+  },
+  "deletedPos": Object {
+    "lines": 71,
+    "start": 3,
+  },
+}
+`;
+
 exports[`parseChunkHeader should parse concise chunk header 1`] = `
 Object {
   "addedPos": Object {
