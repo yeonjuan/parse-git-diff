@@ -8,9 +8,7 @@ import type * as t from './types';
  * // comparison input line.
  * "diff --git a/file.txt b/file.txt"
  */
-export function isComparisonInputLine(
-  line: string
-): line is t.ComparisonInputLine {
+export function isComparisonInputLine(line: string): boolean {
   const [diff, doubleDashGit, fileA, fileB, rest] = line.split(' ');
   return !!(
     diff === 'diff' &&
@@ -29,7 +27,7 @@ export function isComparisonInputLine(
  * // meta data line.
  * "index 6b0c6cf..b37e70a 100644"
  */
-export function isMetaDataLine(line: string): line is t.MetaDataLine {
+export function isMetaDataLine(line: string): boolean {
   return /^index/.test(line);
 }
 
@@ -43,9 +41,7 @@ export function isMetaDataLine(line: string): line is t.MetaDataLine {
  * "--- a/file.txt"
  * "+++ b/file.txt"
  */
-export function isChangeMarkersLines(
-  twoLines: [string, string]
-): twoLines is [t.FirstChangeMarker, t.SecondChangeMarker] {
+export function isChangeMarkersLines(twoLines: [string, string]): boolean {
   return /^\-\-\-\s/.test(twoLines[0]) && /^\+\+\+\s/.test(twoLines[1]);
 }
 
@@ -58,7 +54,7 @@ export function isChangeMarkersLines(
  * "@@ -1 +1 @@ describe('utils', () => {...
  * "@@ -23,15 +23,15 @@ describe('utils', () => { ..."
  */
-export function isStartOfDiffChunks(line: string): line is t.StartOfDiffChunks {
+export function isStartOfDiffChunks(line: string): boolean {
   return /^@@\s\-\d+(,\d+)?\s\+\d+(,\d+)?\s@@\s/.test(line);
 }
 
@@ -67,7 +63,7 @@ export function isStartOfDiffChunks(line: string): line is t.StartOfDiffChunks {
  * @param {string} line The line to check.
  * @returns {boolean} Return `true` if the given line is an addition line, otherwise `false`.
  */
-export function isAdditionLine(line: string): line is t.AdditionLine {
+export function isAdditionLine(line: string): boolean {
   return /^\+/.test(line);
 }
 
@@ -76,6 +72,6 @@ export function isAdditionLine(line: string): line is t.AdditionLine {
  * @param {string} line The line to check.
  * @returns {boolean} Return `true` if the given line is an deletion line, otherwise `false`.
  */
-export function isDeletionLine(line: string): line is t.DeletionLine {
+export function isDeletionLine(line: string): boolean {
   return /^\-/.test(line);
 }
