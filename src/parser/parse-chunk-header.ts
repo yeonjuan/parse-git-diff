@@ -1,39 +1,29 @@
-import { isChunkHeader } from './utils';
 import type { Chunk } from '../types';
 import type Context from './context';
 
 export default function parseChunkHeader(
-  context: Context
+  ctx: Context
 ): Pick<Chunk, 'addedPos' | 'deletedPos'> | null {
-  const line = context.getCurLine();
-  if (!line || !isChunkHeader(line)) {
-    return null;
-  }
-
+  const line = ctx.getCurLine();
   const exec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@/.exec(line);
-
   if (!exec) {
     return null;
   }
-
   const [all, delStart, delLines, addStart, addLines] = exec;
-
-  const addedStart = parseInt(addStart, 10);
-  const addedPos = {
-    start: addedStart,
-    lines: addLines === undefined ? addedStart : parseInt(addLines, 10),
-  };
-
-  const deletedStart = parseInt(delStart, 10);
-  const deletedPos = {
-    start: deletedStart,
-    lines: delLines === undefined ? deletedStart : parseInt(delLines, 10),
-  };
-
-  context.eatChars(all.length);
-
+  ctx.eatChars(all.length);
+  if (ctx.getCurLine().length === 0) {
+    ctx.nextLine();
+  }
   return {
-    addedPos,
-    deletedPos,
+    addedPos: getPos(addStart, addLines),
+    deletedPos: getPos(delStart, delLines),
+  };
+}
+
+function getPos(start: string, lines?: string) {
+  const startNum = parseInt(start, 10);
+  return {
+    start: startNum,
+    lines: lines === undefined ? startNum : parseInt(lines, 10),
   };
 }

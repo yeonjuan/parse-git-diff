@@ -1,5 +1,166 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`parseChunks should parse chunks 2. 1`] = `
+Array [
+  Object {
+    "addedPos": Object {
+      "lines": 7,
+      "start": 18,
+    },
+    "changes": Array [
+      Object {
+        "content": "/** changed file types */",
+        "line": 2,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "",
+        "line": 3,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "interface BaseFileChange<Type extends string> extends Base<Type> {",
+        "line": 4,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "  hunks: Hunk[];",
+        "line": 5,
+        "type": "Deleted",
+      },
+      Object {
+        "content": "  chunks: Chunk[];",
+        "line": 6,
+        "type": "Added",
+      },
+      Object {
+        "content": "}",
+        "line": 7,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "",
+        "line": 8,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "export interface ChangedFile extends BaseFileChange<'ChangedFile'> {}",
+        "line": 9,
+        "type": "Unchanged",
+      },
+    ],
+    "deletedPos": Object {
+      "lines": 7,
+      "start": 18,
+    },
+    "type": "Chunk",
+  },
+  Object {
+    "addedPos": Object {
+      "lines": 13,
+      "start": 40,
+    },
+    "changes": Array [
+      Object {
+        "content": "export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;",
+        "line": 10,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "",
+        "line": 11,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "/** hunk */",
+        "line": 12,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "",
+        "line": 13,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "export interface HunkPos {",
+        "line": 14,
+        "type": "Deleted",
+      },
+      Object {
+        "content": "export interface ChunkPos {",
+        "line": 15,
+        "type": "Added",
+      },
+      Object {
+        "content": "  start: number;",
+        "line": 16,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "  lines: number;",
+        "line": 17,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "}",
+        "line": 18,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "",
+        "line": 19,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "export interface Hunk extends Base<'Hunk'> {",
+        "line": 20,
+        "type": "Deleted",
+      },
+      Object {
+        "content": "  addedPos: HunkPos;",
+        "line": 21,
+        "type": "Deleted",
+      },
+      Object {
+        "content": "  deletedPos: HunkPos;",
+        "line": 22,
+        "type": "Deleted",
+      },
+      Object {
+        "content": "export interface Chunk extends Base<'Hunk'> {",
+        "line": 23,
+        "type": "Added",
+      },
+      Object {
+        "content": "  addedPos: ChunkPos;",
+        "line": 24,
+        "type": "Added",
+      },
+      Object {
+        "content": "  deletedPos: ChunkPos;",
+        "line": 25,
+        "type": "Added",
+      },
+      Object {
+        "content": "  changes: AnyChange[];",
+        "line": 26,
+        "type": "Unchanged",
+      },
+      Object {
+        "content": "}",
+        "line": 27,
+        "type": "Unchanged",
+      },
+    ],
+    "deletedPos": Object {
+      "lines": 13,
+      "start": 40,
+    },
+    "type": "Chunk",
+  },
+]
+`;
+
 exports[`parseChunks should parse chunks. 1`] = `
 Array [
   Object {

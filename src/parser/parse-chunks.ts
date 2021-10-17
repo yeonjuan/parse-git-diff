@@ -2,31 +2,24 @@ import type { AnyChange, Chunk } from '../types';
 import type Context from './context';
 import parseChanges from './parse-changes';
 import parseChunkHeader from './parse-chunk-header';
-import { isChunkHeader } from './utils';
 
 export default function parseChunks(context: Context): Chunk[] {
   const chunks: Chunk[] = [];
 
   while (!context.isEof()) {
-    const line = context.getCurLine();
-    if (isChunkHeader(line)) {
-      const chunk = parseChunk(context);
-      if (!chunk) {
-        break;
-      }
-      chunks.push(chunk);
-    } else {
+    const chunk = parseChunk(context);
+    if (!chunk) {
       break;
     }
+    chunks.push(chunk);
   }
   return chunks;
 }
 
-function parseChunk(context: Context): Chunk | null {
+function parseChunk(context: Context): Chunk | undefined {
   const chunkHeader = parseChunkHeader(context);
-
   if (!chunkHeader) {
-    return null;
+    return;
   }
 
   const changes: AnyChange[] = parseChanges(context);

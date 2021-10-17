@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseChunkHeader should parse normal chunk header. 1`] = `
+Array [
+  Object {
+    "chunks": Array [
+      Object {
+        "addedPos": Object {
+          "lines": 3,
+          "start": 1,
+        },
+        "changes": Array [
+          Object {
+            "content": "node_modules",
+            "line": 6,
+            "type": "Unchanged",
+          },
+          Object {
+            "content": "build",
+            "line": 7,
+            "type": "Unchanged",
+          },
+          Object {
+            "content": "coverage",
+            "line": 8,
+            "type": "Added",
+          },
+        ],
+        "deletedPos": Object {
+          "lines": 2,
+          "start": 1,
+        },
+        "type": "Chunk",
+      },
+    ],
+    "path": ".gitignore",
+    "type": "ChangedFile",
+  },
+  Object {
+    "chunks": Array [
+      Object {
+        "addedPos": Object {
+          "lines": 0,
+          "start": 0,
+        },
+        "changes": Array [
+          Object {
+            "content": "# parse-git-diff",
+            "line": 15,
+            "type": "Deleted",
+          },
+        ],
+        "deletedPos": Object {
+          "lines": 1,
+          "start": 1,
+        },
+        "type": "Chunk",
+      },
+    ],
+    "path": "README.md",
+    "type": "DeletedFile",
+  },
+]
+`;

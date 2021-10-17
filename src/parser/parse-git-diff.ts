@@ -1,11 +1,13 @@
-import parseChanges from './parse-changes';
-import type Context from './context';
+import Context from './context';
 import type { GitDiff } from '../types';
+import parseFileChanges from './parse-file-changes';
 
-export default function parseGitDiff(context: Context): GitDiff {
-  const gitDiff: GitDiff = {
+export default function parseGitDiff(diff: string): GitDiff {
+  const ctx = new Context(diff);
+  const changedFiles = parseFileChanges(ctx);
+
+  return {
     type: 'GitDiff',
-    changedFiles: [],
+    changedFiles,
   };
-  return gitDiff;
 }

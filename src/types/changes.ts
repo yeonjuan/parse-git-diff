@@ -21,7 +21,9 @@ interface BaseFileChange<Type extends string> extends Base<Type> {
   chunks: Chunk[];
 }
 
-export interface ChangedFile extends BaseFileChange<'ChangedFile'> {}
+export interface ChangedFile extends BaseFileChange<'ChangedFile'> {
+  path: string;
+}
 
 export interface AddedFile extends BaseFileChange<'AddedFile'> {
   path: string;

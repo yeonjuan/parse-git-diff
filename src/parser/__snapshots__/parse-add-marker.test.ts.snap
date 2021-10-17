@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`parseAddMarker should parse add marker. 1`] = `"src/tests/addition.test.ts"`;
