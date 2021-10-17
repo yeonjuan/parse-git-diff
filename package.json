@@ -1,6 +1,6 @@
 {
   "name": "parse-git-diff",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -8,7 +8,6 @@
     "build": "rimraf build && tsc",
     "format": "prettier . --write",
     "test": "jest",
-    "postinstall": "yarn husky install",
     "check:all": "prettier --check . && tsc --noEmit && yarn test"
   },
   "repository": {
