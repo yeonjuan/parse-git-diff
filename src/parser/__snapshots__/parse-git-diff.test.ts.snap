@@ -2,222 +2,26 @@
 
 exports[`parseGitDiff deleted file 1`] = `
 Object {
-  "files": Array [
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
-              "content": "{",
-              "lineBefore": 1,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"name\\": \\"parse-git-diff-test\\",",
-              "lineBefore": 2,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"version\\": \\"1.0.0\\",",
-              "lineBefore": 3,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"description\\": \\"\\",",
-              "lineBefore": 4,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"main\\": \\"index.js\\",",
-              "lineBefore": 5,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"scripts\\": {",
-              "lineBefore": 6,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "    \\"build\\": \\"tsc\\"",
-              "lineBefore": 7,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  },",
-              "lineBefore": 8,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"author\\": \\"\\",",
-              "lineBefore": 9,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"license\\": \\"ISC\\",",
-              "lineBefore": 10,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"dependencies\\": {",
-              "lineBefore": 11,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "    \\"parse-git-diff\\": \\"0.0.3\\"",
-              "lineBefore": 12,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  },",
-              "lineBefore": 13,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  \\"devDependencies\\": {",
-              "lineBefore": 14,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "    \\"typescript\\": \\"^4.4.4\\"",
-              "lineBefore": 15,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "  }",
-              "lineBefore": 16,
-              "type": "Deleted",
-            },
-            Object {
-              "content": "}",
-              "lineBefore": 17,
-              "type": "Deleted",
-            },
-          ],
-          "rangeAfter": Object {
-            "lines": 0,
-            "start": 0,
-          },
-          "rangeBefore": Object {
-            "lines": 17,
-            "start": 1,
-          },
-          "type": "Chunk",
-        },
-      ],
-      "path": "parse-git-diff-test/package.json",
-      "type": "DeletedFile",
-    },
-  ],
+  "files": Array [],
   "type": "GitDiff",
 }
 `;
 
 exports[`parseGitDiff new file. 1`] = `
 Object {
+  "files": Array [],
+  "type": "GitDiff",
+}
+`;
+
+exports[`parseGitDiff rename 1`] = `
+Object {
   "files": Array [
     Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
-              "content": "{",
-              "lineAfter": 1,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"name\\": \\"parse-git-diff-test\\",",
-              "lineAfter": 2,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"version\\": \\"1.0.0\\",",
-              "lineAfter": 3,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"description\\": \\"\\",",
-              "lineAfter": 4,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"main\\": \\"index.js\\",",
-              "lineAfter": 5,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"scripts\\": {",
-              "lineAfter": 6,
-              "type": "Added",
-            },
-            Object {
-              "content": "    \\"build\\": \\"tsc\\"",
-              "lineAfter": 7,
-              "type": "Added",
-            },
-            Object {
-              "content": "  },",
-              "lineAfter": 8,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"author\\": \\"\\",",
-              "lineAfter": 9,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"license\\": \\"ISC\\",",
-              "lineAfter": 10,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"dependencies\\": {",
-              "lineAfter": 11,
-              "type": "Added",
-            },
-            Object {
-              "content": "    \\"parse-git-diff\\": \\"0.0.3\\"",
-              "lineAfter": 12,
-              "type": "Added",
-            },
-            Object {
-              "content": "  },",
-              "lineAfter": 13,
-              "type": "Added",
-            },
-            Object {
-              "content": "  \\"devDependencies\\": {",
-              "lineAfter": 14,
-              "type": "Added",
-            },
-            Object {
-              "content": "    \\"typescript\\": \\"^4.4.4\\"",
-              "lineAfter": 15,
-              "type": "Added",
-            },
-            Object {
-              "content": "  }",
-              "lineAfter": 16,
-              "type": "Added",
-            },
-            Object {
-              "content": "}",
-              "lineAfter": 17,
-              "type": "Added",
-            },
-          ],
-          "rangeAfter": Object {
-            "lines": 17,
-            "start": 1,
-          },
-          "rangeBefore": Object {
-            "lines": 0,
-            "start": 0,
-          },
-          "type": "Chunk",
-        },
-      ],
-      "path": "parse-git-diff-test/packages.json",
-      "type": "AddedFile",
+      "chunks": Array [],
+      "pathAfter": "parse-git-diff-test/ts.json",
+      "pathBefore": "parse-git-diff-test/tsconfig.json",
+      "type": "RenamedFile",
     },
   ],
   "type": "GitDiff",

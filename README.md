@@ -2,7 +2,7 @@
 
 ## Installation
 
-```console
+```bash
 npm install parse-git-diff
 ```
 

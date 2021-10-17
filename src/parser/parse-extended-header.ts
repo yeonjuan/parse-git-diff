@@ -4,7 +4,6 @@ const UNHANDLED_EXTENDED_HEADERS = new Set([
   'index',
   'old',
   'copy',
-  'rename',
   'similarity',
   'dissimilarity',
 ]);
@@ -21,14 +20,30 @@ export default function parseExtendedHeader(ctx: Context) {
     ctx.nextLine();
     return {
       type: 'unhandled',
-    };
+    } as const;
   }
   if (startsWith(line, 'deleted ')) {
     ctx.nextLine();
-    return 'deleted';
+    return {
+      type: 'deleted',
+    } as const;
   } else if (startsWith(line, 'new file ')) {
     ctx.nextLine();
-    return 'new file';
+    return {
+      type: 'new file',
+    } as const;
+  } else if (startsWith(line, 'rename from ')) {
+    ctx.nextLine();
+    return {
+      type: 'rename from',
+      path: line.slice('rename from '.length),
+    } as const;
+  } else if (startsWith(line, 'rename to ')) {
+    ctx.nextLine();
+    return {
+      type: 'rename to',
+      path: line.slice('rename to '.length),
+    } as const;
   }
 
   return null;
