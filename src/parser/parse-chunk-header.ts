@@ -10,10 +10,7 @@ export default function parseChunkHeader(
     return null;
   }
   const [all, delStart, delLines, addStart, addLines] = exec;
-  ctx.eatChars(all.length);
-  if (ctx.getCurLine().length === 0) {
-    ctx.nextLine();
-  }
+  ctx.nextLine();
   return {
     addedPos: getPos(addStart, addLines),
     deletedPos: getPos(delStart, delLines),

@@ -62,11 +62,6 @@ Array [
     },
     "changes": Array [
       Object {
-        "content": "export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;",
-        "line": 10,
-        "type": "Unchanged",
-      },
-      Object {
         "content": "",
         "line": 11,
         "type": "Unchanged",
@@ -170,11 +165,6 @@ Array [
     },
     "changes": Array [
       Object {
-        "content": "export type AnyChange = Added | Deleted | Unchanged;",
-        "line": 1,
-        "type": "Unchanged",
-      },
-      Object {
         "content": "/** changed file types */",
         "line": 2,
         "type": "Unchanged",
@@ -227,11 +217,6 @@ Array [
       "start": 40,
     },
     "changes": Array [
-      Object {
-        "content": "export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;",
-        "line": 10,
-        "type": "Unchanged",
-      },
       Object {
         "content": "",
         "line": 11,

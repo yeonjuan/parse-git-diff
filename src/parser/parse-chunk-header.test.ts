@@ -16,7 +16,6 @@ describe('parseChunkHeader', () => {
     const result = parseChunkHeader(context);
 
     expect(result).not.toBe(null);
-    expect(context.getCurLine()).toBe(' unchanged line');
     expect(result).toMatchSnapshot();
   });
 
