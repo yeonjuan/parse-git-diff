@@ -3,151 +3,166 @@
 exports[`parseChunks should parse chunks 2. 1`] = `
 Array [
   Object {
-    "addedPos": Object {
-      "lines": 7,
-      "start": 18,
-    },
     "changes": Array [
       Object {
         "content": "/** changed file types */",
-        "line": 2,
+        "lineAfter": 18,
+        "lineBefore": 18,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 3,
+        "lineAfter": 19,
+        "lineBefore": 19,
         "type": "Unchanged",
       },
       Object {
         "content": "interface BaseFileChange<Type extends string> extends Base<Type> {",
-        "line": 4,
+        "lineAfter": 20,
+        "lineBefore": 20,
         "type": "Unchanged",
       },
       Object {
         "content": "  hunks: Hunk[];",
-        "line": 5,
+        "lineBefore": 21,
         "type": "Deleted",
       },
       Object {
         "content": "  chunks: Chunk[];",
-        "line": 6,
+        "lineAfter": 21,
         "type": "Added",
       },
       Object {
         "content": "}",
-        "line": 7,
+        "lineAfter": 22,
+        "lineBefore": 22,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 8,
+        "lineAfter": 23,
+        "lineBefore": 23,
         "type": "Unchanged",
       },
       Object {
         "content": "export interface ChangedFile extends BaseFileChange<'ChangedFile'> {}",
-        "line": 9,
+        "lineAfter": 24,
+        "lineBefore": 24,
         "type": "Unchanged",
       },
     ],
-    "deletedPos": Object {
+    "rangeAfter": Object {
+      "lines": 7,
+      "start": 18,
+    },
+    "rangeBefore": Object {
       "lines": 7,
       "start": 18,
     },
     "type": "Chunk",
   },
   Object {
-    "addedPos": Object {
-      "lines": 13,
-      "start": 40,
-    },
     "changes": Array [
       Object {
         "content": "",
-        "line": 11,
+        "lineAfter": 40,
+        "lineBefore": 40,
         "type": "Unchanged",
       },
       Object {
         "content": "/** hunk */",
-        "line": 12,
+        "lineAfter": 41,
+        "lineBefore": 41,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 13,
+        "lineAfter": 42,
+        "lineBefore": 42,
         "type": "Unchanged",
       },
       Object {
         "content": "export interface HunkPos {",
-        "line": 14,
+        "lineBefore": 43,
         "type": "Deleted",
       },
       Object {
         "content": "export interface ChunkPos {",
-        "line": 15,
+        "lineAfter": 43,
         "type": "Added",
       },
       Object {
         "content": "  start: number;",
-        "line": 16,
+        "lineAfter": 44,
+        "lineBefore": 44,
         "type": "Unchanged",
       },
       Object {
         "content": "  lines: number;",
-        "line": 17,
+        "lineAfter": 45,
+        "lineBefore": 45,
         "type": "Unchanged",
       },
       Object {
         "content": "}",
-        "line": 18,
+        "lineAfter": 46,
+        "lineBefore": 46,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 19,
+        "lineAfter": 47,
+        "lineBefore": 47,
         "type": "Unchanged",
       },
       Object {
         "content": "export interface Hunk extends Base<'Hunk'> {",
-        "line": 20,
+        "lineBefore": 48,
         "type": "Deleted",
       },
       Object {
         "content": "  addedPos: HunkPos;",
-        "line": 21,
+        "lineBefore": 49,
         "type": "Deleted",
       },
       Object {
         "content": "  deletedPos: HunkPos;",
-        "line": 22,
+        "lineBefore": 50,
         "type": "Deleted",
       },
       Object {
         "content": "export interface Chunk extends Base<'Hunk'> {",
-        "line": 23,
+        "lineAfter": 48,
         "type": "Added",
       },
       Object {
         "content": "  addedPos: ChunkPos;",
-        "line": 24,
+        "lineAfter": 49,
         "type": "Added",
       },
       Object {
         "content": "  deletedPos: ChunkPos;",
-        "line": 25,
+        "lineAfter": 50,
         "type": "Added",
       },
       Object {
         "content": "  changes: AnyChange[];",
-        "line": 26,
+        "lineAfter": 51,
+        "lineBefore": 51,
         "type": "Unchanged",
       },
       Object {
         "content": "}",
-        "line": 27,
+        "lineAfter": 52,
+        "lineBefore": 52,
         "type": "Unchanged",
       },
     ],
-    "deletedPos": Object {
+    "rangeAfter": Object {
+      "lines": 13,
+      "start": 40,
+    },
+    "rangeBefore": Object {
       "lines": 13,
       "start": 40,
     },
@@ -159,151 +174,166 @@ Array [
 exports[`parseChunks should parse chunks. 1`] = `
 Array [
   Object {
-    "addedPos": Object {
-      "lines": 7,
-      "start": 18,
-    },
     "changes": Array [
       Object {
         "content": "/** changed file types */",
-        "line": 2,
+        "lineAfter": 18,
+        "lineBefore": 18,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 3,
+        "lineAfter": 19,
+        "lineBefore": 19,
         "type": "Unchanged",
       },
       Object {
         "content": "interface BaseFileChange<Type extends string> extends Base<Type> {",
-        "line": 4,
+        "lineAfter": 20,
+        "lineBefore": 20,
         "type": "Unchanged",
       },
       Object {
         "content": "  hunks: Hunk[];",
-        "line": 5,
+        "lineBefore": 21,
         "type": "Deleted",
       },
       Object {
         "content": "  chunks: Chunk[];",
-        "line": 6,
+        "lineAfter": 21,
         "type": "Added",
       },
       Object {
         "content": "}",
-        "line": 7,
+        "lineAfter": 22,
+        "lineBefore": 22,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 8,
+        "lineAfter": 23,
+        "lineBefore": 23,
         "type": "Unchanged",
       },
       Object {
         "content": "export interface ChangedFile extends BaseFileChange<'ChangedFile'> {}",
-        "line": 9,
+        "lineAfter": 24,
+        "lineBefore": 24,
         "type": "Unchanged",
       },
     ],
-    "deletedPos": Object {
+    "rangeAfter": Object {
+      "lines": 7,
+      "start": 18,
+    },
+    "rangeBefore": Object {
       "lines": 7,
       "start": 18,
     },
     "type": "Chunk",
   },
   Object {
-    "addedPos": Object {
-      "lines": 13,
-      "start": 40,
-    },
     "changes": Array [
       Object {
         "content": "",
-        "line": 11,
+        "lineAfter": 40,
+        "lineBefore": 40,
         "type": "Unchanged",
       },
       Object {
         "content": "/** hunk */",
-        "line": 12,
+        "lineAfter": 41,
+        "lineBefore": 41,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 13,
+        "lineAfter": 42,
+        "lineBefore": 42,
         "type": "Unchanged",
       },
       Object {
         "content": "export interface HunkPos {",
-        "line": 14,
+        "lineBefore": 43,
         "type": "Deleted",
       },
       Object {
         "content": "export interface ChunkPos {",
-        "line": 15,
+        "lineAfter": 43,
         "type": "Added",
       },
       Object {
         "content": "  start: number;",
-        "line": 16,
+        "lineAfter": 44,
+        "lineBefore": 44,
         "type": "Unchanged",
       },
       Object {
         "content": "  lines: number;",
-        "line": 17,
+        "lineAfter": 45,
+        "lineBefore": 45,
         "type": "Unchanged",
       },
       Object {
         "content": "}",
-        "line": 18,
+        "lineAfter": 46,
+        "lineBefore": 46,
         "type": "Unchanged",
       },
       Object {
         "content": "",
-        "line": 19,
+        "lineAfter": 47,
+        "lineBefore": 47,
         "type": "Unchanged",
       },
       Object {
         "content": "export interface Hunk extends Base<'Hunk'> {",
-        "line": 20,
+        "lineBefore": 48,
         "type": "Deleted",
       },
       Object {
         "content": "  addedPos: HunkPos;",
-        "line": 21,
+        "lineBefore": 49,
         "type": "Deleted",
       },
       Object {
         "content": "  deletedPos: HunkPos;",
-        "line": 22,
+        "lineBefore": 50,
         "type": "Deleted",
       },
       Object {
         "content": "export interface Chunk extends Base<'Hunk'> {",
-        "line": 23,
+        "lineAfter": 48,
         "type": "Added",
       },
       Object {
         "content": "  addedPos: ChunkPos;",
-        "line": 24,
+        "lineAfter": 49,
         "type": "Added",
       },
       Object {
         "content": "  deletedPos: ChunkPos;",
-        "line": 25,
+        "lineAfter": 50,
         "type": "Added",
       },
       Object {
         "content": "  changes: AnyChange[];",
-        "line": 26,
+        "lineAfter": 51,
+        "lineBefore": 51,
         "type": "Unchanged",
       },
       Object {
         "content": "}",
-        "line": 27,
+        "lineAfter": 52,
+        "lineBefore": 52,
         "type": "Unchanged",
       },
     ],
-    "deletedPos": Object {
+    "rangeAfter": Object {
+      "lines": 13,
+      "start": 40,
+    },
+    "rangeBefore": Object {
       "lines": 13,
       "start": 40,
     },

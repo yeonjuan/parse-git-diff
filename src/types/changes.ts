@@ -3,15 +3,21 @@ import type { Base } from './common';
 /** changed content types */
 
 interface BaseChange<Type extends string> extends Base<Type> {
-  line: number;
   content: string;
 }
 
-export interface Added extends BaseChange<'Added'> {}
+export interface Added extends BaseChange<'Added'> {
+  lineAfter: number;
+}
 
-export interface Deleted extends BaseChange<'Deleted'> {}
+export interface Deleted extends BaseChange<'Deleted'> {
+  lineBefore: number;
+}
 
-export interface Unchanged extends BaseChange<'Unchanged'> {}
+export interface Unchanged extends BaseChange<'Unchanged'> {
+  lineBefore: number;
+  lineAfter: number;
+}
 
 export type AnyChange = Added | Deleted | Unchanged;
 
@@ -42,13 +48,13 @@ export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;
 
 /** hunk */
 
-export interface ChunkPos {
+export interface ChunkRange {
   start: number;
   lines: number;
 }
 
 export interface Chunk extends Base<'Chunk'> {
-  addedPos: ChunkPos;
-  deletedPos: ChunkPos;
+  rangeBefore: ChunkRange;
+  rangeAfter: ChunkRange;
   changes: AnyChange[];
 }

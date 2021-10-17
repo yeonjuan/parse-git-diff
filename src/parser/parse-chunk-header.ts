@@ -3,7 +3,7 @@ import type Context from './context';
 
 export default function parseChunkHeader(
   ctx: Context
-): Pick<Chunk, 'addedPos' | 'deletedPos'> | null {
+): Pick<Chunk, 'rangeAfter' | 'rangeBefore'> | null {
   const line = ctx.getCurLine();
   const exec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@/.exec(line);
   if (!exec) {
@@ -12,12 +12,12 @@ export default function parseChunkHeader(
   const [all, delStart, delLines, addStart, addLines] = exec;
   ctx.nextLine();
   return {
-    addedPos: getPos(addStart, addLines),
-    deletedPos: getPos(delStart, delLines),
+    rangeAfter: getRange(addStart, addLines),
+    rangeBefore: getRange(delStart, delLines),
   };
 }
 
-function getPos(start: string, lines?: string) {
+function getRange(start: string, lines?: string) {
   const startNum = parseInt(start, 10);
   return {
     start: startNum,

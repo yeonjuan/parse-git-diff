@@ -2,11 +2,11 @@
 
 exports[`parseChunkHeader should parse chunk header. 1`] = `
 Object {
-  "addedPos": Object {
+  "rangeAfter": Object {
     "lines": 4,
     "start": 3,
   },
-  "deletedPos": Object {
+  "rangeBefore": Object {
     "lines": 71,
     "start": 3,
   },
@@ -15,11 +15,11 @@ Object {
 
 exports[`parseChunkHeader should parse concise chunk header 1`] = `
 Object {
-  "addedPos": Object {
+  "rangeAfter": Object {
     "lines": 1,
     "start": 1,
   },
-  "deletedPos": Object {
+  "rangeBefore": Object {
     "lines": 1,
     "start": 1,
   },
@@ -28,11 +28,11 @@ Object {
 
 exports[`parseChunkHeader should parse normal chunk header. 1`] = `
 Object {
-  "addedPos": Object {
+  "rangeAfter": Object {
     "lines": 4,
     "start": 3,
   },
-  "deletedPos": Object {
+  "rangeBefore": Object {
     "lines": 71,
     "start": 3,
   },

@@ -10,7 +10,17 @@ describe('parseChanges', () => {
  +added line
  unchanged`;
 
-    const result = parseChanges(createContext(src));
+    const result = parseChanges(
+      createContext(src),
+      {
+        lines: 4,
+        start: 1,
+      },
+      {
+        lines: 4,
+        start: 1,
+      }
+    );
 
     expect(result).not.toBe(null);
     expect(result).toMatchSnapshot();

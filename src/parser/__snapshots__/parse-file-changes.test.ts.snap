@@ -5,28 +5,30 @@ Array [
   Object {
     "chunks": Array [
       Object {
-        "addedPos": Object {
-          "lines": 3,
-          "start": 1,
-        },
         "changes": Array [
           Object {
             "content": "node_modules",
-            "line": 6,
+            "lineAfter": 1,
+            "lineBefore": 1,
             "type": "Unchanged",
           },
           Object {
             "content": "build",
-            "line": 7,
+            "lineAfter": 2,
+            "lineBefore": 2,
             "type": "Unchanged",
           },
           Object {
             "content": "coverage",
-            "line": 8,
+            "lineAfter": 3,
             "type": "Added",
           },
         ],
-        "deletedPos": Object {
+        "rangeAfter": Object {
+          "lines": 3,
+          "start": 1,
+        },
+        "rangeBefore": Object {
           "lines": 2,
           "start": 1,
         },
@@ -39,18 +41,18 @@ Array [
   Object {
     "chunks": Array [
       Object {
-        "addedPos": Object {
-          "lines": 0,
-          "start": 0,
-        },
         "changes": Array [
           Object {
             "content": "# parse-git-diff",
-            "line": 15,
+            "lineBefore": 1,
             "type": "Deleted",
           },
         ],
-        "deletedPos": Object {
+        "rangeAfter": Object {
+          "lines": 0,
+          "start": 0,
+        },
+        "rangeBefore": Object {
           "lines": 1,
           "start": 1,
         },

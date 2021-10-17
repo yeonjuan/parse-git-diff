@@ -22,7 +22,11 @@ function parseChunk(context: Context): Chunk | undefined {
     return;
   }
 
-  const changes: AnyChange[] = parseChanges(context);
+  const changes: AnyChange[] = parseChanges(
+    context,
+    chunkHeader.rangeBefore,
+    chunkHeader.rangeAfter
+  );
 
   return {
     type: 'Chunk',

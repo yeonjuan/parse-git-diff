@@ -4,22 +4,26 @@ exports[`parseChanges should parse changes. 1`] = `
 Array [
   Object {
     "content": "unchanged",
-    "line": 1,
+    "lineAfter": 1,
+    "lineBefore": 1,
     "type": "Unchanged",
   },
   Object {
     "content": "-deleted line",
-    "line": 2,
+    "lineAfter": 2,
+    "lineBefore": 2,
     "type": "Unchanged",
   },
   Object {
     "content": "+added line",
-    "line": 3,
+    "lineAfter": 3,
+    "lineBefore": 3,
     "type": "Unchanged",
   },
   Object {
     "content": "unchanged",
-    "line": 4,
+    "lineAfter": 4,
+    "lineBefore": 4,
     "type": "Unchanged",
   },
 ]
