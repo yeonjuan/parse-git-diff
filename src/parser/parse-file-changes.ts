@@ -23,12 +23,14 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   ctx.nextLine();
 
   let isDeleted = false;
+  let isNew = false;
   while (!ctx.isEof()) {
     const extHeader = parseExtendedHeader(ctx);
     if (!extHeader) {
       break;
     }
     if (extHeader === 'deleted') isDeleted = true;
+    if (extHeader === 'new file') isNew = true;
   }
 
   const changeMarkers = parseChangeMarkers(ctx);
@@ -44,6 +46,12 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       type: 'DeletedFile',
       chunks,
       path: changeMarkers.deleted,
+    };
+  } else if (isNew) {
+    return {
+      type: 'AddedFile',
+      chunks,
+      path: changeMarkers.added,
     };
   } else {
     return {

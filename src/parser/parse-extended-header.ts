@@ -3,12 +3,15 @@ import type Context from './context';
 const UNHANDLED_EXTENDED_HEADERS = new Set([
   'index',
   'old',
-  'new',
   'copy',
   'rename',
   'similarity',
   'dissimilarity',
 ]);
+
+const startsWith = (str: string, target: string) => {
+  return str.indexOf(target) === 0;
+};
 
 export default function parseExtendedHeader(ctx: Context) {
   const line = ctx.getCurLine();
@@ -20,10 +23,13 @@ export default function parseExtendedHeader(ctx: Context) {
       type: 'unhandled',
     };
   }
-  switch (type) {
-    case 'deleted':
-      ctx.nextLine();
-      return 'deleted';
+  if (startsWith(line, 'deleted ')) {
+    ctx.nextLine();
+    return 'deleted';
+  } else if (startsWith(line, 'new file ')) {
+    ctx.nextLine();
+    return 'new file';
   }
+
   return null;
 }

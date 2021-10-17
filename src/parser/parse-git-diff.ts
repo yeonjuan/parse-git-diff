@@ -4,10 +4,10 @@ import parseFileChanges from './parse-file-changes';
 
 export default function parseGitDiff(diff: string): GitDiff {
   const ctx = new Context(diff);
-  const changedFiles = parseFileChanges(ctx);
+  const files = parseFileChanges(ctx);
 
   return {
     type: 'GitDiff',
-    changedFiles,
+    files,
   };
 }

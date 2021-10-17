@@ -40,8 +40,8 @@ export interface DeletedFile extends BaseFileChange<'DeletedFile'> {
 }
 
 export interface RenamedFile extends BaseFileChange<'RenamedFile'> {
-  from: string;
-  to: string;
+  pathBefore: string;
+  pathAfter: string;
 }
 
 export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;

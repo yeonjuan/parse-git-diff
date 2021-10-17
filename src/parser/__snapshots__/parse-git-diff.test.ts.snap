@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseGitDiff should parse new file. 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "{",
+              "lineAfter": 1,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"name\\": \\"parse-git-diff-test\\",",
+              "lineAfter": 2,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"version\\": \\"1.0.0\\",",
+              "lineAfter": 3,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"description\\": \\"\\",",
+              "lineAfter": 4,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"main\\": \\"index.js\\",",
+              "lineAfter": 5,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"scripts\\": {",
+              "lineAfter": 6,
+              "type": "Added",
+            },
+            Object {
+              "content": "    \\"build\\": \\"tsc\\"",
+              "lineAfter": 7,
+              "type": "Added",
+            },
+            Object {
+              "content": "  },",
+              "lineAfter": 8,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"author\\": \\"\\",",
+              "lineAfter": 9,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"license\\": \\"ISC\\",",
+              "lineAfter": 10,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"dependencies\\": {",
+              "lineAfter": 11,
+              "type": "Added",
+            },
+            Object {
+              "content": "    \\"parse-git-diff\\": \\"0.0.3\\"",
+              "lineAfter": 12,
+              "type": "Added",
+            },
+            Object {
+              "content": "  },",
+              "lineAfter": 13,
+              "type": "Added",
+            },
+            Object {
+              "content": "  \\"devDependencies\\": {",
+              "lineAfter": 14,
+              "type": "Added",
+            },
+            Object {
+              "content": "    \\"typescript\\": \\"^4.4.4\\"",
+              "lineAfter": 15,
+              "type": "Added",
+            },
+            Object {
+              "content": "  }",
+              "lineAfter": 16,
+              "type": "Added",
+            },
+            Object {
+              "content": "}",
+              "lineAfter": 17,
+              "type": "Added",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 17,
+            "start": 1,
+          },
+          "rangeBefore": Object {
+            "lines": 0,
+            "start": 0,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "parse-git-diff-test/packages.json",
+      "type": "AddedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
