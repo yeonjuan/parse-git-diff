@@ -2,7 +2,7 @@ import { createContext } from '../test-utils';
 import parseGitDiff from './parse-git-diff';
 
 describe('parseGitDiff', () => {
-  it('should parse new file.', () => {
+  it('new file.', () => {
     // prettier-ignore
     const src =
 `diff --git a/parse-git-diff-test/packages.json b/parse-git-diff-test/packages.json
@@ -29,6 +29,38 @@ index 0000000..5515040
 +  }
 +}`;
 
+    const result = parseGitDiff(src);
+
+    expect(result).not.toBe(null);
+    expect(result).toMatchSnapshot();
+  });
+
+  it('deleted file', () => {
+    // prettier-ignore
+    const src =
+  `diff --git a/parse-git-diff-test/package.json b/parse-git-diff-test/package.json
+deleted file mode 100644
+index 5515040..0000000
+--- a/parse-git-diff-test/package.json
++++ /dev/null
+@@ -1,17 +0,0 @@
+-{
+-  "name": "parse-git-diff-test",
+-  "version": "1.0.0",
+-  "description": "",
+-  "main": "index.js",
+-  "scripts": {
+-    "build": "tsc"
+-  },
+-  "author": "",
+-  "license": "ISC",
+-  "dependencies": {
+-    "parse-git-diff": "0.0.3"
+-  },
+-  "devDependencies": {
+-    "typescript": "^4.4.4"
+-  }
+-}`;
     const result = parseGitDiff(src);
 
     expect(result).not.toBe(null);

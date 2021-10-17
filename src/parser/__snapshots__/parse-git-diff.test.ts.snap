@@ -1,6 +1,118 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parseGitDiff should parse new file. 1`] = `
+exports[`parseGitDiff deleted file 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": "{",
+              "lineBefore": 1,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"name\\": \\"parse-git-diff-test\\",",
+              "lineBefore": 2,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"version\\": \\"1.0.0\\",",
+              "lineBefore": 3,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"description\\": \\"\\",",
+              "lineBefore": 4,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"main\\": \\"index.js\\",",
+              "lineBefore": 5,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"scripts\\": {",
+              "lineBefore": 6,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "    \\"build\\": \\"tsc\\"",
+              "lineBefore": 7,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  },",
+              "lineBefore": 8,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"author\\": \\"\\",",
+              "lineBefore": 9,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"license\\": \\"ISC\\",",
+              "lineBefore": 10,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"dependencies\\": {",
+              "lineBefore": 11,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "    \\"parse-git-diff\\": \\"0.0.3\\"",
+              "lineBefore": 12,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  },",
+              "lineBefore": 13,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  \\"devDependencies\\": {",
+              "lineBefore": 14,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "    \\"typescript\\": \\"^4.4.4\\"",
+              "lineBefore": 15,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "  }",
+              "lineBefore": 16,
+              "type": "Deleted",
+            },
+            Object {
+              "content": "}",
+              "lineBefore": 17,
+              "type": "Deleted",
+            },
+          ],
+          "rangeAfter": Object {
+            "lines": 0,
+            "start": 0,
+          },
+          "rangeBefore": Object {
+            "lines": 17,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "parse-git-diff-test/package.json",
+      "type": "DeletedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`parseGitDiff new file. 1`] = `
 Object {
   "files": Array [
     Object {
