@@ -1,7 +1,7 @@
 {
   "name": "parse-git-diff",
-  "version": "0.0.2",
-  "description": "",
+  "version": "0.0.3",
+  "description": "Parse git diff",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
@@ -35,5 +35,9 @@
     "README.md",
     "yarn.lock",
     "package.json"
+  ],
+  "keywords": [
+    "git",
+    "git diff"
   ]
 }
