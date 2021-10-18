@@ -10,18 +10,18 @@ Array [
             "content": "node_modules",
             "lineAfter": 1,
             "lineBefore": 1,
-            "type": "Unchanged",
+            "type": "UnchangedLine",
           },
           Object {
             "content": "build",
             "lineAfter": 2,
             "lineBefore": 2,
-            "type": "Unchanged",
+            "type": "UnchangedLine",
           },
           Object {
             "content": "coverage",
             "lineAfter": 3,
-            "type": "Added",
+            "type": "AddedLine",
           },
         ],
         "rangeAfter": Object {
@@ -45,7 +45,7 @@ Array [
           Object {
             "content": "# parse-git-diff",
             "lineBefore": 1,
-            "type": "Deleted",
+            "type": "DeletedLine",
           },
         ],
         "rangeAfter": Object {

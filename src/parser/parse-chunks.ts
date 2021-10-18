@@ -1,4 +1,4 @@
-import type { AnyChange, Chunk } from '../types';
+import type { AnyLineChange, Chunk } from '../types';
 import type Context from './context';
 import parseChanges from './parse-changes';
 import parseChunkHeader from './parse-chunk-header';
@@ -22,7 +22,7 @@ function parseChunk(context: Context): Chunk | undefined {
     return;
   }
 
-  const changes: AnyChange[] = parseChanges(
+  const changes: AnyLineChange[] = parseChanges(
     context,
     chunkHeader.rangeBefore,
     chunkHeader.rangeAfter

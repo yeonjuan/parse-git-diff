@@ -1,20 +1,20 @@
 import type Context from './context';
-import type { AnyChange, ChunkRange } from '../types';
+import type { AnyLineChange, ChunkRange } from '../types';
 
-type LineType = AnyChange['type'];
+type LineType = AnyLineChange['type'];
 
 const CHAR_TYPE_MAP: Record<string, LineType> = {
-  '+': 'Added',
-  '-': 'Deleted',
-  ' ': 'Unchanged',
+  '+': 'AddedLine',
+  '-': 'DeletedLine',
+  ' ': 'UnchangedLine',
 };
 
 export default function parseChanges(
   ctx: Context,
   rangeBefore: ChunkRange,
   rangeAfter: ChunkRange
-): AnyChange[] {
-  const changes: AnyChange[] = [];
+): AnyLineChange[] {
+  const changes: AnyLineChange[] = [];
   let lineBefore = rangeBefore.start;
   let lineAfter = rangeAfter.start;
 
@@ -26,28 +26,28 @@ export default function parseChanges(
     }
     ctx.nextLine();
 
-    let change: AnyChange;
+    let change: AnyLineChange;
     const content = line.slice(1);
     switch (type) {
-      case 'Added': {
+      case 'AddedLine': {
         change = {
-          type: 'Added',
+          type: 'AddedLine',
           lineAfter: lineAfter++,
           content,
         };
         break;
       }
-      case 'Deleted': {
+      case 'DeletedLine': {
         change = {
-          type: 'Deleted',
+          type: 'DeletedLine',
           lineBefore: lineBefore++,
           content,
         };
         break;
       }
-      case 'Unchanged': {
+      case 'UnchangedLine': {
         change = {
-          type: 'Unchanged',
+          type: 'UnchangedLine',
           lineBefore: lineBefore++,
           lineAfter: lineAfter++,
           content,
