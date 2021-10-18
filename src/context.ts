@@ -9,10 +9,6 @@ export default class Context {
     return this.lines[this.line - 1];
   }
 
-  public getCurLineIndex(): number {
-    return this.line;
-  }
-
   public nextLine(): string | undefined {
     this.line++;
     return this.getCurLine();

@@ -1,3 +1,5 @@
+import { LineType, FileType } from './constants';
+
 export interface Base<Type extends string> {
   readonly type: Type;
 }
@@ -6,15 +8,15 @@ interface BaseChange<Type extends string> extends Base<Type> {
   content: string;
 }
 
-export interface AddedLine extends BaseChange<'AddedLine'> {
+export interface AddedLine extends BaseChange<typeof LineType.Added> {
   lineAfter: number;
 }
 
-export interface DeletedLine extends BaseChange<'DeletedLine'> {
+export interface DeletedLine extends BaseChange<typeof LineType.Deleted> {
   lineBefore: number;
 }
 
-export interface UnchangedLine extends BaseChange<'UnchangedLine'> {
+export interface UnchangedLine extends BaseChange<typeof LineType.Unchanged> {
   lineBefore: number;
   lineAfter: number;
 }
@@ -36,19 +38,19 @@ interface BaseFileChange<Type extends string> extends Base<Type> {
   chunks: Chunk[];
 }
 
-export interface ChangedFile extends BaseFileChange<'ChangedFile'> {
+export interface ChangedFile extends BaseFileChange<typeof FileType.Changed> {
   path: string;
 }
 
-export interface AddedFile extends BaseFileChange<'AddedFile'> {
+export interface AddedFile extends BaseFileChange<typeof FileType.Added> {
   path: string;
 }
 
-export interface DeletedFile extends BaseFileChange<'DeletedFile'> {
+export interface DeletedFile extends BaseFileChange<typeof FileType.Deleted> {
   path: string;
 }
 
-export interface RenamedFile extends BaseFileChange<'RenamedFile'> {
+export interface RenamedFile extends BaseFileChange<typeof FileType.Renamed> {
   pathBefore: string;
   pathAfter: string;
 }
