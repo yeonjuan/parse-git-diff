@@ -6,20 +6,20 @@ interface BaseChange<Type extends string> extends Base<Type> {
   content: string;
 }
 
-export interface Added extends BaseChange<'Added'> {
+export interface AddedLine extends BaseChange<'AddedLine'> {
   lineAfter: number;
 }
 
-export interface Deleted extends BaseChange<'Deleted'> {
+export interface DeletedLine extends BaseChange<'DeletedLine'> {
   lineBefore: number;
 }
 
-export interface Unchanged extends BaseChange<'Unchanged'> {
+export interface UnchangedLine extends BaseChange<'UnchangedLine'> {
   lineBefore: number;
   lineAfter: number;
 }
 
-export type AnyChange = Added | Deleted | Unchanged;
+export type AnyLineChange = AddedLine | DeletedLine | UnchangedLine;
 
 /** changed file types */
 
@@ -56,5 +56,5 @@ export interface ChunkRange {
 export interface Chunk extends Base<'Chunk'> {
   rangeBefore: ChunkRange;
   rangeAfter: ChunkRange;
-  changes: AnyChange[];
+  changes: AnyLineChange[];
 }

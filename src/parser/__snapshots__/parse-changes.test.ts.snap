@@ -6,25 +6,25 @@ Array [
     "content": "unchanged",
     "lineAfter": 1,
     "lineBefore": 1,
-    "type": "Unchanged",
+    "type": "UnchangedLine",
   },
   Object {
     "content": "-deleted line",
     "lineAfter": 2,
     "lineBefore": 2,
-    "type": "Unchanged",
+    "type": "UnchangedLine",
   },
   Object {
     "content": "+added line",
     "lineAfter": 3,
     "lineBefore": 3,
-    "type": "Unchanged",
+    "type": "UnchangedLine",
   },
   Object {
     "content": "unchanged",
     "lineAfter": 4,
     "lineBefore": 4,
-    "type": "Unchanged",
+    "type": "UnchangedLine",
   },
 ]
 `;
