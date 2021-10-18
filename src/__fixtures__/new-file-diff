@@ -1,0 +1,7 @@
+diff --git a/newfile.md b/newfile.md
+new file mode 100644
+index 0000000..aa39060
+--- /dev/null
++++ b/newfile.md
+@@ -0,0 +1 @@
++newfile
