@@ -6,6 +6,12 @@ import type {
   Chunk,
   ChunkRange,
 } from './types';
+import {
+  ExtendedHeader,
+  ExtendedHeaderValues,
+  FileType,
+  LineType,
+} from './constants';
 
 export default function parseGitDiff(diff: string): GitDiff {
   const ctx = new Context(diff);
@@ -45,15 +51,15 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     if (!extHeader) {
       break;
     }
-    if (extHeader.type === 'deleted') isDeleted = true;
-    if (extHeader.type === 'new file') isNew = true;
-    if (extHeader.type === 'rename from') {
+    if (extHeader.type === ExtendedHeader.Deleted) isDeleted = true;
+    if (extHeader.type === ExtendedHeader.NewFile) isNew = true;
+    if (extHeader.type === ExtendedHeader.RenameFrom) {
       isRename = true;
-      pathBefore = extHeader.path;
+      pathBefore = extHeader.path as string;
     }
-    if (extHeader.type === 'rename to') {
+    if (extHeader.type === ExtendedHeader.RenameTo) {
       isRename = true;
-      pathAfter = extHeader.path;
+      pathAfter = extHeader.path as string;
     }
   }
 
@@ -62,26 +68,26 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
 
   if (isDeleted && changeMarkers) {
     return {
-      type: 'DeletedFile',
+      type: FileType.Deleted,
       chunks,
       path: changeMarkers.deleted,
     };
   } else if (isNew && changeMarkers) {
     return {
-      type: 'AddedFile',
+      type: FileType.Added,
       chunks,
       path: changeMarkers.added,
     };
   } else if (isRename) {
     return {
-      type: 'RenamedFile',
+      type: FileType.Renamed,
       pathAfter,
       pathBefore,
       chunks,
     };
   } else if (changeMarkers) {
     return {
-      type: 'ChangedFile',
+      type: FileType.Changed,
       chunks,
       path: changeMarkers.added,
     };
@@ -125,49 +131,22 @@ function parseChunk(context: Context): Chunk | undefined {
   };
 }
 
-const UNHANDLED_EXTENDED_HEADERS = new Set([
-  'index',
-  'old',
-  'copy',
-  'similarity',
-  'dissimilarity',
-]);
-
-const startsWith = (str: string, target: string) => {
-  return str.indexOf(target) === 0;
-};
-
 function parseExtendedHeader(ctx: Context) {
   const line = ctx.getCurLine();
-  const type = line.slice(0, line.indexOf(' '));
+  const type = ExtendedHeaderValues.find((v) => line.startsWith(v));
 
-  if (UNHANDLED_EXTENDED_HEADERS.has(type)) {
+  if (type) {
     ctx.nextLine();
-    return {
-      type: 'unhandled',
-    } as const;
   }
-  if (startsWith(line, 'deleted ')) {
-    ctx.nextLine();
+
+  if (type === ExtendedHeader.RenameFrom || type === ExtendedHeader.RenameTo) {
     return {
-      type: 'deleted',
+      type,
+      path: line.slice(`${type} `.length),
     } as const;
-  } else if (startsWith(line, 'new file ')) {
-    ctx.nextLine();
+  } else if (type) {
     return {
-      type: 'new file',
-    } as const;
-  } else if (startsWith(line, 'rename from ')) {
-    ctx.nextLine();
-    return {
-      type: 'rename from',
-      path: line.slice('rename from '.length),
-    } as const;
-  } else if (startsWith(line, 'rename to ')) {
-    ctx.nextLine();
-    return {
-      type: 'rename to',
-      path: line.slice('rename to '.length),
+      type,
     } as const;
   }
 
@@ -219,9 +198,9 @@ function parseMarker(context: Context, marker: string): string | null {
 type LineType = AnyLineChange['type'];
 
 const CHAR_TYPE_MAP: Record<string, LineType> = {
-  '+': 'AddedLine',
-  '-': 'DeletedLine',
-  ' ': 'UnchangedLine',
+  '+': LineType.Added,
+  '-': LineType.Deleted,
+  ' ': LineType.Unchanged,
 };
 
 function parseChanges(
@@ -244,25 +223,25 @@ function parseChanges(
     let change: AnyLineChange;
     const content = line.slice(1);
     switch (type) {
-      case 'AddedLine': {
+      case LineType.Added: {
         change = {
-          type: 'AddedLine',
+          type,
           lineAfter: lineAfter++,
           content,
         };
         break;
       }
-      case 'DeletedLine': {
+      case LineType.Deleted: {
         change = {
-          type: 'DeletedLine',
+          type,
           lineBefore: lineBefore++,
           content,
         };
         break;
       }
-      case 'UnchangedLine': {
+      case LineType.Unchanged: {
         change = {
-          type: 'UnchangedLine',
+          type,
           lineBefore: lineBefore++,
           lineAfter: lineAfter++,
           content,
