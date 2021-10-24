@@ -7,7 +7,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "prepublish": "yarn build",
-    "build": "rimraf build && rollup -c rollup.config.js",
+    "build": "rimraf build && rollup -c rollup.config.js && tsc --declaration",
     "format": "prettier . --write",
     "test": "jest",
     "prebuild": "yarn check:all",
