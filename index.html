@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/index.eac76b73.js"></script>
+    <style>
+      body {
+        width: 100%;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        width: 100%;
+        max-height: 800px;
+        gap: 10px;
+      }
+      .container > div {
+        width: 50%;
+        float: left;
+      }
+      #input {
+        width: 100%;
+        height: 100%;
+        flex-grow: 1;
+        padding: 0px;
+        resize: none;
+      }
+      #output {
+        background: #efefef;
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 10px;
+        overflow: auto;
+      }
+      label {
+        display: block;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>parse git diff</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div>
+          <label for="input">Input</label>
+          <textarea id="input"> </textarea>
+        </div>
+        <div>
+          <label>Output</label>
+          <pre id="output"></pre>
+        </div>
+      </div>
+    </main>
+    <script>
+      const defaultData =
+        `\ndiff --git a/.gitignore b/.gitignore\nindex 1d2a37f..f2ae9ef 100644\n--- a/.gitignore\n+++ b/.gitignore\n@@ -1,3 +1,4 @@\n node_modules\n build\n coverage\n+dist\ndiff --git a/.prettierignore b/.prettierignore\nindex 28c99dd..de6f253 100644\n--- a/.prettierignore\n+++ b/.prettierignore\n@@ -2,3 +2,4 @@ node_modules\n build\n yarn.lock\n coverage\n+dist\ndiff --git a/package.json b/package.json\nindex bdb688e..229a646 100644\n--- a/package.json\n+++ b/package.json\n@@ -6,7 +6,8 @@\n   "types": "build/index.d.ts",\n   "scripts": {\n     "prepublish": "yarn build",\n-    "build": "rimraf build && tsc",\n+    "build": "rimraf build && tsc && yarn build:docs",\n+    "build:docs": "rollup -c rollup.config.js",\n     "format": "prettier . --write",\n     "test": "jest",\n     "check:all": "prettier --check . && tsc --noEmit && yarn test"\n@@ -22,11 +23,14 @@\n   },\n   "homepage": "https://github.com/yeonjuan/parse-git-diff#readme",\n   "devDependencies": {\n+    "@rollup/plugin-node-resolve": "^13.0.6",\n+    "@rollup/plugin-typescript": "^8.3.0",\n     "@types/jest": "^27.0.2",\n     "husky": "^7.0.2",\n     "jest": "^27.2.5",\n     "prettier": "^2.4.1",\n     "rimraf": "^3.0.2",\n+    "rollup": "^2.58.0",\n     "ts-jest": "^27.0.5",\n     "typescript": "^4.4.3"\n   },\ndiff --git a/src/index.ts b/src/index.ts\nindex 0ea32ee..ba41e88 100644\n--- a/src/index.ts\n+++ b/src/index.ts\n@@ -1,2 +1,2 @@\n import parseGitDiff from './parse-git-diff';\n-export = parseGitDiff;\n+export default parseGitDiff;\ndiff --git a/yarn.lock b/yarn.lock\nindex da2f314..019aa6e 100644\n--- a/yarn.lock\n+++ b/yarn.lock\n@@ -487,6 +487,35 @@\n     "@types/yargs" "^16.0.0"\n     chalk "^4.0.0"\n \n+"@rollup/plugin-node-resolve@^13.0.6":\n+  version "13.0.6"\n+  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.6.tgz#29629070bb767567be8157f575cfa8f2b8e9ef77"\n+  integrity sha512-sFsPDMPd4gMqnh2gS0uIxELnoRUp5kBl5knxD2EO0778G1oOJv4G1vyT2cpWz75OU2jDVcXhjVUuTAczGyFNKA==\n+  dependencies:\n+    "@rollup/pluginutils" "^3.1.0"\n+    "@types/resolve" "1.17.1"\n+    builtin-modules "^3.1.0"\n+    deepmerge "^4.2.2"\n+    is-module "^1.0.0"\n+    resolve "^1.19.0"\n+\n+"@rollup/plugin-typescript@^8.3.0":\n+  version "8.3.0"\n+  resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-8.3.0.tgz#bc1077fa5897b980fc27e376c4e377882c63e68b"\n+  integrity sha512-I5FpSvLbtAdwJ+naznv+B4sjXZUcIvLLceYpITAn7wAP8W0wqc5noLdGIp9HGVntNhRWXctwPYrSSFQxtl0FPA==\n+  dependencies:\n+    "@rollup/pluginutils" "^3.1.0"\n+    resolve "^1.17.0"\n+\n+"@rollup/pluginutils@^3.1.0":\n+  version "3.1.0"\n+  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.1.0.tgz#706b4524ee6dc8b103b3c995533e5ad680c02b9b"\n+  integrity sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==\n+  dependencies:\n+    "@types/estree" "0.0.39"\n+    estree-walker "^1.0.1"\n+    picomatch "^2.2.2"\n+\n "@sinonjs/commons@^1.7.0":\n   version "1.8.3"\n   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.3.tgz#3802ddd21a50a949b6721ddd72da36e67e7f1b2d"\n@@ -539,6 +568,11 @@\n   dependencies:\n     "@babel/types" "^7.3.0"\n \n+"@types/estree@0.0.39":\n+  version "0.0.39"\n+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"\n+  integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==\n+\n "@types/graceful-fs@^4.1.2":\n   version "4.1.5"\n   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.5.tgz#21ffba0d98da4350db64891f92a9e5db3cdb4e15"\n@@ -583,6 +617,13 @@\n   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.4.1.tgz#e1303048d5389563e130f5bdd89d37a99acb75eb"\n   integrity sha512-Fo79ojj3vdEZOHg3wR9ksAMRz4P3S5fDB5e/YWZiFnyFQI1WY2Vftu9XoXVVtJfxB7Bpce/QTqWSSntkz2Znrw==\n \n+"@types/resolve@1.17.1":\n+  version "1.17.1"\n+  resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.17.1.tgz#3afd6ad8967c77e4376c598a82ddd58f46ec45d6"\n+  integrity sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==\n+  dependencies:\n+    "@types/node" "*"\n+\n "@types/stack-utils@^2.0.0":\n   version "2.0.1"\n   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"\n@@ -802,6 +843,11 @@ buffer-from@^1.0.0:\n   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"\n   integrity sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==\n \n+builtin-modules@^3.1.0:\n+  version "3.2.0"\n+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-3.2.0.tgz#45d5db99e7ee5e6bc4f362e008bf917ab5049887"\n+  integrity sha512-lGzLKcioL90C7wMczpkY0n/oART3MbBa8R9OFGE1rJxoVI86u4WAGfEk8Wjv10eKSyTHVGkSo3bvBylCEtk7LA==\n+\n callsites@^3.0.0:\n   version "3.1.0"\n   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"\n@@ -1052,6 +1098,11 @@ estraverse@^5.2.0:\n   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-5.2.0.tgz#307df42547e6cc7324d3cf03c155d5cdb8c53880"\n   integrity sha512-BxbNGGNm0RyRYvUdHpIwv9IWzeM9XClbOxwoATuFdOE7ZE6wHL+HQ5T8hoPM+zHvmKzzsEqhgy0GrQ5X13afiQ==\n \n+estree-walker@^1.0.1:\n+  version "1.0.1"\n+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"\n+  integrity sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==\n+\n esutils@^2.0.2:\n   version "2.0.3"\n   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"\n@@ -1135,7 +1186,7 @@ fs.realpath@^1.0.0:\n   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"\n   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=\n \n-fsevents@^2.3.2:\n+fsevents@^2.3.2, fsevents@~2.3.2:\n   version "2.3.2"\n   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"\n   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==\n@@ -1300,6 +1351,11 @@ is-generator-fn@^2.0.0:\n   resolved "https://registry.yarnpkg.com/is-generator-fn/-/is-generator-fn-2.1.0.tgz#7d140adc389aaf3011a8f2a2a4cfa6faadffb118"\n   integrity sha512-cTIB4yPYL/Grw0EaSzASzg6bBy9gqCofvWN8okThAYIxKJZC+udlRAmGbM0XLeniEJSs8uEgHPGuHSe1XsOLSQ==\n \n+is-module@^1.0.0:\n+  version "1.0.0"\n+  resolved "https://registry.yarnpkg.com/is-module/-/is-module-1.0.0.tgz#3258fb69f78c14d5b815d664336b4cffb6441591"\n+  integrity sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=\n+\n is-number@^7.0.0:\n   version "7.0.0"\n   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"\n@@ -2050,7 +2106,7 @@ picocolors@^0.2.1:\n   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"\n   integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==\n \n-picomatch@^2.0.4, picomatch@^2.2.3:\n+picomatch@^2.0.4, picomatch@^2.2.2, picomatch@^2.2.3:\n   version "2.3.0"\n   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"\n   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==\n@@ -2129,7 +2185,7 @@ resolve-from@^5.0.0:\n   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-5.0.0.tgz#c35225843df8f776df21c57557bc087e9dfdfc69"\n   integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==\n \n-resolve@^1.20.0:\n+resolve@^1.17.0, resolve@^1.19.0, resolve@^1.20.0:\n   version "1.20.0"\n   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"\n   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==\n@@ -2144,6 +2200,13 @@ rimraf@^3.0.0, rimraf@^3.0.2:\n   dependencies:\n     glob "^7.1.3"\n \n+rollup@^2.58.0:\n+  version "2.58.0"\n+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.58.0.tgz#a643983365e7bf7f5b7c62a8331b983b7c4c67fb"\n+  integrity sha512-NOXpusKnaRpbS7ZVSzcEXqxcLDOagN6iFS8p45RkoiMqPHDLwJm758UF05KlMoCRbLBTZsPOIa887gZJ1AiXvw==\n+  optionalDependencies:\n+    fsevents "~2.3.2"\n+\n safe-buffer@~5.1.1:\n   version "5.1.2"\n   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"\n`.trim();
+      const $input = document.getElementById('input');
+      $input.value = defaultData;
+      const $output = document.getElementById('output');
+      function update() {
+        const result = parseGitDiff($input.value);
+        $output.innerText = JSON.stringify(result, null, 2);
+      }
+      $input.addEventListener('input', update);
+      update();
+    </script>
+  </body>
+</html>
