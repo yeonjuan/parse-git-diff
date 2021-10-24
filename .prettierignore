@@ -2,3 +2,6 @@ node_modules
 build
 yarn.lock
 coverage
+dist
+.parcel-cache
+demo/parse-git-diff.js
