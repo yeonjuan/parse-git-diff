@@ -8,6 +8,10 @@
 npm install parse-git-diff
 ```
 
+## Demo
+
+- [demo](https://yeonjuan.github.io/parse-git-diff/)
+
 ## Usage
 
 ```js
