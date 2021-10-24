@@ -1,2 +1,2 @@
 import parseGitDiff from './parse-git-diff';
-export = parseGitDiff;
+export default parseGitDiff;
