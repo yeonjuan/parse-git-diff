@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`conflict-file parse \`conflict-file\` 1`] = `
+Object {
+  "files": Array [
+    Object {
+      "chunks": Array [
+        Object {
+          "changes": Array [
+            Object {
+              "content": " npm install parse-git-diff",
+              "lineAfter": 8,
+              "lineBefore": 8,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": " \`\`\`",
+              "lineAfter": 9,
+              "lineBefore": 9,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": " ",
+              "lineAfter": 10,
+              "lineBefore": 10,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": "+<<<<<<< HEAD",
+              "lineAfter": 11,
+              "type": "AddedLine",
+            },
+            Object {
+              "content": "+## a",
+              "lineAfter": 12,
+              "lineBefore": 11,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": "+=======",
+              "lineAfter": 13,
+              "type": "AddedLine",
+            },
+            Object {
+              "content": " ## b",
+              "lineAfter": 14,
+              "type": "AddedLine",
+            },
+            Object {
+              "content": "+>>>>>>> branch-b",
+              "lineAfter": 15,
+              "type": "AddedLine",
+            },
+            Object {
+              "content": " ",
+              "lineAfter": 16,
+              "lineBefore": 12,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": " - [demo](https://yeonjuan.github.io/parse-git-diff/)",
+              "lineAfter": 17,
+              "lineBefore": 13,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": " ",
+              "lineAfter": 18,
+              "lineBefore": 14,
+              "type": "UnchangedLine",
+            },
+            Object {
+              "content": " ",
+              "lineAfter": 19,
+              "lineBefore": 15,
+              "type": "UnchangedLine",
+            },
+          ],
+          "fromFileRangeA": Object {
+            "lines": 7,
+            "start": 8,
+          },
+          "fromFileRangeB": Object {
+            "lines": 7,
+            "start": 8,
+          },
+          "toFileRange": Object {
+            "lines": 11,
+            "start": 8,
+          },
+          "type": "CombinedChunk",
+        },
+      ],
+      "path": "README.md",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

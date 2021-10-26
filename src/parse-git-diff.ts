@@ -5,6 +5,8 @@ import type {
   AnyLineChange,
   Chunk,
   ChunkRange,
+  CombinedChunk,
+  AnyChunk,
 } from './types';
 import {
   ExtendedHeader,
@@ -96,11 +98,12 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
 }
 
 function isComparisonInputLine(line: string): boolean {
-  return line.indexOf('diff --git') === 0;
+  console.log(line);
+  return line.indexOf('diff') === 0;
 }
 
-function parseChunks(context: Context): Chunk[] {
-  const chunks: Chunk[] = [];
+function parseChunks(context: Context): AnyChunk[] {
+  const chunks: AnyChunk[] = [];
 
   while (!context.isEof()) {
     const chunk = parseChunk(context);
@@ -112,23 +115,41 @@ function parseChunks(context: Context): Chunk[] {
   return chunks;
 }
 
-function parseChunk(context: Context): Chunk | undefined {
+function parseChunk(context: Context): AnyChunk | undefined {
   const chunkHeader = parseChunkHeader(context);
   if (!chunkHeader) {
     return;
   }
 
-  const changes: AnyLineChange[] = parseChanges(
-    context,
-    chunkHeader.rangeBefore,
-    chunkHeader.rangeAfter
-  );
-
-  return {
-    type: 'Chunk',
-    ...chunkHeader,
-    changes,
-  };
+  if (chunkHeader.type === 'Normal') {
+    const changes = parseChanges(
+      context,
+      chunkHeader.fromFileRange,
+      chunkHeader.toFileRange
+    );
+    return {
+      ...chunkHeader,
+      type: 'Chunk',
+      changes,
+    };
+  } else if (
+    chunkHeader.type === 'Combined' &&
+    chunkHeader.fromFileRangeA &&
+    chunkHeader.fromFileRangeB
+  ) {
+    const changes = parseChanges(
+      context,
+      chunkHeader.fromFileRangeA.start < chunkHeader.fromFileRangeB.start
+        ? chunkHeader.fromFileRangeA
+        : chunkHeader.fromFileRangeB,
+      chunkHeader.toFileRange
+    );
+    return {
+      ...chunkHeader,
+      type: 'CombinedChunk',
+      changes,
+    };
+  }
 }
 
 function parseExtendedHeader(ctx: Context) {
@@ -153,19 +174,42 @@ function parseExtendedHeader(ctx: Context) {
   return null;
 }
 
-function parseChunkHeader(
-  ctx: Context
-): Pick<Chunk, 'rangeAfter' | 'rangeBefore'> | null {
+function parseChunkHeader(ctx: Context) {
   const line = ctx.getCurLine();
-  const exec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@/.exec(line);
-  if (!exec) {
-    return null;
+  const normalChunkExec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@/.exec(
+    line
+  );
+  if (!normalChunkExec) {
+    const combinedChunkExec =
+      /^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@/.exec(line);
+
+    if (!combinedChunkExec) {
+      return null;
+    }
+
+    const [
+      all,
+      delStartA,
+      delLinesA,
+      delStartB,
+      delLinesB,
+      addStart,
+      addLines,
+    ] = combinedChunkExec;
+    ctx.nextLine();
+    return {
+      type: 'Combined',
+      fromFileRangeA: getRange(delStartA, delLinesA),
+      fromFileRangeB: getRange(delStartB, delLinesB),
+      toFileRange: getRange(addStart, addLines),
+    } as const;
   }
-  const [all, delStart, delLines, addStart, addLines] = exec;
+  const [all, delStart, delLines, addStart, addLines] = normalChunkExec;
   ctx.nextLine();
   return {
-    rangeAfter: getRange(addStart, addLines),
-    rangeBefore: getRange(delStart, delLines),
+    type: 'Normal',
+    toFileRange: getRange(addStart, addLines),
+    fromFileRange: getRange(delStart, delLines),
   };
 }
 

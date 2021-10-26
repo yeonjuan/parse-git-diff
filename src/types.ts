@@ -29,30 +29,39 @@ export interface ChunkRange {
 }
 
 export interface Chunk extends Base<'Chunk'> {
-  rangeBefore: ChunkRange;
-  rangeAfter: ChunkRange;
+  fromFileRange: ChunkRange;
+  toFileRange: ChunkRange;
   changes: AnyLineChange[];
 }
 
-interface BaseFileChange<Type extends string> extends Base<Type> {
-  chunks: Chunk[];
+export interface CombinedChunk extends Base<'CombinedChunk'> {
+  fromFileRangeA: ChunkRange;
+  fromFileRangeB: ChunkRange;
+  toFileRange: ChunkRange;
+  changes: AnyLineChange[];
 }
 
-export interface ChangedFile extends BaseFileChange<typeof FileType.Changed> {
+export type AnyChunk = Chunk | CombinedChunk;
+
+export interface ChangedFile extends Base<typeof FileType.Changed> {
   path: string;
+  chunks: AnyChunk[];
 }
 
-export interface AddedFile extends BaseFileChange<typeof FileType.Added> {
+export interface AddedFile extends Base<typeof FileType.Added> {
   path: string;
+  chunks: AnyChunk[];
 }
 
-export interface DeletedFile extends BaseFileChange<typeof FileType.Deleted> {
+export interface DeletedFile extends Base<typeof FileType.Deleted> {
   path: string;
+  chunks: AnyChunk[];
 }
 
-export interface RenamedFile extends BaseFileChange<typeof FileType.Renamed> {
+export interface RenamedFile extends Base<typeof FileType.Renamed> {
   pathBefore: string;
   pathAfter: string;
+  chunks: AnyChunk[];
 }
 
 export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;

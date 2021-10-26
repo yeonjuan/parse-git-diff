@@ -13,13 +13,13 @@ Object {
               "type": "AddedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 1,
-            "start": 1,
-          },
-          "rangeBefore": Object {
+          "fromFileRange": Object {
             "lines": 0,
             "start": 0,
+          },
+          "toFileRange": Object {
+            "lines": 1,
+            "start": 1,
           },
           "type": "Chunk",
         },

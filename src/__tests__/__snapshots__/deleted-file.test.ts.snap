@@ -13,13 +13,13 @@ Object {
               "type": "DeletedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 0,
-            "start": 0,
-          },
-          "rangeBefore": Object {
+          "fromFileRange": Object {
             "lines": 1,
             "start": 1,
+          },
+          "toFileRange": Object {
+            "lines": 0,
+            "start": 0,
           },
           "type": "Chunk",
         },

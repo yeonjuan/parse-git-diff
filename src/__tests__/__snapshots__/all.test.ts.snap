@@ -19,12 +19,12 @@ Object {
               "type": "DeletedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 1,
+          "fromFileRange": Object {
+            "lines": 2,
             "start": 1,
           },
-          "rangeBefore": Object {
-            "lines": 2,
+          "toFileRange": Object {
+            "lines": 1,
             "start": 1,
           },
           "type": "Chunk",
@@ -43,13 +43,13 @@ Object {
               "type": "DeletedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 0,
-            "start": 0,
-          },
-          "rangeBefore": Object {
+          "fromFileRange": Object {
             "lines": 1,
             "start": 1,
+          },
+          "toFileRange": Object {
+            "lines": 0,
+            "start": 0,
           },
           "type": "Chunk",
         },
@@ -67,13 +67,13 @@ Object {
               "type": "AddedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 1,
-            "start": 1,
-          },
-          "rangeBefore": Object {
+          "fromFileRange": Object {
             "lines": 0,
             "start": 0,
+          },
+          "toFileRange": Object {
+            "lines": 1,
+            "start": 1,
           },
           "type": "Chunk",
         },
@@ -97,12 +97,12 @@ Object {
               "type": "AddedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 2,
+          "fromFileRange": Object {
+            "lines": 1,
             "start": 1,
           },
-          "rangeBefore": Object {
-            "lines": 1,
+          "toFileRange": Object {
+            "lines": 2,
             "start": 1,
           },
           "type": "Chunk",
