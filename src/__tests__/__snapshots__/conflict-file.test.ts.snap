@@ -76,16 +76,16 @@ Object {
               "type": "UnchangedLine",
             },
           ],
-          "rangeAfter": Object {
+          "fromFileRangeA": Object {
+            "lines": 7,
+            "start": 8,
+          },
+          "fromFileRangeB": Object {
+            "lines": 7,
+            "start": 8,
+          },
+          "toFileRange": Object {
             "lines": 11,
-            "start": 8,
-          },
-          "rangeBeforeA": Object {
-            "lines": 7,
-            "start": 8,
-          },
-          "rangeBeforeB": Object {
-            "lines": 7,
             "start": 8,
           },
           "type": "CombinedChunk",

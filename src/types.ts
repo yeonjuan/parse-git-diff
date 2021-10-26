@@ -29,15 +29,15 @@ export interface ChunkRange {
 }
 
 export interface Chunk extends Base<'Chunk'> {
-  rangeBefore: ChunkRange;
-  rangeAfter: ChunkRange;
+  fromFileRange: ChunkRange;
+  toFileRange: ChunkRange;
   changes: AnyLineChange[];
 }
 
 export interface CombinedChunk extends Base<'CombinedChunk'> {
-  rangeBeforeA: ChunkRange;
-  rangeBeforeB: ChunkRange;
-  rangeAfter: ChunkRange;
+  fromFileRangeA: ChunkRange;
+  fromFileRangeB: ChunkRange;
+  toFileRange: ChunkRange;
   changes: AnyLineChange[];
 }
 

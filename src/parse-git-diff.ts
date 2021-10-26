@@ -124,8 +124,8 @@ function parseChunk(context: Context): AnyChunk | undefined {
   if (chunkHeader.type === 'Normal') {
     const changes = parseChanges(
       context,
-      chunkHeader.rangeBefore,
-      chunkHeader.rangeAfter
+      chunkHeader.fromFileRange,
+      chunkHeader.toFileRange
     );
     return {
       ...chunkHeader,
@@ -134,15 +134,15 @@ function parseChunk(context: Context): AnyChunk | undefined {
     };
   } else if (
     chunkHeader.type === 'Combined' &&
-    chunkHeader.rangeBeforeA &&
-    chunkHeader.rangeBeforeB
+    chunkHeader.fromFileRangeA &&
+    chunkHeader.fromFileRangeB
   ) {
     const changes = parseChanges(
       context,
-      chunkHeader.rangeBeforeA.start < chunkHeader.rangeBeforeB.start
-        ? chunkHeader.rangeBeforeA
-        : chunkHeader.rangeBeforeB,
-      chunkHeader.rangeAfter
+      chunkHeader.fromFileRangeA.start < chunkHeader.fromFileRangeB.start
+        ? chunkHeader.fromFileRangeA
+        : chunkHeader.fromFileRangeB,
+      chunkHeader.toFileRange
     );
     return {
       ...chunkHeader,
@@ -199,17 +199,17 @@ function parseChunkHeader(ctx: Context) {
     ctx.nextLine();
     return {
       type: 'Combined',
-      rangeBeforeA: getRange(delStartA, delLinesA),
-      rangeBeforeB: getRange(delStartB, delLinesB),
-      rangeAfter: getRange(addStart, addLines),
+      fromFileRangeA: getRange(delStartA, delLinesA),
+      fromFileRangeB: getRange(delStartB, delLinesB),
+      toFileRange: getRange(addStart, addLines),
     } as const;
   }
   const [all, delStart, delLines, addStart, addLines] = normalChunkExec;
   ctx.nextLine();
   return {
     type: 'Normal',
-    rangeAfter: getRange(addStart, addLines),
-    rangeBefore: getRange(delStart, delLines),
+    toFileRange: getRange(addStart, addLines),
+    fromFileRange: getRange(delStart, delLines),
   };
 }
 

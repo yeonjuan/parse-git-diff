@@ -19,12 +19,12 @@ Object {
               "type": "AddedLine",
             },
           ],
-          "rangeAfter": Object {
-            "lines": 2,
+          "fromFileRange": Object {
+            "lines": 1,
             "start": 1,
           },
-          "rangeBefore": Object {
-            "lines": 1,
+          "toFileRange": Object {
+            "lines": 2,
             "start": 1,
           },
           "type": "Chunk",
