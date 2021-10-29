@@ -98,7 +98,6 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
 }
 
 function isComparisonInputLine(line: string): boolean {
-  console.log(line);
   return line.indexOf('diff') === 0;
 }
 
