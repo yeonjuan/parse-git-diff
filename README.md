@@ -192,17 +192,18 @@ index 2445f65,f4b8569..0000000
 +++ b/README.md
 @@@ -8,7 -8,7 +8,11 @@@
   npm install parse-git-diff
-```
-
+  
+  
 ++<<<<<<< HEAD
-+## a
+ +## a
 ++=======
-
-- ## b
-  ++>>>>>>> branch-b
++ ## b
+++>>>>>>> branch-b
+  
   - [demo](https://yeonjuan.github.io/parse-git-diff/)
-
-````
+  
+  
+```
 
 <!-- end:conflict-file-input -->
 
@@ -242,7 +243,7 @@ index 2445f65,f4b8569..0000000
               "type": "UnchangedLine",
               "lineBefore": 9,
               "lineAfter": 9,
-              "content": " ```"
+              "content": " "
             },
             {
               "type": "UnchangedLine",
@@ -307,7 +308,7 @@ index 2445f65,f4b8569..0000000
     }
   ]
 }
-````
+```
 
 <!-- end:conflict-file-output -->
 

@@ -14,7 +14,7 @@ Object {
               "type": "UnchangedLine",
             },
             Object {
-              "content": " \`\`\`",
+              "content": " ",
               "lineAfter": 9,
               "lineBefore": 9,
               "type": "UnchangedLine",
