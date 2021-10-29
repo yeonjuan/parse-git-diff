@@ -192,17 +192,17 @@ index 2445f65,f4b8569..0000000
 +++ b/README.md
 @@@ -8,7 -8,7 +8,11 @@@
   npm install parse-git-diff
-  
-  
+
+
 ++<<<<<<< HEAD
  +## a
 ++=======
 + ## b
 ++>>>>>>> branch-b
-  
+
   - [demo](https://yeonjuan.github.io/parse-git-diff/)
-  
-  
+
+
 ```
 
 <!-- end:conflict-file-input -->
