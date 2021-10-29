@@ -1,6 +1,6 @@
 {
   "name": "parse-git-diff",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Parse git diff",
   "main": "build/index.umd.js",
   "module": "build/index.module.js",
@@ -13,7 +13,7 @@
     "prebuild": "yarn check:all",
     "publish:demo": "gh-pages -d demo",
     "check:all": "prettier --check . && tsc --noEmit && yarn test",
-    "build:readme": "node scripts/build-readme.js"
+    "build:readme": "node scripts/build-readme.js && yarn format"
   },
   "repository": {
     "type": "git",
