@@ -2044,6 +2044,11 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
+md-replacer@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/md-replacer/-/md-replacer-0.0.4.tgz#dd1e98a034fc69bfd46e36bb0566c834eb716a2b"
+  integrity sha512-sNFwrpMxYBaJi6ds+6hMTQ4+vy6waW5nit+ZASBOt5BKJR9VmC9Q4aqpP23gbqYdqjryuqB1SjFxtl142iRexQ==
+
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
