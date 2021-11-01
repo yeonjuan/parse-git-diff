@@ -1,7 +1,10 @@
 ![action status](https://github.com/yeonjuan/parse-git-diff/actions/workflows/main.yml/badge.svg?branch=main)
-[![npm version](https://badge.fury.io/js/parse-git-diff.svg)](https://badge.fury.io/js/parse-git-diff)
+[![npm version](https://badge.fury.io/js/parse-git-diff.svg)](https://www.npmjs.com/package/parse-git-diff)
+[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 # parse-git-diff
+
+A parser for git diff.
 
 ## Installation
 
@@ -11,13 +14,28 @@ npm install parse-git-diff
 
 ## Demo
 
-- [demo](https://yeonjuan.github.io/parse-git-diff/)
+See [online demo](https://yeonjuan.github.io/parse-git-diff/)
 
 ## Usage
 
 ```js
 import parseGitDiff from 'parse-git-diff';
-parseGitDiff('...');
+
+const result = parseGitDiff('... git diff ...');
+
+console.log(result);
+// {
+//   "type": "GitDiff",
+//   "files": [
+//     {
+//       "type": "AddedFile",
+//       "chunks": [
+//         {
+//           "type": "Chunk",
+//           "toFileRange": {
+//             "start": 1,
+// ...
+// }
 ```
 
 ## Examples
@@ -446,4 +464,4 @@ index 0e05564..aa39060 100644
 
 ## License
 
-- [MIT](./LICENSE)
+[MIT](./LICENSE)

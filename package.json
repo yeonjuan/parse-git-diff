@@ -1,7 +1,7 @@
 {
   "name": "parse-git-diff",
   "version": "0.0.6",
-  "description": "Parse git diff",
+  "description": "A parser for git diff",
   "main": "build/index.umd.js",
   "module": "build/index.module.js",
   "types": "build/index.d.ts",
