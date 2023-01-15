@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`aa parse \`all\` 1`] = `
-Object {
-  "files": Array [
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
               "content": "newfile",
               "lineAfter": 1,
               "lineBefore": 1,
               "type": "UnchangedLine",
             },
-            Object {
+            {
               "content": "newline",
               "lineBefore": 2,
               "type": "DeletedLine",
             },
           ],
-          "fromFileRange": Object {
+          "fromFileRange": {
             "lines": 2,
             "start": 1,
           },
-          "toFileRange": Object {
+          "toFileRange": {
             "lines": 1,
             "start": 1,
           },
@@ -33,21 +33,21 @@ Object {
       "path": "rename.md",
       "type": "ChangedFile",
     },
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
               "content": "newfile",
               "lineBefore": 1,
               "type": "DeletedLine",
             },
           ],
-          "fromFileRange": Object {
+          "fromFileRange": {
             "lines": 1,
             "start": 1,
           },
-          "toFileRange": Object {
+          "toFileRange": {
             "lines": 0,
             "start": 0,
           },
@@ -57,21 +57,21 @@ Object {
       "path": "newfile.md",
       "type": "DeletedFile",
     },
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
               "content": "newfile",
               "lineAfter": 1,
               "type": "AddedLine",
             },
           ],
-          "fromFileRange": Object {
+          "fromFileRange": {
             "lines": 0,
             "start": 0,
           },
-          "toFileRange": Object {
+          "toFileRange": {
             "lines": 1,
             "start": 1,
           },
@@ -81,27 +81,27 @@ Object {
       "path": "newfile.md",
       "type": "AddedFile",
     },
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
               "content": "newfile",
               "lineAfter": 1,
               "lineBefore": 1,
               "type": "UnchangedLine",
             },
-            Object {
+            {
               "content": "newline",
               "lineAfter": 2,
               "type": "AddedLine",
             },
           ],
-          "fromFileRange": Object {
+          "fromFileRange": {
             "lines": 1,
             "start": 1,
           },
-          "toFileRange": Object {
+          "toFileRange": {
             "lines": 2,
             "start": 1,
           },
@@ -111,8 +111,8 @@ Object {
       "path": "rename.md",
       "type": "ChangedFile",
     },
-    Object {
-      "chunks": Array [],
+    {
+      "chunks": [],
       "pathAfter": "rename.md",
       "pathBefore": "newfile.md",
       "type": "RenamedFile",

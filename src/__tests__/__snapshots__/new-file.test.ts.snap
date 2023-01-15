@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`new-file parse \`new-file\` 1`] = `
-Object {
-  "files": Array [
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
               "content": "newfile",
               "lineAfter": 1,
               "type": "AddedLine",
             },
           ],
-          "fromFileRange": Object {
+          "fromFileRange": {
             "lines": 0,
             "start": 0,
           },
-          "toFileRange": Object {
+          "toFileRange": {
             "lines": 1,
             "start": 1,
           },

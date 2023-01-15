@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`deleted-line parse \`deleted-line\` 1`] = `
-Object {
-  "files": Array [
-    Object {
-      "chunks": Array [
-        Object {
-          "changes": Array [
-            Object {
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
               "content": "newfile",
               "lineAfter": 1,
               "lineBefore": 1,
               "type": "UnchangedLine",
             },
-            Object {
+            {
               "content": "newline",
               "lineBefore": 2,
               "type": "DeletedLine",
             },
           ],
-          "fromFileRange": Object {
+          "fromFileRange": {
             "lines": 2,
             "start": 1,
           },
-          "toFileRange": Object {
+          "toFileRange": {
             "lines": 1,
             "start": 1,
           },
