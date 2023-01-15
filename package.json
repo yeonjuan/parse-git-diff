@@ -9,7 +9,7 @@
     "prepublish": "yarn build",
     "build": "rimraf build && rollup -c rollup.config.js && tsc --declaration",
     "format": "prettier . --write",
-    "test": "jest",
+    "test": "jest --coverage",
     "prebuild": "yarn check:all",
     "publish:demo": "gh-pages -d demo",
     "check:all": "prettier --check . && tsc --noEmit && yarn test",

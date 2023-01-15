@@ -1,6 +1,7 @@
 ![action status](https://github.com/yeonjuan/parse-git-diff/actions/workflows/main.yml/badge.svg?branch=main)
 [![npm version](https://badge.fury.io/js/parse-git-diff.svg)](https://www.npmjs.com/package/parse-git-diff)
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![codecov](https://codecov.io/gh/yeonjuan/parse-git-diff/branch/main/graph/badge.svg?token=J1FUY9P07I)](https://codecov.io/gh/yeonjuan/parse-git-diff)
 
 # parse-git-diff
 
