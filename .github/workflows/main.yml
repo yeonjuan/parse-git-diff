@@ -12,3 +12,10 @@ jobs:
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: check:all
+      - name: Code coverage report
+        uses: codecov/codecov-action@v2
+        with:
+          yml: ./codecov.yml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittest
+          name: codecov
