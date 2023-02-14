@@ -7,6 +7,13 @@
 
 A parser for git diff.
 
+- [Installation](#installation)
+- [Demo](#demo)
+- [Usage](#usage)
+- [Examples](#examples)
+- [AST Format](#ast-format)
+- [License](#license)
+
 ## Installation
 
 ```bash
@@ -462,6 +469,10 @@ index 0e05564..aa39060 100644
 <!-- end:deleted-line-output -->
 
 </details>
+
+## AST Format
+
+See the [types.ts](https://github.com/yeonjuan/parse-git-diff/blob/main/src/types.ts) file for all AST formats.
 
 ## License
 

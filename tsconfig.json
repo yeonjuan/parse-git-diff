@@ -11,5 +11,5 @@
     "rootDir": "src",
     "moduleResolution": "node"
   },
-  "exclude": ["src/**/*.test.ts", "build", "node_modules"]
+  "exclude": ["src/**/*.test.ts", "build", "node_modules", "demo"]
 }
