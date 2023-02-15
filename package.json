@@ -11,7 +11,7 @@
     "format": "prettier . --write",
     "test": "jest --coverage",
     "prebuild": "yarn check:all",
-    "publish:demo": "gh-pages -d demo",
+    "publish:demo": "gh-pages -d demo/build",
     "check:all": "prettier --check . && tsc --noEmit && yarn test",
     "build:readme": "node scripts/build-readme.js && yarn format"
   },

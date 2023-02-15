@@ -13,10 +13,5 @@ export default {
       file: pkgJSON.module,
       format: 'es',
     },
-    {
-      file: 'demo/parse-git-diff.js',
-      format: 'umd',
-      name: 'parseGitDiff',
-    },
   ],
 };

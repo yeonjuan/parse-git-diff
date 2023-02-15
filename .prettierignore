@@ -4,4 +4,4 @@ yarn.lock
 coverage
 dist
 .parcel-cache
-demo/parse-git-diff.js
+demo/yarn.lock
