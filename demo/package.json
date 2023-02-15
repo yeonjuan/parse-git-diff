@@ -19,6 +19,7 @@
     "web-vitals": "^2.1.0",
     "parse-git-diff": "file:../"
   },
+  "homepage": "/parse-git-diff",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
