@@ -1,0 +1,18 @@
+diff --git a/rename.md b/rename.md
+index 0e05564..aa39060 100644
+--- a/rename.md
++++ b/rename.md
+@@ -1,2 +1 @@
+ newfile
+-newline
++newline
+\ No newline at end of file
+diff --git a/rename2.md b/rename2.md
+index 0e05564..aa39060 100644
+--- a/rename2.md
++++ b/rename2.md
+@@ -1,2 +1 @@
+ newfile2
+-newline2
++newline2
+\ No newline at end of file

@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`missing-eof parse \`missing-eof\` 1`] = `
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "newfile",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "newline",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "newline",
+              "lineAfter": 2,
+              "type": "AddedLine",
+            },
+            {
+              "content": "No newline at end of file",
+              "type": "MissingEofLine",
+            },
+          ],
+          "fromFileRange": {
+            "lines": 2,
+            "start": 1,
+          },
+          "toFileRange": {
+            "lines": 1,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "rename.md",
+      "type": "ChangedFile",
+    },
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "newfile2",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "newline2",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "newline2",
+              "lineAfter": 2,
+              "type": "AddedLine",
+            },
+            {
+              "content": "No newline at end of file",
+              "type": "MissingEofLine",
+            },
+          ],
+          "fromFileRange": {
+            "lines": 2,
+            "start": 1,
+          },
+          "toFileRange": {
+            "lines": 1,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "rename2.md",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

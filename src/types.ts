@@ -21,7 +21,11 @@ export interface UnchangedLine extends BaseChange<typeof LineType.Unchanged> {
   lineAfter: number;
 }
 
-export type AnyLineChange = AddedLine | DeletedLine | UnchangedLine;
+export interface MissingEofLine extends BaseChange<typeof LineType.MissingEof> {
+  content: string;
+}
+
+export type AnyLineChange = AddedLine | DeletedLine | UnchangedLine | MissingEofLine;
 
 export interface ChunkRange {
   start: number;
