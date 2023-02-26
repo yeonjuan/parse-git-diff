@@ -468,6 +468,122 @@ index 0e05564..aa39060 100644
 
 <!-- end:deleted-line-output -->
 
+<!-- start:message-line-input -->
+
+```diff
+diff --git a/rename.md b/rename.md
+index 0e05564..aa39060 100644
+--- a/rename.md
++++ b/rename.md
+@@ -1,2 +1 @@
+ newfile
+-newline
++newline
+\ No newline at end of file
+diff --git a/rename2.md b/rename2.md
+index 0e05564..aa39060 100644
+--- a/rename2.md
++++ b/rename2.md
+@@ -1,2 +1 @@
+ newfile2
+-newline2
++newline2
+\ No newline at end of file
+
+```
+
+<!-- end:message-line-input -->
+
+<!-- start:message-line-output -->
+
+```json
+{
+  "type": "GitDiff",
+  "files": [
+    {
+      "type": "ChangedFile",
+      "chunks": [
+        {
+          "type": "Chunk",
+          "toFileRange": {
+            "start": 1,
+            "lines": 1
+          },
+          "fromFileRange": {
+            "start": 1,
+            "lines": 2
+          },
+          "changes": [
+            {
+              "type": "UnchangedLine",
+              "lineBefore": 1,
+              "lineAfter": 1,
+              "content": "newfile"
+            },
+            {
+              "type": "DeletedLine",
+              "lineBefore": 2,
+              "content": "newline"
+            },
+            {
+              "type": "AddedLine",
+              "lineAfter": 2,
+              "content": "newline"
+            },
+            {
+              "type": "MessageLine",
+              "content": "No newline at end of file"
+            }
+          ]
+        }
+      ],
+      "path": "rename.md"
+    },
+    {
+      "type": "ChangedFile",
+      "chunks": [
+        {
+          "type": "Chunk",
+          "toFileRange": {
+            "start": 1,
+            "lines": 1
+          },
+          "fromFileRange": {
+            "start": 1,
+            "lines": 2
+          },
+          "changes": [
+            {
+              "type": "UnchangedLine",
+              "lineBefore": 1,
+              "lineAfter": 1,
+              "content": "newfile2"
+            },
+            {
+              "type": "DeletedLine",
+              "lineBefore": 2,
+              "content": "newline2"
+            },
+            {
+              "type": "AddedLine",
+              "lineAfter": 2,
+              "content": "newline2"
+            },
+            {
+              "type": "MessageLine",
+              "content": "No newline at end of file"
+            }
+          ]
+        }
+      ],
+      "path": "rename2.md"
+    }
+  ]
+}
+```
+
+<!-- end:message-line-output -->
+
 </details>
 
 ## AST Format

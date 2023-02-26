@@ -1,10 +1,10 @@
 import { getFixture } from './test-utils';
 import parseGitDiff from '../parse-git-diff';
 
-describe('missing-eof', () => {
-  const fixture = getFixture('missing-eof');
+describe('message-line', () => {
+  const fixture = getFixture('message-line');
 
-  it('parse `missing-eof`', () => {
+  it('parse `message-line`', () => {
     expect(parseGitDiff(fixture)).toMatchSnapshot();
   });
 });

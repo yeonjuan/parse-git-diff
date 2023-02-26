@@ -2,7 +2,7 @@ export const LineType = {
   Added: 'AddedLine',
   Deleted: 'DeletedLine',
   Unchanged: 'UnchangedLine',
-  MissingEof: 'MissingEofLine',
+  Message: 'MessageLine',
 } as const;
 
 export const FileType = {

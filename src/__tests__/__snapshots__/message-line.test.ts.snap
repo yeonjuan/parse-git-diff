@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`missing-eof parse \`missing-eof\` 1`] = `
+exports[`message-line parse \`message-line\` 1`] = `
 {
   "files": [
     {
@@ -25,7 +25,7 @@ exports[`missing-eof parse \`missing-eof\` 1`] = `
             },
             {
               "content": "No newline at end of file",
-              "type": "MissingEofLine",
+              "type": "MessageLine",
             },
           ],
           "fromFileRange": {
@@ -64,7 +64,7 @@ exports[`missing-eof parse \`missing-eof\` 1`] = `
             },
             {
               "content": "No newline at end of file",
-              "type": "MissingEofLine",
+              "type": "MessageLine",
             },
           ],
           "fromFileRange": {
