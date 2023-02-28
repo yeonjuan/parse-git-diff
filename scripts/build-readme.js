@@ -13,6 +13,7 @@ const FIXTURES = [
   'conflict-file',
   'new-line',
   'deleted-line',
+  'message-line',
 ];
 
 let readmeReplacer = replacer().content(README_INPUT);

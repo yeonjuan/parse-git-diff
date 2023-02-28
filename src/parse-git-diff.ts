@@ -244,6 +244,7 @@ const CHAR_TYPE_MAP: Record<string, LineType> = {
   '+': LineType.Added,
   '-': LineType.Deleted,
   ' ': LineType.Unchanged,
+  '\\': LineType.Message,
 };
 
 function parseChanges(
@@ -288,6 +289,13 @@ function parseChanges(
           lineBefore: lineBefore++,
           lineAfter: lineAfter++,
           content,
+        };
+        break;
+      }
+      case LineType.Message: {
+        change = {
+          type,
+          content: content.trim(),
         };
         break;
       }
