@@ -28,6 +28,7 @@ exports[`message-line parse \`message-line\` 1`] = `
               "type": "MessageLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 2,
             "start": 1,
@@ -67,6 +68,7 @@ exports[`message-line parse \`message-line\` 1`] = `
               "type": "MessageLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 2,
             "start": 1,

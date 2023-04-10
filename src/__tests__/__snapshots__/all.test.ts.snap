@@ -19,6 +19,7 @@ exports[`aa parse \`all\` 1`] = `
               "type": "DeletedLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 2,
             "start": 1,
@@ -43,6 +44,7 @@ exports[`aa parse \`all\` 1`] = `
               "type": "DeletedLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 1,
             "start": 1,
@@ -67,6 +69,7 @@ exports[`aa parse \`all\` 1`] = `
               "type": "AddedLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 0,
             "start": 0,
@@ -97,6 +100,7 @@ exports[`aa parse \`all\` 1`] = `
               "type": "AddedLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 1,
             "start": 1,

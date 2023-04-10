@@ -40,6 +40,7 @@ export interface Chunk extends Base<'Chunk'> {
   fromFileRange: ChunkRange;
   toFileRange: ChunkRange;
   changes: AnyLineChange[];
+  context: string | undefined;
 }
 
 export interface CombinedChunk extends Base<'CombinedChunk'> {
@@ -47,6 +48,7 @@ export interface CombinedChunk extends Base<'CombinedChunk'> {
   fromFileRangeB: ChunkRange;
   toFileRange: ChunkRange;
   changes: AnyLineChange[];
+  context: string | undefined;
 }
 
 export type AnyChunk = Chunk | CombinedChunk;

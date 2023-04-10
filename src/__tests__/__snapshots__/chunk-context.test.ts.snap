@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`new-line parse \`new-line\` 1`] = `
+exports[`chunk-context parse \`chunk-context\` 1`] = `
 {
   "files": [
     {
@@ -8,30 +8,30 @@ exports[`new-line parse \`new-line\` 1`] = `
         {
           "changes": [
             {
-              "content": "newfile",
-              "lineAfter": 1,
-              "lineBefore": 1,
+              "content": "  // hello world",
+              "lineAfter": 4,
+              "lineBefore": 4,
               "type": "UnchangedLine",
             },
             {
-              "content": "newline",
-              "lineAfter": 2,
+              "content": "  console.log(\"hello world\");",
+              "lineAfter": 5,
               "type": "AddedLine",
             },
           ],
-          "context": undefined,
+          "context": "function hello() {",
           "fromFileRange": {
-            "lines": 1,
-            "start": 1,
+            "lines": 4,
+            "start": 4,
           },
           "toFileRange": {
-            "lines": 2,
-            "start": 1,
+            "lines": 5,
+            "start": 4,
           },
           "type": "Chunk",
         },
       ],
-      "path": "rename.md",
+      "path": "rename.js",
       "type": "ChangedFile",
     },
   ],

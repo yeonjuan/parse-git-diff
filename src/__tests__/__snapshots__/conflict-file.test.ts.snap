@@ -76,6 +76,7 @@ exports[`conflict-file parse \`conflict-file\` 1`] = `
               "type": "UnchangedLine",
             },
           ],
+          "context": undefined,
           "fromFileRangeA": {
             "lines": 7,
             "start": 8,

@@ -13,6 +13,7 @@ exports[`new-file parse \`new-file\` 1`] = `
               "type": "AddedLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 0,
             "start": 0,
