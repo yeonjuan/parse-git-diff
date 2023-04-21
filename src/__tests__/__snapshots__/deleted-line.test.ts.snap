@@ -19,6 +19,7 @@ exports[`deleted-line parse \`deleted-line\` 1`] = `
               "type": "DeletedLine",
             },
           ],
+          "context": undefined,
           "fromFileRange": {
             "lines": 2,
             "start": 1,

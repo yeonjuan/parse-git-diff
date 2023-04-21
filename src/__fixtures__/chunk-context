@@ -1,0 +1,7 @@
+diff --git a/rename.js b/rename.js
+index aa39060..0e05564 100644
+--- a/rename.js
++++ b/rename.js
+@@ -4 +4,5 @@ function hello() {
+   // hello world
++  console.log("hello world");

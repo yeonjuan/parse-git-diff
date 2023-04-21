@@ -175,12 +175,13 @@ function parseExtendedHeader(ctx: Context) {
 
 function parseChunkHeader(ctx: Context) {
   const line = ctx.getCurLine();
-  const normalChunkExec = /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@/.exec(
-    line
-  );
+  const normalChunkExec =
+    /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@\s?(.+)?/.exec(line);
   if (!normalChunkExec) {
     const combinedChunkExec =
-      /^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@/.exec(line);
+      /^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@\s?(.+)?/.exec(
+        line
+      );
 
     if (!combinedChunkExec) {
       return null;
@@ -194,18 +195,22 @@ function parseChunkHeader(ctx: Context) {
       delLinesB,
       addStart,
       addLines,
+      context,
     ] = combinedChunkExec;
     ctx.nextLine();
     return {
+      context,
       type: 'Combined',
       fromFileRangeA: getRange(delStartA, delLinesA),
       fromFileRangeB: getRange(delStartB, delLinesB),
       toFileRange: getRange(addStart, addLines),
     } as const;
   }
-  const [all, delStart, delLines, addStart, addLines] = normalChunkExec;
+  const [all, delStart, delLines, addStart, addLines, context] =
+    normalChunkExec;
   ctx.nextLine();
   return {
+    context,
     type: 'Normal',
     toFileRange: getRange(addStart, addLines),
     fromFileRange: getRange(delStart, delLines),
