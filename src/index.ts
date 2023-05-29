@@ -1,4 +1,4 @@
-import parseGitDiff from './parse-git-diff';
+import parseGitDiff from './parse-git-diff.js';
 export default parseGitDiff;
 
 export type {
@@ -17,4 +17,4 @@ export type {
   RenamedFile,
   AnyFileChange,
   GitDiff,
-} from './types';
+} from './types.js';

@@ -1,4 +1,4 @@
-import Context from './context';
+import Context from './context.js';
 import type {
   GitDiff,
   AnyFileChange,
@@ -7,13 +7,13 @@ import type {
   ChunkRange,
   CombinedChunk,
   AnyChunk,
-} from './types';
+} from './types.js';
 import {
   ExtendedHeader,
   ExtendedHeaderValues,
   FileType,
   LineType,
-} from './constants';
+} from './constants.js';
 
 export default function parseGitDiff(diff: string): GitDiff {
   const ctx = new Context(diff);
