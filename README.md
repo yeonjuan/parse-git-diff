@@ -27,6 +27,12 @@ See [online demo](https://yeonjuan.github.io/parse-git-diff/)
 ## Usage
 
 ```js
+import parseGitDiff from 'parse-git-diff'; // import
+// or
+const parseGitDiff = require('parse-git-diff').default; // require
+```
+
+```js
 import parseGitDiff from 'parse-git-diff';
 
 const result = parseGitDiff('... git diff ...');
