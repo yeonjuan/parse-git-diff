@@ -6,8 +6,7 @@ export default {
   output: [
     {
       file: pkgJSON.main,
-      format: 'umd',
-      name: 'parseGitDiff',
+      format: 'cjs',
     },
     {
       file: pkgJSON.module,

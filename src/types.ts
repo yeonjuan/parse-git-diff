@@ -1,4 +1,4 @@
-import { LineType, FileType } from './constants';
+import { LineType, FileType } from './constants.js';
 
 export interface Base<Type extends string> {
   readonly type: Type;

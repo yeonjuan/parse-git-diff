@@ -1,15 +1,8 @@
 {
+  "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "ES2015",
-    "strict": true,
-    "noImplicitAny": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "outDir": "build",
-    "rootDir": "src",
-    "moduleResolution": "node"
-  },
-  "exclude": ["src/**/*.test.ts", "build", "node_modules", "demo"]
+    "module": "CommonJS",
+    "outDir": "build/cjs",
+    "moduleResolution": "Node"
+  }
 }
