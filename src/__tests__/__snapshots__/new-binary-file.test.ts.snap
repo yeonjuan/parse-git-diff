@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new-binary-file parse \`new-binary-file\` 1`] = `
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "pathAfter": "file1",
+          "pathBefore": "/dev/null",
+          "type": "BinaryFilesChunk",
+        },
+      ],
+      "path": "file1",
+      "type": "AddedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
