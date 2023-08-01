@@ -51,7 +51,12 @@ export interface CombinedChunk extends Base<'CombinedChunk'> {
   context: string | undefined;
 }
 
-export type AnyChunk = Chunk | CombinedChunk;
+export interface BinaryFilesChunk extends Base<'BinaryFilesChunk'> {
+  pathBefore: string;
+  pathAfter: string;
+}
+
+export type AnyChunk = Chunk | CombinedChunk | BinaryFilesChunk;
 
 export interface ChangedFile extends Base<typeof FileType.Changed> {
   path: string;

@@ -74,11 +74,27 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       chunks,
       path: changeMarkers.deleted,
     };
+  } else if (
+    isDeleted &&
+    chunks.length &&
+    chunks[0].type === 'BinaryFilesChunk'
+  ) {
+    return {
+      type: FileType.Deleted,
+      chunks,
+      path: chunks[0].pathBefore,
+    };
   } else if (isNew && changeMarkers) {
     return {
       type: FileType.Added,
       chunks,
       path: changeMarkers.added,
+    };
+  } else if (isNew && chunks.length && chunks[0].type === 'BinaryFilesChunk') {
+    return {
+      type: FileType.Added,
+      chunks,
+      path: chunks[0].pathAfter,
     };
   } else if (isRename) {
     return {
@@ -93,7 +109,18 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       chunks,
       path: changeMarkers.added,
     };
+  } else if (
+    chunks.length &&
+    chunks[0].type === 'BinaryFilesChunk' &&
+    chunks[0].pathAfter === chunks[0].pathBefore
+  ) {
+    return {
+      type: FileType.Changed,
+      chunks,
+      path: chunks[0].pathAfter,
+    };
   }
+
   return;
 }
 
@@ -148,6 +175,16 @@ function parseChunk(context: Context): AnyChunk | undefined {
       type: 'CombinedChunk',
       changes,
     };
+  } else if (
+    chunkHeader.type === 'BinaryFiles' &&
+    chunkHeader.fileA &&
+    chunkHeader.fileB
+  ) {
+    return {
+      type: 'BinaryFilesChunk',
+      pathBefore: chunkHeader.fileA,
+      pathAfter: chunkHeader.fileB,
+    };
   }
 }
 
@@ -184,6 +221,19 @@ function parseChunkHeader(ctx: Context) {
       );
 
     if (!combinedChunkExec) {
+      const binaryChunkExec = /^Binary\sfiles\s(.*)\sand\s(.*)\sdiffer$/.exec(
+        line
+      );
+      if (binaryChunkExec) {
+        const [all, fileA, fileB] = binaryChunkExec;
+        ctx.nextLine();
+        return {
+          type: 'BinaryFiles',
+          fileA: fileA.replace('a/', ''),
+          fileB: fileB.replace('b/', ''),
+        } as const;
+      }
+
       return null;
     }
 
@@ -206,6 +256,7 @@ function parseChunkHeader(ctx: Context) {
       toFileRange: getRange(addStart, addLines),
     } as const;
   }
+
   const [all, delStart, delLines, addStart, addLines, context] =
     normalChunkExec;
   ctx.nextLine();
