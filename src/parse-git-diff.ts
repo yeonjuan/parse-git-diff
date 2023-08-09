@@ -117,7 +117,7 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   } else if (
     chunks.length &&
     chunks[0].type === 'BinaryFilesChunk' &&
-    chunks[0].pathAfter === chunks[0].pathBefore
+    chunks[0].pathAfter
   ) {
     return {
       type: FileType.Changed,

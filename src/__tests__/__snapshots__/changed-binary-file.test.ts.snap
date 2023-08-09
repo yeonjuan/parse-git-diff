@@ -14,6 +14,17 @@ exports[`changed binary file parse \`changed-binary-file\` 1`] = `
       "path": "file1",
       "type": "ChangedFile",
     },
+    {
+      "chunks": [
+        {
+          "pathAfter": "file2",
+          "pathBefore": "file1",
+          "type": "BinaryFilesChunk",
+        },
+      ],
+      "path": "file2",
+      "type": "ChangedFile",
+    },
   ],
   "type": "GitDiff",
 }

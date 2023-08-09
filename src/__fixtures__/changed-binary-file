@@ -1,3 +1,6 @@
 diff --git a/file1 b/file1
 index 21be030..9443748 100644
 Binary files a/file1 and b/file1 differ
+diff --git a/file1 b/file2
+index 21be030..9443748 100644
+Binary files a/file1 and b/file2 differ
