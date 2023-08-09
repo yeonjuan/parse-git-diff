@@ -1,8 +1,15 @@
+import { FilledGitDiffOptions, GitDiffOptions } from './types';
+
 export default class Context {
   private line: number = 1;
   private lines: string[] = [];
-  public constructor(diff: string) {
+  public options: FilledGitDiffOptions = {
+    noPrefix: false,
+  };
+  public constructor(diff: string, options?: GitDiffOptions) {
     this.lines = diff.split('\n');
+
+    this.options.noPrefix = !!options?.noPrefix;
   }
 
   public getCurLine(): string {

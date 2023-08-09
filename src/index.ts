@@ -17,4 +17,5 @@ export type {
   RenamedFile,
   AnyFileChange,
   GitDiff,
+  GitDiffOptions,
 } from './types.js';

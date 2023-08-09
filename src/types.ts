@@ -84,3 +84,9 @@ export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;
 export interface GitDiff extends Base<'GitDiff'> {
   files: AnyFileChange[];
 }
+
+export interface FilledGitDiffOptions {
+  noPrefix: boolean;
+}
+
+export type GitDiffOptions = Partial<FilledGitDiffOptions>;

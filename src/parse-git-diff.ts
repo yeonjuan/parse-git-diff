@@ -7,6 +7,8 @@ import type {
   ChunkRange,
   CombinedChunk,
   AnyChunk,
+  FilledGitDiffOptions,
+  GitDiffOptions,
 } from './types.js';
 import {
   ExtendedHeader,
@@ -15,8 +17,11 @@ import {
   LineType,
 } from './constants.js';
 
-export default function parseGitDiff(diff: string): GitDiff {
-  const ctx = new Context(diff);
+export default function parseGitDiff(
+  diff: string,
+  options?: GitDiffOptions
+): GitDiff {
+  const ctx = new Context(diff, options);
   const files = parseFileChanges(ctx);
 
   return {
@@ -229,8 +234,8 @@ function parseChunkHeader(ctx: Context) {
         ctx.nextLine();
         return {
           type: 'BinaryFiles',
-          fileA: fileA.replace('a/', ''),
-          fileB: fileB.replace('b/', ''),
+          fileA: getFilePath(ctx, fileA, 'src'),
+          fileB: getFilePath(ctx, fileB, 'dst'),
         } as const;
       }
 
@@ -280,8 +285,15 @@ function parseChangeMarkers(context: Context): {
   deleted: string;
   added: string;
 } | null {
-  const deleted = parseMarker(context, '--- ')?.replace('a/', '');
-  const added = parseMarker(context, '+++ ')?.replace('b/', '');
+  const deleterMarker = parseMarker(context, '--- ');
+  const deleted = deleterMarker
+    ? getFilePath(context, deleterMarker, 'src')
+    : deleterMarker;
+
+  const addedMarker = parseMarker(context, '+++ ');
+  const added = addedMarker
+    ? getFilePath(context, addedMarker, 'dst')
+    : addedMarker;
   return added && deleted ? { added, deleted } : null;
 }
 
@@ -363,4 +375,12 @@ function parseChanges(
 
 function getLineType(line: string): LineType | null {
   return CHAR_TYPE_MAP[line[0]] || null;
+}
+
+function getFilePath(ctx: Context, input: string, type: 'src' | 'dst') {
+  if (ctx.options.noPrefix) {
+    return input;
+  }
+  if (type === 'src') return input.replace(/^a\//, '');
+  if (type === 'dst') return input.replace(/^b\//, '');
 }
