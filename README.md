@@ -52,6 +52,20 @@ console.log(result);
 // }
 ```
 
+### Options
+
+#### `noPrefix` (boolean)
+
+Specifies whether the git diff command is used with the `--no-prefix` option. (default: `false`)
+
+```ts
+// git diff HEAD~3 --no-prefix
+
+const result = parseGitDiff(DIFF, {
+  noPrefix: true,
+});
+```
+
 ## Examples
 
 <details>
