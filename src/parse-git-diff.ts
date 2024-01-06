@@ -171,7 +171,7 @@ function parseChunk(context: Context): AnyChunk | undefined {
     return {
       ...chunkHeader,
       type: 'Chunk',
-      changes,
+      changes: Array.from(changes),
     };
   } else if (
     chunkHeader.type === 'Combined' &&
@@ -188,7 +188,7 @@ function parseChunk(context: Context): AnyChunk | undefined {
     return {
       ...chunkHeader,
       type: 'CombinedChunk',
-      changes,
+      changes: Array.from(changes),
     };
   } else if (
     chunkHeader.type === 'BinaryFiles' &&
@@ -325,12 +325,11 @@ const CHAR_TYPE_MAP: Record<string, LineType> = {
   '\\': LineType.Message,
 };
 
-function parseChanges(
+function* parseChanges(
   ctx: Context,
   rangeBefore: ChunkRange,
   rangeAfter: ChunkRange
-): AnyLineChange[] {
-  const changes: AnyLineChange[] = [];
+): Generator<AnyLineChange> {
   let lineBefore = rangeBefore.start;
   let lineAfter = rangeAfter.start;
 
@@ -378,9 +377,8 @@ function parseChanges(
         break;
       }
     }
-    changes.push(change);
+    yield change;
   }
-  return changes;
 }
 
 function getLineType(line: string): LineType | null {
