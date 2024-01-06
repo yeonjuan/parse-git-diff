@@ -1,45 +1,55 @@
-import Context from './context.js';
-import type {
-  GitDiff,
-  AnyFileChange,
-  AnyLineChange,
-  Chunk,
-  ChunkRange,
-  CombinedChunk,
-  AnyChunk,
-  FilledGitDiffOptions,
-  GitDiffOptions,
-} from './types.js';
 import {
   ExtendedHeader,
   ExtendedHeaderValues,
   FileType,
   LineType,
 } from './constants.js';
+import Context from './context.js';
+import type {
+  AnyChunk,
+  AnyFileChange,
+  AnyLineChange,
+  ChunkRange,
+  GitDiff,
+  GitDiffOptions,
+} from './types.js';
 
+export default function parseGitDiff(
+  diff: Generator<string, any, unknown>,
+  options?: GitDiffOptions
+): Generator<AnyFileChange, any, unknown>;
 export default function parseGitDiff(
   diff: string,
   options?: GitDiffOptions
-): GitDiff {
+): GitDiff;
+export default function parseGitDiff(
+  diff: string | Generator<string, any, unknown>,
+  options?: GitDiffOptions
+): GitDiff | Generator<AnyFileChange, any, unknown> {
   const ctx = new Context(diff, options);
+
   const files = parseFileChanges(ctx);
 
-  return {
-    type: 'GitDiff',
-    files,
-  };
+  if (typeof diff === 'string') {
+    return {
+      type: 'GitDiff',
+      files: Array.from(files),
+    };
+  }
+
+  return files;
 }
 
-function parseFileChanges(ctx: Context): AnyFileChange[] {
-  const changedFiles: AnyFileChange[] = [];
+function* parseFileChanges(
+  ctx: Context
+): Generator<AnyFileChange, any, unknown> {
   while (!ctx.isEof()) {
     const changed = parseFileChange(ctx);
     if (!changed) {
       break;
     }
-    changedFiles.push(changed);
+    yield changed;
   }
-  return changedFiles;
 }
 
 function parseFileChange(ctx: Context): AnyFileChange | undefined {

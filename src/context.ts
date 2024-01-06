@@ -1,27 +1,46 @@
 import { FilledGitDiffOptions, GitDiffOptions } from './types';
 
 export default class Context {
-  private line: number = 1;
-  private lines: string[] = [];
+  private lines: Generator<string, any, unknown>;
   public options: FilledGitDiffOptions = {
     noPrefix: false,
   };
-  public constructor(diff: string, options?: GitDiffOptions) {
-    this.lines = diff.split('\n');
+  private _currentLine: string;
+  private _isEof = false;
+
+  public constructor(
+    diff: string | Generator<string, any, unknown>,
+    options?: GitDiffOptions
+  ) {
+    if (typeof diff === 'string') {
+      this.lines = this.getGeneratorFromString(diff);
+    } else {
+      this.lines = diff;
+    }
+
+    this._currentLine = this.lines.next().value;
 
     this.options.noPrefix = !!options?.noPrefix;
   }
 
+  private *getGeneratorFromString(text: string) {
+    for (const line of text.split('\n')) {
+      yield line;
+    }
+  }
+
   public getCurLine(): string {
-    return this.lines[this.line - 1];
+    return this._currentLine;
   }
 
   public nextLine(): string | undefined {
-    this.line++;
+    const next = this.lines.next();
+    this._isEof = Boolean(next.done);
+    this._currentLine = next.value;
     return this.getCurLine();
   }
 
   public isEof(): boolean {
-    return this.line > this.lines.length;
+    return this._isEof;
   }
 }
