@@ -1,8 +1,12 @@
+import type { Interface } from 'node:readline';
 import {
+  BINARY_CHUNK_RE,
+  COMBINED_CHUNK_RE,
   ExtendedHeader,
   ExtendedHeaderValues,
   FileType,
   LineType,
+  NORMAL_CHUNK_RE,
 } from './constants.js';
 import { AsyncContext } from './context.js';
 import {
@@ -19,7 +23,7 @@ import type {
 } from './types.js';
 
 export default function parseGitDiff(
-  diff: AsyncGenerator<string, any, unknown>,
+  diff: AsyncGenerator<string, any, unknown> | Interface,
   options?: GitDiffOptions
 ): AsyncGenerator<AnyFileChange, any, unknown> {
   const ctx = new AsyncContext(diff, options);
@@ -214,18 +218,12 @@ async function parseExtendedHeader(ctx: AsyncContext) {
 
 async function parseChunkHeader(ctx: AsyncContext) {
   const line = await ctx.getCurLine();
-  const normalChunkExec =
-    /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@\s?(.+)?/.exec(line);
+  const normalChunkExec = NORMAL_CHUNK_RE.exec(line);
   if (!normalChunkExec) {
-    const combinedChunkExec =
-      /^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@\s?(.+)?/.exec(
-        line
-      );
+    const combinedChunkExec = COMBINED_CHUNK_RE.exec(line);
 
     if (!combinedChunkExec) {
-      const binaryChunkExec = /^Binary\sfiles\s(.*)\sand\s(.*)\sdiffer$/.exec(
-        line
-      );
+      const binaryChunkExec = BINARY_CHUNK_RE.exec(line);
       if (binaryChunkExec) {
         const [all, fileA, fileB] = binaryChunkExec;
         await ctx.nextLine();

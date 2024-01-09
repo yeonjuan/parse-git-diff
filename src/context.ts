@@ -1,4 +1,6 @@
+import type { Interface } from 'node:readline';
 import { FilledGitDiffOptions, GitDiffOptions } from './types';
+import { isReadlineInterface } from './utils';
 
 export default class Context {
   private lines: Generator<string, any, unknown>;
@@ -52,12 +54,25 @@ export class AsyncContext {
   private _currentLine: string = '';
   private _isEof = false;
   private opened = false;
+  private lines: AsyncGenerator<string, any, unknown>;
 
   public constructor(
-    private lines: AsyncGenerator<string, any, unknown>,
+    diff: AsyncGenerator<string, any, unknown> | Interface,
     options?: GitDiffOptions
   ) {
+    if (isReadlineInterface(diff)) {
+      this.lines = this.getGenerator(diff);
+    } else {
+      this.lines = diff;
+    }
+
     this.options.noPrefix = !!options?.noPrefix;
+  }
+
+  async *getGenerator(stream: Interface) {
+    for await (const line of stream) {
+      yield line;
+    }
   }
 
   public async getCurLine(): Promise<string> {

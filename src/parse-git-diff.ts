@@ -1,8 +1,11 @@
 import {
+  BINARY_CHUNK_RE,
+  COMBINED_CHUNK_RE,
   ExtendedHeader,
   ExtendedHeaderValues,
   FileType,
   LineType,
+  NORMAL_CHUNK_RE,
 } from './constants.js';
 import Context, { AsyncContext } from './context.js';
 import type {
@@ -227,18 +230,12 @@ function parseExtendedHeader(ctx: Context) {
 
 function parseChunkHeader(ctx: Context) {
   const line = ctx.getCurLine();
-  const normalChunkExec =
-    /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@\s?(.+)?/.exec(line);
+  const normalChunkExec = NORMAL_CHUNK_RE.exec(line);
   if (!normalChunkExec) {
-    const combinedChunkExec =
-      /^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@\s?(.+)?/.exec(
-        line
-      );
+    const combinedChunkExec = COMBINED_CHUNK_RE.exec(line);
 
     if (!combinedChunkExec) {
-      const binaryChunkExec = /^Binary\sfiles\s(.*)\sand\s(.*)\sdiffer$/.exec(
-        line
-      );
+      const binaryChunkExec = BINARY_CHUNK_RE.exec(line);
       if (binaryChunkExec) {
         const [all, fileA, fileB] = binaryChunkExec;
         ctx.nextLine();
