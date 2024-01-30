@@ -2,6 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "esnext",
-    "outDir": "build/mjs"
+    "outDir": "build/mjs",
+    "declarationDir": "build/mjs",
+    "target": "ESNext"
   }
 }
