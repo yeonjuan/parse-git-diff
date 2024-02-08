@@ -4,11 +4,10 @@
   "description": "A parser for git diff",
   "main": "./build/cjs/index.js",
   "module": "./build/mjs/index.js",
-  "types": "./build/types/index.d.ts",
+  "types": "./build/cjs/index.d.ts",
   "scripts": {
     "prepublish": "yarn build",
-    "build": "rimraf build && tsc -p tsconfig.json && tsc -p tsconfig-esm.json",
-    "postbuild": "bash fixup.sh",
+    "build": "rimraf build && tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json && bash fixup.sh",
     "format": "prettier . --write",
     "test": "jest --coverage",
     "prebuild": "yarn check:all",
@@ -18,7 +17,6 @@
   },
   "exports": {
     ".": {
-      "types": "./build/types/index.d.ts",
       "import": "./build/mjs/index.js",
       "require": "./build/cjs/index.js",
       "default": "./build/mjs/index.js"
