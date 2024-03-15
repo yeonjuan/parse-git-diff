@@ -25,3 +25,11 @@ export const ExtendedHeader = {
 } as const;
 
 export const ExtendedHeaderValues = Object.values(ExtendedHeader);
+
+export const NORMAL_CHUNK_RE =
+  /^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@\s?(.+)?/;
+
+export const COMBINED_CHUNK_RE =
+  /^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@\s?(.+)?/;
+
+export const BINARY_CHUNK_RE = /^Binary\sfiles\s(.*)\sand\s(.*)\sdiffer$/;
