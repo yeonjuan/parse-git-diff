@@ -194,6 +194,9 @@ function parseChunk(context: Context): AnyChunk | undefined {
 }
 
 function parseExtendedHeader(ctx: Context) {
+  if (isComparisonInputLine(ctx.getCurLine())) {
+    ctx.nextLine();
+  }
   const line = ctx.getCurLine();
   const type = ExtendedHeaderValues.find((v) => line.startsWith(v));
 

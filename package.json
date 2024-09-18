@@ -50,5 +50,6 @@
   "keywords": [
     "git",
     "git diff"
-  ]
+  ],
+  "packageManager": "yarn@4.0.2"
 }
