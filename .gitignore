@@ -4,3 +4,9 @@ coverage
 dist
 .parcel-cache
 demo/parse-git-diff.js
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
