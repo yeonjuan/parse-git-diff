@@ -5,17 +5,15 @@ jobs:
     name: CI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: set node.js 16.x
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: set node.js 20.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
-      - uses: borales/actions-yarn@v4
-        with:
-          cmd: install
-      - uses: borales/actions-yarn@v4
-        with:
-          cmd: check:all
+          node-version: 20.x
+      - name: Install
+        run: yarn install --immutable
+      - name: Check
+        run: yarn run check:all
       - name: Code coverage report
         uses: codecov/codecov-action@v2
         with:
