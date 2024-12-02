@@ -1,6 +1,6 @@
 {
   "name": "parse-git-diff",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A parser for git diff",
   "main": "./build/cjs/index.js",
   "module": "./build/mjs/index.js",
