@@ -14,14 +14,14 @@ exports[`chunk-context parse \`chunk-context\` 1`] = `
               "type": "UnchangedLine",
             },
             {
-              "content": "  console.log(\"hello world\");",
+              "content": "  console.log("hello world");",
               "lineAfter": 5,
               "type": "AddedLine",
             },
           ],
           "context": "function hello() {",
           "fromFileRange": {
-            "lines": 4,
+            "lines": 1,
             "start": 4,
           },
           "toFileRange": {

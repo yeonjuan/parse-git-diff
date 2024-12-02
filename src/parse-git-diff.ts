@@ -280,7 +280,7 @@ function getRange(start: string, lines?: string) {
   const startNum = parseInt(start, 10);
   return {
     start: startNum,
-    lines: lines === undefined ? startNum : parseInt(lines, 10),
+    lines: lines === undefined ? 1 : parseInt(lines, 10),
   };
 }
 
