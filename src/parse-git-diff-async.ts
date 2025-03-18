@@ -1,3 +1,4 @@
+import type { Interface } from 'node:readline';
 import {
   BINARY_CHUNK_RE,
   COMBINED_CHUNK_RE,
@@ -7,47 +8,34 @@ import {
   LineType,
   NORMAL_CHUNK_RE,
 } from './constants.js';
-import Context, { AsyncContext } from './context.js';
+import { AsyncContext } from './context.js';
+import {
+  getFilePath,
+  getLineType,
+  isComparisonInputLine,
+} from './parse-git-diff.js';
 import type {
   AnyChunk,
   AnyFileChange,
   AnyLineChange,
   ChunkRange,
-  GitDiff,
   GitDiffOptions,
 } from './types.js';
 
 export default function parseGitDiff(
-  diff: Generator<string, any, unknown>,
+  diff: AsyncGenerator<string, any, unknown> | Interface,
   options?: GitDiffOptions
-): Generator<AnyFileChange, any, unknown>;
-export default function parseGitDiff(
-  diff: string,
-  options?: GitDiffOptions
-): GitDiff;
-export default function parseGitDiff(
-  diff: string | Generator<string, any, unknown>,
-  options?: GitDiffOptions
-): GitDiff | Generator<AnyFileChange, any, unknown> {
-  const ctx = new Context(diff, options);
+): AsyncGenerator<AnyFileChange, any, unknown> {
+  const ctx = new AsyncContext(diff, options);
 
-  const files = parseFileChanges(ctx);
-
-  if (typeof diff === 'string') {
-    return {
-      type: 'GitDiff',
-      files: Array.from(files),
-    };
-  }
-
-  return files;
+  return parseFileChanges(ctx);
 }
 
-function* parseFileChanges(
-  ctx: Context
-): Generator<AnyFileChange, any, unknown> {
+async function* parseFileChanges(
+  ctx: AsyncContext
+): AsyncGenerator<AnyFileChange, any, unknown> {
   while (!ctx.isEof()) {
-    const changed = parseFileChange(ctx);
+    const changed = await parseFileChange(ctx);
     if (!changed) {
       break;
     }
@@ -55,11 +43,13 @@ function* parseFileChanges(
   }
 }
 
-function parseFileChange(ctx: Context): AnyFileChange | undefined {
-  if (!isComparisonInputLine(ctx.getCurLine())) {
+async function parseFileChange(
+  ctx: AsyncContext
+): Promise<AnyFileChange | undefined> {
+  if (!isComparisonInputLine(await ctx.getCurLine())) {
     return;
   }
-  ctx.nextLine();
+  await ctx.nextLine();
 
   let isDeleted = false;
   let isNew = false;
@@ -67,7 +57,7 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   let pathBefore = '';
   let pathAfter = '';
   while (!ctx.isEof()) {
-    const extHeader = parseExtendedHeader(ctx);
+    const extHeader = await parseExtendedHeader(ctx);
     if (!extHeader) {
       break;
     }
@@ -83,8 +73,8 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     }
   }
 
-  const changeMarkers = parseChangeMarkers(ctx);
-  const chunks = parseChunks(ctx);
+  const changeMarkers = await parseChangeMarkers(ctx);
+  const chunks = await parseChunks(ctx);
 
   if (isDeleted && changeMarkers) {
     return {
@@ -142,15 +132,11 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   return;
 }
 
-export function isComparisonInputLine(line: string): boolean {
-  return line.indexOf('diff') === 0;
-}
-
-function parseChunks(context: Context): AnyChunk[] {
+async function parseChunks(context: AsyncContext): Promise<AnyChunk[]> {
   const chunks: AnyChunk[] = [];
 
   while (!context.isEof()) {
-    const chunk = parseChunk(context);
+    const chunk = await parseChunk(context);
     if (!chunk) {
       break;
     }
@@ -159,14 +145,16 @@ function parseChunks(context: Context): AnyChunk[] {
   return chunks;
 }
 
-function parseChunk(context: Context): AnyChunk | undefined {
-  const chunkHeader = parseChunkHeader(context);
+async function parseChunk(
+  context: AsyncContext
+): Promise<AnyChunk | undefined> {
+  const chunkHeader = await parseChunkHeader(context);
   if (!chunkHeader) {
     return;
   }
 
   if (chunkHeader.type === 'Normal') {
-    const changes = parseChanges(
+    const changes = await parseChanges(
       context,
       chunkHeader.fromFileRange,
       chunkHeader.toFileRange
@@ -174,14 +162,14 @@ function parseChunk(context: Context): AnyChunk | undefined {
     return {
       ...chunkHeader,
       type: 'Chunk',
-      changes: Array.from(changes),
+      changes,
     };
   } else if (
     chunkHeader.type === 'Combined' &&
     chunkHeader.fromFileRangeA &&
     chunkHeader.fromFileRangeB
   ) {
-    const changes = parseChanges(
+    const changes = await parseChanges(
       context,
       chunkHeader.fromFileRangeA.start < chunkHeader.fromFileRangeB.start
         ? chunkHeader.fromFileRangeA
@@ -191,7 +179,7 @@ function parseChunk(context: Context): AnyChunk | undefined {
     return {
       ...chunkHeader,
       type: 'CombinedChunk',
-      changes: Array.from(changes),
+      changes,
     };
   } else if (
     chunkHeader.type === 'BinaryFiles' &&
@@ -206,15 +194,12 @@ function parseChunk(context: Context): AnyChunk | undefined {
   }
 }
 
-function parseExtendedHeader(ctx: Context) {
-  if (isComparisonInputLine(ctx.getCurLine())) {
-    ctx.nextLine();
-  }
-  const line = ctx.getCurLine();
+async function parseExtendedHeader(ctx: AsyncContext) {
+  const line = await ctx.getCurLine();
   const type = ExtendedHeaderValues.find((v) => line.startsWith(v));
 
   if (type) {
-    ctx.nextLine();
+    await ctx.nextLine();
   }
 
   if (type === ExtendedHeader.RenameFrom || type === ExtendedHeader.RenameTo) {
@@ -231,8 +216,8 @@ function parseExtendedHeader(ctx: Context) {
   return null;
 }
 
-function parseChunkHeader(ctx: Context) {
-  const line = ctx.getCurLine();
+async function parseChunkHeader(ctx: AsyncContext) {
+  const line = await ctx.getCurLine();
   const normalChunkExec = NORMAL_CHUNK_RE.exec(line);
   if (!normalChunkExec) {
     const combinedChunkExec = COMBINED_CHUNK_RE.exec(line);
@@ -241,7 +226,7 @@ function parseChunkHeader(ctx: Context) {
       const binaryChunkExec = BINARY_CHUNK_RE.exec(line);
       if (binaryChunkExec) {
         const [all, fileA, fileB] = binaryChunkExec;
-        ctx.nextLine();
+        await ctx.nextLine();
         return {
           type: 'BinaryFiles',
           fileA: getFilePath(ctx, fileA, 'src'),
@@ -262,7 +247,7 @@ function parseChunkHeader(ctx: Context) {
       addLines,
       context,
     ] = combinedChunkExec;
-    ctx.nextLine();
+    await ctx.nextLine();
     return {
       context,
       type: 'Combined',
@@ -274,7 +259,7 @@ function parseChunkHeader(ctx: Context) {
 
   const [all, delStart, delLines, addStart, addLines, context] =
     normalChunkExec;
-  ctx.nextLine();
+  await ctx.nextLine();
   return {
     context,
     type: 'Normal',
@@ -287,30 +272,33 @@ function getRange(start: string, lines?: string) {
   const startNum = parseInt(start, 10);
   return {
     start: startNum,
-    lines: lines === undefined ? 1 : parseInt(lines, 10),
+    lines: lines === undefined ? startNum : parseInt(lines, 10),
   };
 }
 
-function parseChangeMarkers(context: Context): {
+async function parseChangeMarkers(context: AsyncContext): Promise<{
   deleted: string;
   added: string;
-} | null {
-  const deleterMarker = parseMarker(context, '--- ');
+} | null> {
+  const deleterMarker = await parseMarker(context, '--- ');
   const deleted = deleterMarker
     ? getFilePath(context, deleterMarker, 'src')
     : deleterMarker;
 
-  const addedMarker = parseMarker(context, '+++ ');
+  const addedMarker = await parseMarker(context, '+++ ');
   const added = addedMarker
     ? getFilePath(context, addedMarker, 'dst')
     : addedMarker;
   return added && deleted ? { added, deleted } : null;
 }
 
-function parseMarker(context: Context, marker: string): string | null {
-  const line = context.getCurLine();
+async function parseMarker(
+  context: AsyncContext,
+  marker: string
+): Promise<string | null> {
+  const line = await context.getCurLine();
   if (line?.startsWith(marker)) {
-    context.nextLine();
+    await context.nextLine();
     return line.replace(marker, '');
   }
   return null;
@@ -318,28 +306,22 @@ function parseMarker(context: Context, marker: string): string | null {
 
 type LineType = AnyLineChange['type'];
 
-const CHAR_TYPE_MAP: Record<string, LineType> = {
-  '+': LineType.Added,
-  '-': LineType.Deleted,
-  ' ': LineType.Unchanged,
-  '\\': LineType.Message,
-};
-
-function* parseChanges(
-  ctx: Context,
+async function parseChanges(
+  ctx: AsyncContext,
   rangeBefore: ChunkRange,
   rangeAfter: ChunkRange
-): Generator<AnyLineChange> {
+): Promise<AnyLineChange[]> {
+  const changes: AnyLineChange[] = [];
   let lineBefore = rangeBefore.start;
   let lineAfter = rangeAfter.start;
 
   while (!ctx.isEof()) {
-    const line = ctx.getCurLine()!;
+    const line = await ctx.getCurLine()!;
     const type = getLineType(line);
     if (!type) {
       break;
     }
-    ctx.nextLine();
+    await ctx.nextLine();
 
     let change: AnyLineChange;
     const content = line.slice(1);
@@ -377,22 +359,7 @@ function* parseChanges(
         break;
       }
     }
-    yield change;
+    changes.push(change);
   }
-}
-
-export function getLineType(line: string): LineType | null {
-  return CHAR_TYPE_MAP[line[0]] || null;
-}
-
-export function getFilePath(
-  ctx: Context | AsyncContext,
-  input: string,
-  type: 'src' | 'dst'
-) {
-  if (ctx.options.noPrefix) {
-    return input;
-  }
-  if (type === 'src') return input.replace(/^a\//, '');
-  if (type === 'dst') return input.replace(/^b\//, '');
+  return changes;
 }
