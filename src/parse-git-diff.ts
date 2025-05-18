@@ -44,7 +44,6 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     return;
   }
   const comparisonLineParsed = parseComparisonInputLine(ctx);
-
   let isDeleted = false;
   let isNew = false;
   let isRename = false;
@@ -136,9 +135,7 @@ function parseComparisonInputLine(
   ctx: Context
 ): { from: string; to: string } | null {
   const line = ctx.getCurLine();
-  const splitted = line.split(' ').reverse();
-  const to = splitted.find((p) => p.startsWith('b/'));
-  const from = splitted.find((p) => p.startsWith('a/'));
+  const [to, from] = line.split(' ').reverse();
   ctx.nextLine();
   if (to && from) {
     return {
@@ -210,7 +207,7 @@ function parseChunk(context: Context): AnyChunk | undefined {
 
 function parseExtendedHeader(ctx: Context) {
   if (isComparisonInputLine(ctx.getCurLine())) {
-    ctx.nextLine();
+    return null;
   }
   const line = ctx.getCurLine();
   const type = ExtendedHeaderValues.find((v) => line.startsWith(v));
@@ -279,7 +276,6 @@ function parseChunkHeader(ctx: Context) {
       toFileRange: getRange(addStart, addLines),
     } as const;
   }
-
   const [all, delStart, delLines, addStart, addLines, context] =
     normalChunkExec;
   ctx.nextLine();

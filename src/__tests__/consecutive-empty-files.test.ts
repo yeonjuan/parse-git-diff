@@ -1,10 +1,10 @@
 import { getFixture } from './test-utils';
 import parseGitDiff from '../parse-git-diff';
 
-describe('issue 31', () => {
-  const fixture = getFixture('31');
+describe('consecutive-empty-files', () => {
+  const fixture = getFixture('consecutive-empty-files');
 
-  it('parse `31`', () => {
+  it('parse `consecutive-empty-files`', () => {
     expect(parseGitDiff(fixture)).toMatchSnapshot();
   });
 });

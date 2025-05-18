@@ -4,6 +4,11 @@ exports[`issue 31 parse \`31\` 1`] = `
 {
   "files": [
     {
+      "chunks": [],
+      "path": "var/folders/kt/zd3bfncd0c3gjx25hbcq483c0000gn/T/epicshop/diff/advanced-react-apis/04.01.solution/7h2jowvfi2q/index.test.tsx",
+      "type": "AddedFile",
+    },
+    {
       "chunks": [
         {
           "changes": [
@@ -406,7 +411,7 @@ exports[`issue 31 parse \`31\` 1`] = `
         },
       ],
       "path": "var/folders/kt/zd3bfncd0c3gjx25hbcq483c0000gn/T/epicshop/diff/advanced-react-apis/04.01.solution/7h2jowvfi2q/index.tsx",
-      "type": "AddedFile",
+      "type": "ChangedFile",
     },
   ],
   "type": "GitDiff",

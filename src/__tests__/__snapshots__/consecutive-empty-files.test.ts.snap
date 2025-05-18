@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`consecutive-empty-files parse \`consecutive-empty-files\` 1`] = `
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "content",
+              "lineAfter": 1,
+              "type": "AddedLine",
+            },
+            {
+              "content": "No newline at end of file",
+              "type": "MessageLine",
+            },
+          ],
+          "context": undefined,
+          "fromFileRange": {
+            "lines": 0,
+            "start": 0,
+          },
+          "toFileRange": {
+            "lines": 1,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "content",
+      "type": "AddedFile",
+    },
+    {
+      "chunks": [],
+      "path": "empty",
+      "type": "AddedFile",
+    },
+    {
+      "chunks": [],
+      "path": "empty2",
+      "type": "AddedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

@@ -1,0 +1,1186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`issue 31-no-prefix parse \`31-no-prefix\` 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "path": "var/folders/kt/zd3bfncd0c3gjx25hbcq483c0000gn/T/epicshop/diff/advanced-react-apis/09.03.solution/dn2ncwjsbmo/index.test.ts",
+      "type": "AddedFile",
+    },
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "import { createContext, useEffect, useState, use, useCallback } from 'react'",
+              "lineBefore": 1,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "import { Suspense, useSyncExternalStore } from 'react'",
+              "lineAfter": 1,
+              "type": "AddedLine",
+            },
+            {
+              "content": "import * as ReactDOM from 'react-dom/client'",
+              "lineAfter": 2,
+              "lineBefore": 2,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "import {",
+              "lineBefore": 3,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       type BlogPost,",
+              "lineBefore": 4,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       generateGradient,",
+              "lineBefore": 5,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       getMatchingPosts,",
+              "lineBefore": 6,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "} from '#shared/blog-posts'",
+              "lineBefore": 7,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "import { setGlobalSearchParams } from '#shared/utils'",
+              "lineBefore": 8,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 3,
+              "lineBefore": 9,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "type SearchParamsTuple = readonly [",
+              "lineBefore": 10,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       URLSearchParams,",
+              "lineBefore": 11,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       typeof setGlobalSearchParams,",
+              "lineBefore": 12,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "]",
+              "lineBefore": 13,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "const SearchParamsContext = createContext<SearchParamsTuple>([",
+              "lineBefore": 14,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       new URLSearchParams(window.location.search),",
+              "lineBefore": 15,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       setGlobalSearchParams,",
+              "lineBefore": 16,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "])",
+              "lineBefore": 17,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 18,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "function SearchParamsProvider({ children }: { children: React.ReactNode }) {",
+              "lineBefore": 19,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const [searchParams, setSearchParamsState] = useState(",
+              "lineBefore": 20,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               () => new URLSearchParams(window.location.search),",
+              "lineBefore": 21,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       )",
+              "lineBefore": 22,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "export function makeMediaQueryStore(mediaQuery: string) {",
+              "lineAfter": 4,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       function getSnapshot() {",
+              "lineAfter": 5,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               return window.matchMedia(mediaQuery).matches",
+              "lineAfter": 6,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       }",
+              "lineAfter": 7,
+              "type": "AddedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 8,
+              "lineBefore": 23,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "       useEffect(() => {",
+              "lineBefore": 24,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               function updateSearchParams() {",
+              "lineBefore": 25,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       setSearchParamsState((prevParams) => {",
+              "lineBefore": 26,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               const newParams = new URLSearchParams(window.location.search)",
+              "lineBefore": 27,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               return prevParams.toString() === newParams.toString()",
+              "lineBefore": 28,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       ? prevParams",
+              "lineBefore": 29,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       : newParams",
+              "lineBefore": 30,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       })",
+              "lineBefore": 31,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       function subscribe(callback: () => void) {",
+              "lineAfter": 9,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               const mediaQueryList = window.matchMedia(mediaQuery)",
+              "lineAfter": 10,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               mediaQueryList.addEventListener('change', callback)",
+              "lineAfter": 11,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               return () => {",
+              "lineAfter": 12,
+              "type": "AddedLine",
+            },
+            {
+              "content": "                       mediaQueryList.removeEventListener('change', callback)",
+              "lineAfter": 13,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               }",
+              "lineAfter": 14,
+              "lineBefore": 32,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "               window.addEventListener('popstate', updateSearchParams)",
+              "lineBefore": 33,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               return () => window.removeEventListener('popstate', updateSearchParams)",
+              "lineBefore": 34,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       }, [])",
+              "lineBefore": 35,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 36,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const setSearchParams = useCallback(",
+              "lineBefore": 37,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               (...args: Parameters<typeof setGlobalSearchParams>) => {",
+              "lineBefore": 38,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       const searchParams = setGlobalSearchParams(...args)",
+              "lineBefore": 39,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       setSearchParamsState((prevParams) => {",
+              "lineBefore": 40,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               return prevParams.toString() === searchParams.toString()",
+              "lineBefore": 41,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       ? prevParams",
+              "lineBefore": 42,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       : searchParams",
+              "lineBefore": 43,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       })",
+              "lineBefore": 44,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       return searchParams",
+              "lineBefore": 45,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               },",
+              "lineBefore": 46,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               [],",
+              "lineBefore": 47,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       )",
+              "lineBefore": 48,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 49,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const searchParamsTuple = [searchParams, setSearchParams] as const",
+              "lineBefore": 50,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 51,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       return (",
+              "lineBefore": 52,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               <SearchParamsContext value={searchParamsTuple}>",
+              "lineBefore": 53,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       {children}",
+              "lineBefore": 54,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               </SearchParamsContext>",
+              "lineBefore": 55,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       )",
+              "lineBefore": 56,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "}",
+              "lineBefore": 57,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 58,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "function useSearchParams() {",
+              "lineBefore": 59,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       return use(SearchParamsContext)",
+              "lineBefore": 60,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "}",
+              "lineBefore": 61,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 62,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "const getQueryParam = (params: URLSearchParams) => params.get('query') ?? ''",
+              "lineBefore": 63,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 64,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "function App() {",
+              "lineBefore": 65,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       return (",
+              "lineBefore": 66,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               <SearchParamsProvider>",
+              "lineBefore": 67,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       <div className="app">",
+              "lineBefore": 68,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <Form />",
+              "lineBefore": 69,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <MatchingPosts />",
+              "lineBefore": 70,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       </div>",
+              "lineBefore": 71,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               </SearchParamsProvider>",
+              "lineBefore": 72,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       )",
+              "lineBefore": 73,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "}",
+              "lineBefore": 74,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 75,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "function Form() {",
+              "lineBefore": 76,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const [searchParams, setSearchParams] = useSearchParams()",
+              "lineBefore": 77,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const query = getQueryParam(searchParams)",
+              "lineBefore": 78,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 79,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const words = query.split(' ').map((w) => w.trim())",
+              "lineBefore": 80,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 81,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const dogChecked = words.includes('dog')",
+              "lineBefore": 82,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const catChecked = words.includes('cat')",
+              "lineBefore": 83,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const caterpillarChecked = words.includes('caterpillar')",
+              "lineBefore": 84,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "",
+              "lineBefore": 85,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       function handleCheck(tag: string, checked: boolean) {",
+              "lineBefore": 86,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               const newWords = checked ? [...words, tag] : words.filter((w) => w !== tag)",
+              "lineBefore": 87,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               setSearchParams(",
+              "lineBefore": 88,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       { query: newWords.filter(Boolean).join(' ').trim() },",
+              "lineBefore": 89,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       { replace: true },",
+              "lineBefore": 90,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               )",
+              "lineBefore": 91,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       }",
+              "lineAfter": 15,
+              "lineBefore": 92,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 16,
+              "lineBefore": 93,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "       return (",
+              "lineBefore": 94,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               <form onSubmit={(e) => e.preventDefault()}>",
+              "lineBefore": 95,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       <div>",
+              "lineBefore": 96,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <label htmlFor="searchInput">Search:</label>",
+              "lineBefore": 97,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <input",
+              "lineBefore": 98,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       id="searchInput"",
+              "lineBefore": 99,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       name="query"",
+              "lineBefore": 100,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       type="search"",
+              "lineBefore": 101,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       value={query}",
+              "lineBefore": 102,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       onChange={(e) =>",
+              "lineBefore": 103,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               setSearchParams({ query: e.currentTarget.value }, { replace: true })",
+              "lineBefore": 104,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       }",
+              "lineBefore": 105,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               />",
+              "lineBefore": 106,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       </div>",
+              "lineBefore": 107,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       <div>",
+              "lineBefore": 108,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <label>",
+              "lineBefore": 109,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       <input",
+              "lineBefore": 110,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               type="checkbox"",
+              "lineBefore": 111,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               checked={dogChecked}",
+              "lineBefore": 112,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               onChange={(e) => handleCheck('dog', e.currentTarget.checked)}",
+              "lineBefore": 113,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       />{' '}",
+              "lineBefore": 114,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       🐶 dog",
+              "lineBefore": 115,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               </label>",
+              "lineBefore": 116,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <label>",
+              "lineBefore": 117,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       <input",
+              "lineBefore": 118,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               type="checkbox"",
+              "lineBefore": 119,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               checked={catChecked}",
+              "lineBefore": 120,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               onChange={(e) => handleCheck('cat', e.currentTarget.checked)}",
+              "lineBefore": 121,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       />{' '}",
+              "lineBefore": 122,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       🐱 cat",
+              "lineBefore": 123,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               </label>",
+              "lineBefore": 124,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <label>",
+              "lineBefore": 125,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       <input",
+              "lineBefore": 126,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               type="checkbox"",
+              "lineBefore": 127,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               checked={caterpillarChecked}",
+              "lineBefore": 128,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               onChange={(e) =>",
+              "lineBefore": 129,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                                       handleCheck('caterpillar', e.currentTarget.checked)",
+              "lineBefore": 130,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                               }",
+              "lineBefore": 131,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       />{' '}",
+              "lineBefore": 132,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       🐛 caterpillar",
+              "lineBefore": 133,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               </label>",
+              "lineBefore": 134,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       </div>",
+              "lineBefore": 135,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               </form>",
+              "lineBefore": 136,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       )",
+              "lineBefore": 137,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       return function useMediaQuery() {",
+              "lineAfter": 17,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               return useSyncExternalStore(subscribe, getSnapshot)",
+              "lineAfter": 18,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       }",
+              "lineAfter": 19,
+              "type": "AddedLine",
+            },
+            {
+              "content": "}",
+              "lineAfter": 20,
+              "lineBefore": 138,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 21,
+              "lineBefore": 139,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "function MatchingPosts() {",
+              "lineBefore": 140,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const [searchParams] = useSearchParams()",
+              "lineBefore": 141,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const query = getQueryParam(searchParams)",
+              "lineBefore": 142,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const matchingPosts = getMatchingPosts(query)",
+              "lineBefore": 143,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "const useNarrowMediaQuery = makeMediaQueryStore('(max-width: 600px)')",
+              "lineAfter": 22,
+              "type": "AddedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 23,
+              "lineBefore": 144,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "       return (",
+              "lineBefore": 145,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               <ul className="post-list">",
+              "lineBefore": 146,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       {matchingPosts.map((post) => (",
+              "lineBefore": 147,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <Card key={post.id} post={post} />",
+              "lineBefore": 148,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       ))}",
+              "lineBefore": 149,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               </ul>",
+              "lineBefore": 150,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       )",
+              "lineBefore": 151,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "function NarrowScreenNotifier() {",
+              "lineAfter": 24,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       const isNarrow = useNarrowMediaQuery()",
+              "lineAfter": 25,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       return isNarrow ? 'You are on a narrow screen' : 'You are on a wide screen'",
+              "lineAfter": 26,
+              "type": "AddedLine",
+            },
+            {
+              "content": "}",
+              "lineAfter": 27,
+              "lineBefore": 152,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 28,
+              "lineBefore": 153,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "function Card({ post }: { post: BlogPost }) {",
+              "lineBefore": 154,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "       const [isFavorited, setIsFavorited] = useState(false)",
+              "lineBefore": 155,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "function App() {",
+              "lineAfter": 29,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       return (",
+              "lineAfter": 30,
+              "lineBefore": 156,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "               <li>",
+              "lineBefore": 157,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       {isFavorited ? (",
+              "lineBefore": 158,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <button",
+              "lineBefore": 159,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       aria-label="Remove favorite"",
+              "lineBefore": 160,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       onClick={() => setIsFavorited(false)}",
+              "lineBefore": 161,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               >",
+              "lineBefore": 162,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       ❤️",
+              "lineBefore": 163,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               </button>",
+              "lineBefore": 164,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       ) : (",
+              "lineBefore": 165,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <button aria-label="Add favorite" onClick={() => setIsFavorited(true)}>",
+              "lineBefore": 166,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       🤍",
+              "lineBefore": 167,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               </button>",
+              "lineBefore": 168,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       )}",
+              "lineBefore": 169,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       <div",
+              "lineBefore": 170,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               className="post-image"",
+              "lineBefore": 171,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               style={{ background: generateGradient(post.id) }}",
+              "lineBefore": 172,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       />",
+              "lineBefore": 173,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       <a",
+              "lineBefore": 174,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               href={post.id}",
+              "lineBefore": 175,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               onClick={(event) => {",
+              "lineBefore": 176,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       event.preventDefault()",
+              "lineBefore": 177,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                                       alert(\`Great! Let's go to \${post.id}!\`)",
+              "lineBefore": 178,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               }}",
+              "lineBefore": 179,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       >",
+              "lineBefore": 180,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <h2>{post.title}</h2>",
+              "lineBefore": 181,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                               <p>{post.description}</p>",
+              "lineBefore": 182,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "                       </a>",
+              "lineBefore": 183,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               </li>",
+              "lineBefore": 184,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "               <div>",
+              "lineAfter": 31,
+              "type": "AddedLine",
+            },
+            {
+              "content": "                       <div>This is your narrow screen state:</div>",
+              "lineAfter": 32,
+              "type": "AddedLine",
+            },
+            {
+              "content": "                       <Suspense fallback="">",
+              "lineAfter": 33,
+              "type": "AddedLine",
+            },
+            {
+              "content": "                               <NarrowScreenNotifier />",
+              "lineAfter": 34,
+              "type": "AddedLine",
+            },
+            {
+              "content": "                       </Suspense>",
+              "lineAfter": 35,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               </div>",
+              "lineAfter": 36,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       )",
+              "lineAfter": 37,
+              "lineBefore": 185,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "}",
+              "lineAfter": 38,
+              "lineBefore": 186,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 39,
+              "lineBefore": 187,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "const rootEl = document.createElement('div')",
+              "lineAfter": 40,
+              "lineBefore": 188,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "document.body.append(rootEl)",
+              "lineAfter": 41,
+              "lineBefore": 189,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "ReactDOM.createRoot(rootEl).render(<App />)",
+              "lineBefore": 190,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "// 🦉 here's how we pretend we're server-rendering",
+              "lineAfter": 42,
+              "type": "AddedLine",
+            },
+            {
+              "content": "rootEl.innerHTML = (await import('react-dom/server')).renderToString(<App />)",
+              "lineAfter": 43,
+              "type": "AddedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 44,
+              "type": "AddedLine",
+            },
+            {
+              "content": "// 🦉 here's how we simulate a delay in hydrating with client-side js",
+              "lineAfter": 45,
+              "type": "AddedLine",
+            },
+            {
+              "content": "await new Promise((resolve) => setTimeout(resolve, 1000))",
+              "lineAfter": 46,
+              "type": "AddedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 47,
+              "type": "AddedLine",
+            },
+            {
+              "content": "ReactDOM.hydrateRoot(rootEl, <App />, {",
+              "lineAfter": 48,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       onRecoverableError(error) {",
+              "lineAfter": 49,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               if (String(error).includes('Missing getServerSnapshot')) return",
+              "lineAfter": 50,
+              "type": "AddedLine",
+            },
+            {
+              "content": "",
+              "lineAfter": 51,
+              "type": "AddedLine",
+            },
+            {
+              "content": "               console.error(error)",
+              "lineAfter": 52,
+              "type": "AddedLine",
+            },
+            {
+              "content": "       },",
+              "lineAfter": 53,
+              "type": "AddedLine",
+            },
+            {
+              "content": "})",
+              "lineAfter": 54,
+              "type": "AddedLine",
+            },
+          ],
+          "context": undefined,
+          "fromFileRange": {
+            "lines": 190,
+            "start": 1,
+          },
+          "toFileRange": {
+            "lines": 54,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "var/folders/kt/zd3bfncd0c3gjx25hbcq483c0000gn/T/epicshop/diff/advanced-react-apis/09.03.solution/dn2ncwjsbmo/index.tsx",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
