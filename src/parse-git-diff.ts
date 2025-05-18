@@ -3,11 +3,8 @@ import type {
   GitDiff,
   AnyFileChange,
   AnyLineChange,
-  Chunk,
   ChunkRange,
-  CombinedChunk,
   AnyChunk,
-  FilledGitDiffOptions,
   GitDiffOptions,
 } from './types.js';
 import {
@@ -55,7 +52,6 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   let pathAfter = '';
   while (!ctx.isEof()) {
     const extHeader = parseExtendedHeader(ctx);
-
     if (!extHeader) {
       break;
     }
@@ -129,7 +125,6 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       path: chunks[0].pathAfter,
     };
   }
-
   return;
 }
 
@@ -142,11 +137,14 @@ function parseComparisonInputLine(
 ): { from: string; to: string } | null {
   const line = ctx.getCurLine();
   const splitted = line.split(' ').reverse();
-  const to = splitted.find((p) => p.startsWith('b/'))?.replace('b/', '');
-  const from = splitted.find((p) => p.startsWith('a/'))?.replace('a/', '');
+  const to = splitted.find((p) => p.startsWith('b/'));
+  const from = splitted.find((p) => p.startsWith('a/'));
   ctx.nextLine();
   if (to && from) {
-    return { to, from };
+    return {
+      from: getFilePath(ctx, from, 'src'),
+      to: getFilePath(ctx, to, 'dst'),
+    };
   }
   return null;
 }
@@ -169,7 +167,6 @@ function parseChunk(context: Context): AnyChunk | undefined {
   if (!chunkHeader) {
     return;
   }
-
   if (chunkHeader.type === 'Normal') {
     const changes = parseChanges(
       context,
@@ -404,4 +401,5 @@ function getFilePath(ctx: Context, input: string, type: 'src' | 'dst') {
   }
   if (type === 'src') return input.replace(/^a\//, '');
   if (type === 'dst') return input.replace(/^b\//, '');
+  throw new Error('Unexpected unreachable code');
 }
