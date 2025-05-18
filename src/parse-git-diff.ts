@@ -210,7 +210,7 @@ function parseChunk(context: Context): AnyChunk | undefined {
 
 function parseExtendedHeader(ctx: Context) {
   if (isComparisonInputLine(ctx.getCurLine())) {
-    ctx.nextLine();
+    return null;
   }
   const line = ctx.getCurLine();
   const type = ExtendedHeaderValues.find((v) => line.startsWith(v));
@@ -279,7 +279,6 @@ function parseChunkHeader(ctx: Context) {
       toFileRange: getRange(addStart, addLines),
     } as const;
   }
-
   const [all, delStart, delLines, addStart, addLines, context] =
     normalChunkExec;
   ctx.nextLine();
