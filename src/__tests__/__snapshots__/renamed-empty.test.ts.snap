@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renamed-empty parse \`renamed-empty\` 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "pathAfter": "src/renamed-empty",
+      "pathBefore": "src/empty",
+      "type": "RenamedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
