@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deleted-empty-file parse \`deleted-empty-file\` 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "path": "src/empty",
+      "type": "DeletedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

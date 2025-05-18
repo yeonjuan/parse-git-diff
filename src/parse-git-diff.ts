@@ -59,7 +59,10 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     if (!extHeader) {
       break;
     }
-    if (extHeader.type === ExtendedHeader.Deleted) isDeleted = true;
+    if (extHeader.type === ExtendedHeader.Deleted) {
+      isDeleted = true;
+      pathBefore = comparisonLineParsed?.from || '';
+    }
     if (extHeader.type === ExtendedHeader.NewFile) {
       isNew = true;
       pathAfter = comparisonLineParsed?.to || '';
@@ -77,33 +80,30 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   const changeMarkers = parseChangeMarkers(ctx);
   const chunks = parseChunks(ctx);
 
-  if (isDeleted && changeMarkers) {
-    return {
-      type: FileType.Deleted,
-      chunks,
-      path: changeMarkers.deleted,
-    };
-  } else if (
-    isDeleted &&
-    chunks.length &&
-    chunks[0].type === 'BinaryFilesChunk'
-  ) {
+  if (isDeleted && chunks.length && chunks[0].type === 'BinaryFilesChunk') {
     return {
       type: FileType.Deleted,
       chunks,
       path: chunks[0].pathBefore,
     };
-  } else if (isNew) {
+  }
+  if (isDeleted) {
     return {
-      type: FileType.Added,
+      type: FileType.Deleted,
       chunks,
-      path: changeMarkers ? changeMarkers.added : pathAfter,
+      path: changeMarkers?.deleted || pathBefore,
     };
   } else if (isNew && chunks.length && chunks[0].type === 'BinaryFilesChunk') {
     return {
       type: FileType.Added,
       chunks,
       path: chunks[0].pathAfter,
+    };
+  } else if (isNew) {
+    return {
+      type: FileType.Added,
+      chunks,
+      path: changeMarkers?.added || pathAfter,
     };
   } else if (isRename) {
     return {
