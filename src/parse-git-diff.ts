@@ -46,7 +46,7 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   if (!isComparisonInputLine(ctx.getCurLine())) {
     return;
   }
-  ctx.nextLine();
+  const comparisonLineParsed = parseComparisonInputLine(ctx);
 
   let isDeleted = false;
   let isNew = false;
@@ -55,11 +55,18 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   let pathAfter = '';
   while (!ctx.isEof()) {
     const extHeader = parseExtendedHeader(ctx);
+
     if (!extHeader) {
       break;
     }
-    if (extHeader.type === ExtendedHeader.Deleted) isDeleted = true;
-    if (extHeader.type === ExtendedHeader.NewFile) isNew = true;
+    if (extHeader.type === ExtendedHeader.Deleted) {
+      isDeleted = true;
+      pathBefore = comparisonLineParsed?.from || '';
+    }
+    if (extHeader.type === ExtendedHeader.NewFile) {
+      isNew = true;
+      pathAfter = comparisonLineParsed?.to || '';
+    }
     if (extHeader.type === ExtendedHeader.RenameFrom) {
       isRename = true;
       pathBefore = extHeader.path as string;
@@ -73,33 +80,30 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   const changeMarkers = parseChangeMarkers(ctx);
   const chunks = parseChunks(ctx);
 
-  if (isDeleted && changeMarkers) {
-    return {
-      type: FileType.Deleted,
-      chunks,
-      path: changeMarkers.deleted,
-    };
-  } else if (
-    isDeleted &&
-    chunks.length &&
-    chunks[0].type === 'BinaryFilesChunk'
-  ) {
+  if (isDeleted && chunks.length && chunks[0].type === 'BinaryFilesChunk') {
     return {
       type: FileType.Deleted,
       chunks,
       path: chunks[0].pathBefore,
     };
-  } else if (isNew && changeMarkers) {
+  }
+  if (isDeleted) {
     return {
-      type: FileType.Added,
+      type: FileType.Deleted,
       chunks,
-      path: changeMarkers.added,
+      path: changeMarkers?.deleted || pathBefore,
     };
   } else if (isNew && chunks.length && chunks[0].type === 'BinaryFilesChunk') {
     return {
       type: FileType.Added,
       chunks,
       path: chunks[0].pathAfter,
+    };
+  } else if (isNew) {
+    return {
+      type: FileType.Added,
+      chunks,
+      path: changeMarkers?.added || pathAfter,
     };
   } else if (isRename) {
     return {
@@ -131,6 +135,20 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
 
 function isComparisonInputLine(line: string): boolean {
   return line.indexOf('diff') === 0;
+}
+
+function parseComparisonInputLine(
+  ctx: Context
+): { from: string; to: string } | null {
+  const line = ctx.getCurLine();
+  const splitted = line.split(' ').reverse();
+  const to = splitted.find((p) => p.startsWith('b/'))?.replace('b/', '');
+  const from = splitted.find((p) => p.startsWith('a/'))?.replace('a/', '');
+  ctx.nextLine();
+  if (to && from) {
+    return { to, from };
+  }
+  return null;
 }
 
 function parseChunks(context: Context): AnyChunk[] {

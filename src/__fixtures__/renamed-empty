@@ -1,0 +1,4 @@
+diff --git a/src/empty b/src/renamed-empty
+similarity index 100%
+rename from src/empty
+rename to src/renamed-empty
