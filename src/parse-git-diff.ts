@@ -46,7 +46,7 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   if (!isComparisonInputLine(ctx.getCurLine())) {
     return;
   }
-  const comparisonLineParsed = pasreComparisonInputLine(ctx);
+  const comparisonLineParsed = parseComparisonInputLine(ctx);
 
   let isDeleted = false;
   let isNew = false;
@@ -137,7 +137,7 @@ function isComparisonInputLine(line: string): boolean {
   return line.indexOf('diff') === 0;
 }
 
-function pasreComparisonInputLine(
+function parseComparisonInputLine(
   ctx: Context
 ): { from: string; to: string } | null {
   const line = ctx.getCurLine();
