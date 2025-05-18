@@ -44,7 +44,6 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     return;
   }
   const comparisonLineParsed = parseComparisonInputLine(ctx);
-
   let isDeleted = false;
   let isNew = false;
   let isRename = false;
@@ -136,9 +135,7 @@ function parseComparisonInputLine(
   ctx: Context
 ): { from: string; to: string } | null {
   const line = ctx.getCurLine();
-  const splitted = line.split(' ').reverse();
-  const to = splitted.find((p) => p.startsWith('b/'));
-  const from = splitted.find((p) => p.startsWith('a/'));
+  const [to, from] = line.split(' ').reverse();
   ctx.nextLine();
   if (to && from) {
     return {
