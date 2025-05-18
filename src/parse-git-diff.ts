@@ -46,7 +46,7 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   if (!isComparisonInputLine(ctx.getCurLine())) {
     return;
   }
-  ctx.nextLine();
+  const comparisonLineParsed = pasreComparisonInputLine(ctx);
 
   let isDeleted = false;
   let isNew = false;
@@ -55,11 +55,15 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   let pathAfter = '';
   while (!ctx.isEof()) {
     const extHeader = parseExtendedHeader(ctx);
+
     if (!extHeader) {
       break;
     }
     if (extHeader.type === ExtendedHeader.Deleted) isDeleted = true;
-    if (extHeader.type === ExtendedHeader.NewFile) isNew = true;
+    if (extHeader.type === ExtendedHeader.NewFile) {
+      isNew = true;
+      pathAfter = comparisonLineParsed?.to || '';
+    }
     if (extHeader.type === ExtendedHeader.RenameFrom) {
       isRename = true;
       pathBefore = extHeader.path as string;
@@ -89,11 +93,11 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       chunks,
       path: chunks[0].pathBefore,
     };
-  } else if (isNew && changeMarkers) {
+  } else if (isNew) {
     return {
       type: FileType.Added,
       chunks,
-      path: changeMarkers.added,
+      path: changeMarkers ? changeMarkers.added : pathAfter,
     };
   } else if (isNew && chunks.length && chunks[0].type === 'BinaryFilesChunk') {
     return {
@@ -131,6 +135,20 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
 
 function isComparisonInputLine(line: string): boolean {
   return line.indexOf('diff') === 0;
+}
+
+function pasreComparisonInputLine(
+  ctx: Context
+): { from: string; to: string } | null {
+  const line = ctx.getCurLine();
+  const splitted = line.split(' ').reverse();
+  const to = splitted.find((p) => p.startsWith('b/'))?.replace('b/', '');
+  const from = splitted.find((p) => p.startsWith('a/'))?.replace('a/', '');
+  ctx.nextLine();
+  if (to && from) {
+    return { to, from };
+  }
+  return null;
 }
 
 function parseChunks(context: Context): AnyChunk[] {
