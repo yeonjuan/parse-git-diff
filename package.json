@@ -35,14 +35,14 @@
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "gh-pages": "^6.3.0",
-    "husky": "^7.0.2",
-    "jest": "^29.7.0",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
     "md-replacer": "^0.0.4",
-    "prettier": "^2.4.1",
-    "rimraf": "^5.0.1",
-    "ts-jest": "^29.0.5",
-    "tslib": "^2.3.1",
-    "typescript": "^5.3.3"
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.4.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.2"
   },
   "files": [
     "build"
