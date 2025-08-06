@@ -5,15 +5,18 @@
   "main": "./build/cjs/index.js",
   "module": "./build/mjs/index.js",
   "types": "./build/cjs/index.d.ts",
+  "source": "./playground/index.html",
   "scripts": {
     "prepublish": "yarn build",
     "build": "rimraf build && tsc -p tsconfig-esm.json && tsc -p tsconfig-cjs.json && bash fixup.sh",
     "format": "prettier . --write",
     "test": "jest --coverage",
     "prebuild": "yarn check:all",
-    "publish:demo": "gh-pages -d demo/build",
+    "publish:playground": "gh-pages -d playground-out",
     "check:all": "prettier --check . && tsc --noEmit && yarn test",
-    "build:readme": "node scripts/build-readme.js && yarn format"
+    "build:readme": "node scripts/build-readme.js && yarn format",
+    "dev": "parcel",
+    "build:playground": "yarn build && parcel build --dist-dir ./playground-out"
   },
   "exports": {
     ".": {
@@ -38,6 +41,7 @@
     "husky": "^9.1.7",
     "jest": "^30.0.5",
     "md-replacer": "^0.0.4",
+    "parcel": "^2.15.4",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "ts-jest": "^29.4.1",
@@ -47,6 +51,11 @@
   "files": [
     "build"
   ],
+  "targets": {
+    "types": false,
+    "main": false,
+    "module": false
+  },
   "keywords": [
     "git",
     "git diff"
