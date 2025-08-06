@@ -10,3 +10,4 @@ demo/parse-git-diff.js
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+playground-out
