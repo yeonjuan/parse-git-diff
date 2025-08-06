@@ -1,1 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="manifest" href="/parse-git-diff/manifest.json"/><title>Demo | parse-git-diff</title><script defer="defer" src="/parse-git-diff/static/js/main.4e5a102e.js"></script><link href="/parse-git-diff/static/css/main.eb8ac13b.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html><html lang=en><style>.app{flex-direction:column;flex:1;display:flex}.header{background:#1a2b34;align-items:center;padding:10px;font-weight:700;display:flex}.nav{margin-left:auto;margin-right:0}.row{flex-direction:row;justify-content:space-between;align-items:stretch;width:100%;display:flex}.row>div{flex-direction:column;flex:1;width:50%;padding:4px;display:flex}@media (width<=800px){.row{align-items:unset;flex-direction:column}.row>div{width:100%}}h1{color:#fff;font-size:18px}h2{color:#1a2b34;padding:10px;font-size:16px}body{background:#efefef;flex-direction:column;height:100vh;margin:0;display:flex}main{flex:1;display:flex}#root{flex:100%;display:flex}a,a:visited{color:#fff;text-decoration:underline}.editor-container{width:100%;height:100%}.editor{height:100%}.CodeMirror{height:100%!important}.ast-output-container{height:100%;overflow-y:auto}</style><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.2/codemirror.min.css><body>
+    <div class=app>
+      <header class=header>
+        <h1>parse-git-diff</h1>
+        <nav class=nav>
+          <a href=https://github.com/yeonjuan/parse-git-diff>Github</a>
+        </nav>
+      </header>
+      <main>
+        <div class=row>
+          <div>
+            <h2>Input</h2>
+            <div class=editor-container>
+              <textarea id=input class=editor style=height:100%></textarea>
+            </div>
+          </div>
+          <div>
+            <h2>Output</h2>
+            <div class=ast-output-container>
+              <textarea class=ast-output style=height:100%></textarea>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.27.2/codemirror.min.js></script>
+    <script type=module>class e{line=1;lines=[];options={noPrefix:!1};constructor(e,t){this.lines=e.split("\n"),this.options.noPrefix=!!t?.noPrefix}getCurLine(){return this.lines[this.line-1]}nextLine(){return this.line++,this.getCurLine()}isEof(){return this.line>this.lines.length}}const t="AddedLine",n="DeletedLine",i="UnchangedLine",r="MessageLine",l="ChangedFile",s="AddedFile",a="DeletedFile",f={Index:"index",Old:"old",Copy:"copy",Similarity:"similarity",Dissimilarity:"dissimilarity",Deleted:"deleted",NewFile:"new file",RenameFrom:"rename from",RenameTo:"rename to"},o=Object.values(f);function u(e){return 0===e.indexOf("diff")}function d(e,t){return{start:parseInt(e,10),lines:void 0===t?1:parseInt(t,10)}}function p(e,t){let n=e.getCurLine();return n?.startsWith(t)?(e.nextLine(),n.replace(t,"")):null}const c={"+":t,"-":n," ":i,"\\":r};function h(e,l,s){let a=[],f=l.start,o=s.start;for(;!e.isEof();){let l,s=e.getCurLine(),u=c[s[0]]||null;if(!u)break;e.nextLine();let d=s.slice(1);switch(u){case t:l={type:u,lineAfter:o++,content:d};break;case n:l={type:u,lineBefore:f++,content:d};break;case i:l={type:u,lineBefore:f++,lineAfter:o++,content:d};break;case r:l={type:u,content:d.trim()}}a.push(l)}return a}function m(e,t,n){if(e.options.noPrefix)return t;if("src"===n)return t.replace(/^a\//,"");if("dst"===n)return t.replace(/^b\//,"");throw Error("Unexpected unreachable code")}const y=document.getElementById("input"),g=document.querySelector(".ast-output"),F=CodeMirror.fromTextArea(y,{lineNumbers:!0,mode:"diff",theme:"default",lineNumbers:!0}),x=CodeMirror.fromTextArea(g,{mode:"javascript",readOnly:!0,lineNumbers:!0,theme:"default"}),C=`diff --git a/newfile.md b/newfile.md
+new file mode 100644
+index 0000000..aa39060
+--- /dev/null
++++ b/newfile.md
+@@ -0,0 +1 @@
++newfile
+`;F.on("change",function(){try{let t=F.getValue(),n=JSON.stringify({type:"GitDiff",files:function(e){let t=[];for(;!e.isEof();){let n=function(e){if(!u(e.getCurLine()))return;let t=function(e){let[t,n]=e.getCurLine().split(" ").reverse();return(e.nextLine(),t&&n)?{from:m(e,n,"src"),to:m(e,t,"dst")}:null}(e),n=!1,i=!1,r=!1,c="",y="";for(;!e.isEof();){let l=function(e){if(u(e.getCurLine()))return null;let t=e.getCurLine(),n=o.find(e=>t.startsWith(e));return(n&&e.nextLine(),n===f.RenameFrom||n===f.RenameTo)?{type:n,path:t.slice(`${n} `.length)}:n?{type:n}:null}(e);if(!l)break;l.type===f.Deleted&&(n=!0,c=t?.from||""),l.type===f.NewFile&&(i=!0,y=t?.to||""),l.type===f.RenameFrom&&(r=!0,c=l.path),l.type===f.RenameTo&&(r=!0,y=l.path)}let g=function(e){let t=p(e,"--- "),n=t?m(e,t,"src"):t,i=p(e,"+++ "),r=i?m(e,i,"dst"):i;return r&&n?{added:r,deleted:n}:null}(e),F=function(e){let t=[];for(;!e.isEof();){let n=function(e){let t=function(e){let t=e.getCurLine(),n=/^@@\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@\s?(.+)?/.exec(t);if(!n){let n=/^@@@\s\-(\d+),?(\d+)?\s\-(\d+),?(\d+)?\s\+(\d+),?(\d+)?\s@@@\s?(.+)?/.exec(t);if(!n){let n=/^Binary\sfiles\s(.*)\sand\s(.*)\sdiffer$/.exec(t);if(n){let[t,i,r]=n;return e.nextLine(),{type:"BinaryFiles",fileA:m(e,i,"src"),fileB:m(e,r,"dst")}}return null}let[i,r,l,s,a,f,o,u]=n;return e.nextLine(),{context:u,type:"Combined",fromFileRangeA:d(r,l),fromFileRangeB:d(s,a),toFileRange:d(f,o)}}let[i,r,l,s,a,f]=n;return e.nextLine(),{context:f,type:"Normal",toFileRange:d(s,a),fromFileRange:d(r,l)}}(e);if(t){if("Normal"===t.type){let n=h(e,t.fromFileRange,t.toFileRange);return{...t,type:"Chunk",changes:n}}else if("Combined"===t.type&&t.fromFileRangeA&&t.fromFileRangeB){let n=h(e,t.fromFileRangeA.start<t.fromFileRangeB.start?t.fromFileRangeA:t.fromFileRangeB,t.toFileRange);return{...t,type:"CombinedChunk",changes:n}}else if("BinaryFiles"===t.type&&t.fileA&&t.fileB)return{type:"BinaryFilesChunk",pathBefore:t.fileA,pathAfter:t.fileB}}}(e);if(!n)break;t.push(n)}return t}(e);if(n&&F.length&&"BinaryFilesChunk"===F[0].type)return{type:a,chunks:F,path:F[0].pathBefore};if(n)return{type:a,chunks:F,path:g?.deleted||c};if(i&&F.length&&"BinaryFilesChunk"===F[0].type)return{type:s,chunks:F,path:F[0].pathAfter};if(i)return{type:s,chunks:F,path:g?.added||y};if(r)return{type:"RenamedFile",pathAfter:y,pathBefore:c,chunks:F};if(g)return{type:l,chunks:F,path:g.added};else if(F.length&&"BinaryFilesChunk"===F[0].type&&F[0].pathAfter)return{type:l,chunks:F,path:F[0].pathAfter}}(e);if(!n)break;t.push(n)}return t}(new e(t,void 0))},null,2);x.setValue(n)}catch(e){x.setValue(`Error: ${e.message}`)}}),F.setValue(C);</script>
+  
+
