@@ -15,6 +15,7 @@ export const FileType = {
 export const ExtendedHeader = {
   Index: 'index',
   Old: 'old',
+  NewMode: 'new mode',
   Copy: 'copy',
   Similarity: 'similarity',
   Dissimilarity: 'dissimilarity',

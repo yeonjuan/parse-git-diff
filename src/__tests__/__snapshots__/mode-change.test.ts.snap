@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`mode-change parse mode change followed by another file 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "path": "script.sh",
+      "type": "ChangedFile",
+    },
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "# Title",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "old content",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "new content",
+              "lineAfter": 2,
+              "type": "AddedLine",
+            },
+          ],
+          "context": undefined,
+          "fromFileRange": {
+            "lines": 3,
+            "start": 1,
+          },
+          "toFileRange": {
+            "lines": 3,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "readme.md",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`mode-change parse mode change with content changes 1`] = `
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "#!/bin/bash",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "echo "hello"",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "echo "world"",
+              "lineAfter": 2,
+              "type": "AddedLine",
+            },
+          ],
+          "context": undefined,
+          "fromFileRange": {
+            "lines": 3,
+            "start": 1,
+          },
+          "toFileRange": {
+            "lines": 3,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "path": "script.sh",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`mode-change parse mode-only change 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "path": "script.sh",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;

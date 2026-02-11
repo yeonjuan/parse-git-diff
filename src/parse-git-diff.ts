@@ -32,7 +32,8 @@ function parseFileChanges(ctx: Context): AnyFileChange[] {
   while (!ctx.isEof()) {
     const changed = parseFileChange(ctx);
     if (!changed) {
-      break;
+      ctx.nextLine();
+      continue;
     }
     changedFiles.push(changed);
   }
@@ -122,6 +123,12 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       type: FileType.Changed,
       chunks,
       path: chunks[0].pathAfter,
+    };
+  } else if (comparisonLineParsed?.to) {
+    return {
+      type: FileType.Changed,
+      chunks,
+      path: comparisonLineParsed.to,
     };
   }
   return;
