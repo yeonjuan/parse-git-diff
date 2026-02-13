@@ -29,10 +29,8 @@ export default function parseGitDiff(
 
 function parseFileChanges(ctx: Context): AnyFileChange[] {
   const changedFiles: AnyFileChange[] = [];
-  console.log('start');
   while (!ctx.isEof()) {
     const changed = parseFileChange(ctx);
-    console.log({ changed });
     if (!changed) {
       break;
     }
