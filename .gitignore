@@ -11,3 +11,4 @@ demo/parse-git-diff.js
 !.yarn/sdks
 !.yarn/versions
 playground-out
+.DS_Store

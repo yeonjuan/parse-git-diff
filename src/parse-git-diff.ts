@@ -29,11 +29,12 @@ export default function parseGitDiff(
 
 function parseFileChanges(ctx: Context): AnyFileChange[] {
   const changedFiles: AnyFileChange[] = [];
+  console.log('start');
   while (!ctx.isEof()) {
     const changed = parseFileChange(ctx);
+    console.log({ changed });
     if (!changed) {
-      ctx.nextLine();
-      continue;
+      break;
     }
     changedFiles.push(changed);
   }
@@ -50,6 +51,8 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   let isRename = false;
   let pathBefore = '';
   let pathAfter = '';
+  let oldMode: string | undefined = undefined;
+  let newMode: string | undefined = undefined;
   while (!ctx.isEof()) {
     const extHeader = parseExtendedHeader(ctx);
     if (!extHeader) {
@@ -70,6 +73,12 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     if (extHeader.type === ExtendedHeader.RenameTo) {
       isRename = true;
       pathAfter = extHeader.path as string;
+    }
+    if (extHeader.type === ExtendedHeader.OldMode) {
+      oldMode = extHeader.mode;
+    }
+    if (extHeader.type === ExtendedHeader.NewMode) {
+      newMode = extHeader.mode;
     }
   }
 
@@ -107,12 +116,24 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       pathAfter,
       pathBefore,
       chunks,
+      oldMode,
+      newMode,
     };
   } else if (changeMarkers) {
     return {
       type: FileType.Changed,
       chunks,
       path: changeMarkers.added,
+      oldMode,
+      newMode,
+    };
+  } else if (oldMode && newMode && comparisonLineParsed) {
+    return {
+      type: FileType.Changed,
+      chunks,
+      path: comparisonLineParsed.to,
+      oldMode,
+      newMode,
     };
   } else if (
     chunks.length &&
@@ -123,12 +144,6 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
       type: FileType.Changed,
       chunks,
       path: chunks[0].pathAfter,
-    };
-  } else if (comparisonLineParsed?.to) {
-    return {
-      type: FileType.Changed,
-      chunks,
-      path: comparisonLineParsed.to,
     };
   }
   return;
@@ -227,6 +242,14 @@ function parseExtendedHeader(ctx: Context) {
     return {
       type,
       path: line.slice(`${type} `.length),
+    } as const;
+  } else if (
+    type === ExtendedHeader.OldMode ||
+    type === ExtendedHeader.NewMode
+  ) {
+    return {
+      type,
+      mode: line.slice(`${type} `.length),
     } as const;
   } else if (type) {
     return {

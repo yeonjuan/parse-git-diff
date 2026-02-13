@@ -39,4 +39,10 @@ describe('mode-change', () => {
     });
     expect(result).toMatchSnapshot();
   });
+
+  it('parse mode change with rename', () => {
+    const fixture = getFixture('mode-change-with-rename');
+    const result = parseGitDiff(fixture);
+    expect(result).toMatchSnapshot();
+  });
 });

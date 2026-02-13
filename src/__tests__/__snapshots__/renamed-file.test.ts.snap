@@ -1,10 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`renamed-file parse \`renamed-file\` 1`] = `
 {
   "files": [
     {
       "chunks": [],
+      "newMode": undefined,
+      "oldMode": undefined,
       "pathAfter": "rename.md",
       "pathBefore": "newfile.md",
       "type": "RenamedFile",

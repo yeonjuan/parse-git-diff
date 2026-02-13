@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`issue 31-no-prefix parse \`31-no-prefix\` 1`] = `
 {
@@ -1177,6 +1177,8 @@ exports[`issue 31-no-prefix parse \`31-no-prefix\` 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "var/folders/kt/zd3bfncd0c3gjx25hbcq483c0000gn/T/epicshop/diff/advanced-react-apis/09.03.solution/dn2ncwjsbmo/index.tsx",
       "type": "ChangedFile",
     },

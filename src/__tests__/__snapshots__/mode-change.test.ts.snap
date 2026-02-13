@@ -5,6 +5,8 @@ exports[`mode-change parse mode change followed by another file 1`] = `
   "files": [
     {
       "chunks": [],
+      "newMode": "100755",
+      "oldMode": "100644",
       "path": "script.sh",
       "type": "ChangedFile",
     },
@@ -41,6 +43,8 @@ exports[`mode-change parse mode change followed by another file 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "readme.md",
       "type": "ChangedFile",
     },
@@ -85,8 +89,26 @@ exports[`mode-change parse mode change with content changes 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": "100755",
+      "oldMode": "100644",
       "path": "script.sh",
       "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`mode-change parse mode change with rename 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "newMode": "100644",
+      "oldMode": "100755",
+      "pathAfter": "script.sh",
+      "pathBefore": "run.sh",
+      "type": "RenamedFile",
     },
   ],
   "type": "GitDiff",
@@ -98,6 +120,8 @@ exports[`mode-change parse mode-only change 1`] = `
   "files": [
     {
       "chunks": [],
+      "newMode": "100755",
+      "oldMode": "100644",
       "path": "script.sh",
       "type": "ChangedFile",
     },

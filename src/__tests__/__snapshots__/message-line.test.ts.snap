@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`message-line parse \`message-line\` 1`] = `
 {
@@ -40,6 +40,8 @@ exports[`message-line parse \`message-line\` 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "rename.md",
       "type": "ChangedFile",
     },
@@ -80,6 +82,8 @@ exports[`message-line parse \`message-line\` 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "rename2.md",
       "type": "ChangedFile",
     },

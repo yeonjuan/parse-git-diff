@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`conflict-file parse \`conflict-file\` 1`] = `
 {
@@ -92,6 +92,8 @@ exports[`conflict-file parse \`conflict-file\` 1`] = `
           "type": "CombinedChunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "README.md",
       "type": "ChangedFile",
     },
