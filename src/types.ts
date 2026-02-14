@@ -61,6 +61,8 @@ export type AnyChunk = Chunk | CombinedChunk | BinaryFilesChunk;
 export interface ChangedFile extends Base<typeof FileType.Changed> {
   path: string;
   chunks: AnyChunk[];
+  oldMode?: string;
+  newMode?: string;
 }
 
 export interface AddedFile extends Base<typeof FileType.Added> {
@@ -77,6 +79,8 @@ export interface RenamedFile extends Base<typeof FileType.Renamed> {
   pathBefore: string;
   pathAfter: string;
   chunks: AnyChunk[];
+  oldMode?: string;
+  newMode?: string;
 }
 
 export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;

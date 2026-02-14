@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`deleted-line parse \`deleted-line\` 1`] = `
 {
@@ -31,6 +31,8 @@ exports[`deleted-line parse \`deleted-line\` 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "rename.md",
       "type": "ChangedFile",
     },

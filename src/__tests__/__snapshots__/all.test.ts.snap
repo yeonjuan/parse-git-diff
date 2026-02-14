@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`aa parse \`all\` 1`] = `
 {
@@ -31,6 +31,8 @@ exports[`aa parse \`all\` 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "rename.md",
       "type": "ChangedFile",
     },
@@ -112,11 +114,15 @@ exports[`aa parse \`all\` 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "rename.md",
       "type": "ChangedFile",
     },
     {
       "chunks": [],
+      "newMode": undefined,
+      "oldMode": undefined,
       "pathAfter": "rename.md",
       "pathBefore": "newfile.md",
       "type": "RenamedFile",

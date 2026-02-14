@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`unified parse \`unified 1`] = `
 {
@@ -25,6 +25,8 @@ exports[`unified parse \`unified 1`] = `
           "type": "Chunk",
         },
       ],
+      "newMode": undefined,
+      "oldMode": undefined,
       "path": "test.txt",
       "type": "ChangedFile",
     },

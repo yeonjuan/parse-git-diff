@@ -1,48 +1,13 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`message-line parse \`message-line\` 1`] = `
+exports[`mode-change parse mode change followed by another file 1`] = `
 {
   "files": [
     {
-      "chunks": [
-        {
-          "changes": [
-            {
-              "content": "newfile",
-              "lineAfter": 1,
-              "lineBefore": 1,
-              "type": "UnchangedLine",
-            },
-            {
-              "content": "newline",
-              "lineBefore": 2,
-              "type": "DeletedLine",
-            },
-            {
-              "content": "newline",
-              "lineAfter": 2,
-              "type": "AddedLine",
-            },
-            {
-              "content": "No newline at end of file",
-              "type": "MessageLine",
-            },
-          ],
-          "context": undefined,
-          "fromFileRange": {
-            "lines": 2,
-            "start": 1,
-          },
-          "toFileRange": {
-            "lines": 1,
-            "start": 1,
-          },
-          "type": "Chunk",
-        },
-      ],
-      "newMode": undefined,
-      "oldMode": undefined,
-      "path": "rename.md",
+      "chunks": [],
+      "newMode": "100755",
+      "oldMode": "100644",
+      "path": "script.sh",
       "type": "ChangedFile",
     },
     {
@@ -50,33 +15,29 @@ exports[`message-line parse \`message-line\` 1`] = `
         {
           "changes": [
             {
-              "content": "newfile2",
+              "content": "# Title",
               "lineAfter": 1,
               "lineBefore": 1,
               "type": "UnchangedLine",
             },
             {
-              "content": "newline2",
+              "content": "old content",
               "lineBefore": 2,
               "type": "DeletedLine",
             },
             {
-              "content": "newline2",
+              "content": "new content",
               "lineAfter": 2,
               "type": "AddedLine",
-            },
-            {
-              "content": "No newline at end of file",
-              "type": "MessageLine",
             },
           ],
           "context": undefined,
           "fromFileRange": {
-            "lines": 2,
+            "lines": 3,
             "start": 1,
           },
           "toFileRange": {
-            "lines": 1,
+            "lines": 3,
             "start": 1,
           },
           "type": "Chunk",
@@ -84,7 +45,84 @@ exports[`message-line parse \`message-line\` 1`] = `
       ],
       "newMode": undefined,
       "oldMode": undefined,
-      "path": "rename2.md",
+      "path": "readme.md",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`mode-change parse mode change with content changes 1`] = `
+{
+  "files": [
+    {
+      "chunks": [
+        {
+          "changes": [
+            {
+              "content": "#!/bin/bash",
+              "lineAfter": 1,
+              "lineBefore": 1,
+              "type": "UnchangedLine",
+            },
+            {
+              "content": "echo "hello"",
+              "lineBefore": 2,
+              "type": "DeletedLine",
+            },
+            {
+              "content": "echo "world"",
+              "lineAfter": 2,
+              "type": "AddedLine",
+            },
+          ],
+          "context": undefined,
+          "fromFileRange": {
+            "lines": 3,
+            "start": 1,
+          },
+          "toFileRange": {
+            "lines": 3,
+            "start": 1,
+          },
+          "type": "Chunk",
+        },
+      ],
+      "newMode": "100755",
+      "oldMode": "100644",
+      "path": "script.sh",
+      "type": "ChangedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`mode-change parse mode change with rename 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "newMode": "100644",
+      "oldMode": "100755",
+      "pathAfter": "script.sh",
+      "pathBefore": "run.sh",
+      "type": "RenamedFile",
+    },
+  ],
+  "type": "GitDiff",
+}
+`;
+
+exports[`mode-change parse mode-only change 1`] = `
+{
+  "files": [
+    {
+      "chunks": [],
+      "newMode": "100755",
+      "oldMode": "100644",
+      "path": "script.sh",
       "type": "ChangedFile",
     },
   ],
