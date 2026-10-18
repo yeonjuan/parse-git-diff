@@ -1,0 +1,11 @@
+diff --git a/a-source.txt b/b-copy.txt
+similarity index 100%
+copy from a-source.txt
+copy to b-copy.txt
+diff --git a/z-followup.txt b/z-followup.txt
+index 90be1f3056c4f471f977a28497b8d4b392c55a02..294186e497a23bf3fbfde12aacc7f720f668fe9a 100644
+--- a/z-followup.txt
++++ b/z-followup.txt
+@@ -1 +1 @@
+-before
++after

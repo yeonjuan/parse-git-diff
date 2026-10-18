@@ -10,13 +10,15 @@ export const FileType = {
   Added: 'AddedFile',
   Deleted: 'DeletedFile',
   Renamed: 'RenamedFile',
+  Copied: 'CopiedFile',
 } as const;
 
 export const ExtendedHeader = {
   Index: 'index',
   OldMode: 'old mode',
   NewMode: 'new mode',
-  Copy: 'copy',
+  CopyFrom: 'copy from',
+  CopyTo: 'copy to',
   Similarity: 'similarity',
   Dissimilarity: 'dissimilarity',
   Deleted: 'deleted',

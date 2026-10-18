@@ -15,6 +15,7 @@ export type {
   AddedFile,
   DeletedFile,
   RenamedFile,
+  CopiedFile,
   AnyFileChange,
   GitDiff,
   GitDiffOptions,

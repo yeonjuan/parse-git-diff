@@ -83,7 +83,20 @@ export interface RenamedFile extends Base<typeof FileType.Renamed> {
   newMode?: string;
 }
 
-export type AnyFileChange = ChangedFile | AddedFile | DeletedFile | RenamedFile;
+export interface CopiedFile extends Base<typeof FileType.Copied> {
+  pathBefore: string;
+  pathAfter: string;
+  chunks: AnyChunk[];
+  oldMode?: string;
+  newMode?: string;
+}
+
+export type AnyFileChange =
+  | ChangedFile
+  | AddedFile
+  | DeletedFile
+  | RenamedFile
+  | CopiedFile;
 
 export interface GitDiff extends Base<'GitDiff'> {
   files: AnyFileChange[];

@@ -47,6 +47,7 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   let isDeleted = false;
   let isNew = false;
   let isRename = false;
+  let isCopy = false;
   let pathBefore = '';
   let pathAfter = '';
   let oldMode: string | undefined = undefined;
@@ -70,6 +71,14 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
     }
     if (extHeader.type === ExtendedHeader.RenameTo) {
       isRename = true;
+      pathAfter = extHeader.path as string;
+    }
+    if (extHeader.type === ExtendedHeader.CopyFrom) {
+      isCopy = true;
+      pathBefore = extHeader.path as string;
+    }
+    if (extHeader.type === ExtendedHeader.CopyTo) {
+      isCopy = true;
       pathAfter = extHeader.path as string;
     }
     if (extHeader.type === ExtendedHeader.OldMode) {
@@ -111,6 +120,15 @@ function parseFileChange(ctx: Context): AnyFileChange | undefined {
   } else if (isRename) {
     return {
       type: FileType.Renamed,
+      pathAfter,
+      pathBefore,
+      chunks,
+      oldMode,
+      newMode,
+    };
+  } else if (isCopy) {
+    return {
+      type: FileType.Copied,
       pathAfter,
       pathBefore,
       chunks,
@@ -236,7 +254,12 @@ function parseExtendedHeader(ctx: Context) {
     ctx.nextLine();
   }
 
-  if (type === ExtendedHeader.RenameFrom || type === ExtendedHeader.RenameTo) {
+  if (
+    type === ExtendedHeader.RenameFrom ||
+    type === ExtendedHeader.RenameTo ||
+    type === ExtendedHeader.CopyFrom ||
+    type === ExtendedHeader.CopyTo
+  ) {
     return {
       type,
       path: line.slice(`${type} `.length),

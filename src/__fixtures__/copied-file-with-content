@@ -1,0 +1,16 @@
+diff --git a/source with spaces.txt b/copied with spaces.txt
+similarity index 89%
+copy from source with spaces.txt
+copy to copied with spaces.txt
+index c9e9e05f445e6b772f19fea1449759b7458a446e..7155914b3e2999c8b0588cbf18442cd9975fa0ce 100644
+--- a/source with spaces.txt	
++++ b/copied with spaces.txt	
+@@ -2,7 +2,7 @@ one
+ two
+ three
+ four
+-five
++FIVE
+ six
+ seven
+ eight
