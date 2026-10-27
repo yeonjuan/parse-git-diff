@@ -610,6 +610,11 @@ index 0e05564..aa39060 100644
 
 See the [types.ts](https://github.com/yeonjuan/parse-git-diff/blob/main/src/types.ts) file for all AST formats.
 
+Diffs generated with Git's copy detection (for example, `--find-copies-harder`)
+include `CopiedFile` entries with `pathBefore`, `pathAfter`, and `chunks`.
+Identical copies have no chunks; edited copies contain the changes relative to
+the source file. Permission changes are included as `oldMode` and `newMode`.
+
 ## License
 
 [MIT](./LICENSE)
